@@ -1,0 +1,1 @@
+@include('layouts.partials.nav')
