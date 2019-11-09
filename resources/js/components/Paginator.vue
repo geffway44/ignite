@@ -1,15 +1,15 @@
 <template>
-    <nav aria-label="Page navigation" v-if="shouldPaginate">
-        <ul class="pagination justify-content-center text-sm">
+    <nav class="mt-8" aria-label="Page navigation" v-if="shouldPaginate">
+        <ul class="pagination justify-center text-sm">
             <li v-show="prevUrl" class="page-item leading-none">
-                <a class="page-link" href="#" tabindex="-1" rel="prev" @click.prevent="page--">
-                    <span class="mr-1">&#8249;</span> Previous
+                <a class="border-none hover:bg-transparent hover:text-indigo-400 text-indigo-500 outline-none" href="#" tabindex="-1" rel="prev" @click.prevent="page--">
+                    <span class="mr-1">&larr;</span> Previous
                 </a>
             </li>
 
             <li v-show="nextUrl" class="page-item leading-none">
-                <a class="page-link" href="#" rel="next" @click.prevent="page++">
-                    Next <span class="ml-1">&#8250;</span>
+                <a class="border-none hover:bg-transparent hover:text-indigo-400 text-indigo-500 outline-none" href="#" rel="next" @click.prevent="page++">
+                    Next <span class="ml-1">&rarr;</span>
                 </a>
             </li>
         </ul>

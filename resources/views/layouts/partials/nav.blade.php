@@ -18,15 +18,15 @@
 
             <ul class="navbar-nav mx-auto items-center">
                 <li class="nav-item">
-                    <a class="nav-link font-semibold" href="/projects">Feed</a>
+                    <a class="nav-link font-semibold" href="{{ url('/threads?following=1') }}">Feed</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link font-semibold" href="/projects">Discover</a>
+                    <a class="nav-link font-semibold" href="{{ url('/channels') }}">Discover</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link font-semibold" href="/projects">Community</a>
+                    <a class="nav-link font-semibold" href="{{ url('/threads?popular=1') }}">Community</a>
                 </li>
             </ul>
 

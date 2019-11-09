@@ -13,7 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Site Title -->
-    <title>{{ config('app.name', 'Ignite') }}</title>
+    <title>{{ config('app.name', 'Ignite') }} | {{ config('app.title', 'Welcome') }}</title>
 
     <link rel="home" href="{{ config('app.url') }}">
     <link rel="icon" href="/favicon.ico">

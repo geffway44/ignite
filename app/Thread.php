@@ -7,12 +7,15 @@ use App\Traits\Sluggable;
 use App\Traits\Searchable;
 use App\Filters\ThreadFilters;
 use App\Traits\RecordsActivity;
+use Illuminate\Support\Facades\Auth;
 use App\Events\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
-    use RecordsActivity, Sluggable, Searchable;
+    use RecordsActivity;
+    use Sluggable;
+    use Searchable;
 
     /**
      * The relationships to always eager-load.
@@ -56,6 +59,7 @@ class Thread extends Model
 
         static::creating(function ($thread) {
             $thread->slug = $thread->title;
+            $thread->user_id = Auth::id();
         });
 
         static::deleting(function ($thread) {
@@ -121,7 +125,8 @@ class Thread extends Model
     /**
      * Add a reply to the thread.
      *
-     * @param  array $reply
+     * @param array $reply
+     *
      * @return Model
      */
     public function addReply($reply)
@@ -206,7 +211,8 @@ class Thread extends Model
     /**
      * Subscribe a user to the current thread.
      *
-     * @param  int|null $userId
+     * @param int|null $userId
+     *
      * @return $this
      */
     public function subscribe($userId = null)
@@ -243,7 +249,7 @@ class Thread extends Model
     /**
      * Determine if the current user is subscribed to the thread.
      *
-     * @return boolean
+     * @return bool
      */
     public function getIsSubscribedToAttribute()
     {
@@ -255,7 +261,8 @@ class Thread extends Model
     /**
      * Determine if the thread has been updated since the user last read it.
      *
-     * @param  User $user
+     * @param User $user
+     *
      * @return bool
      */
     public function hasUpdatesFor($user)
@@ -273,7 +280,7 @@ class Thread extends Model
     public static function getFields()
     {
         return [
-            'title', 'body', 'user_id', 'channel_id',
+            'title', 'body', 'channel_id',
         ];
     }
 }

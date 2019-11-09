@@ -1,7 +1,11 @@
 <template>
-    <a :class="classes" href="#" @click="toggle">
-        <span v-text="favoritesCount"></span> Likes
-    </a>
+    <span>
+        <button :class="classes" @click="toggle">Like</button>
+
+        <span class="mr-5">
+            <span v-text="favoritesCount"></span> Likes
+        </span>
+    </span>
 </template>
 
 <script>

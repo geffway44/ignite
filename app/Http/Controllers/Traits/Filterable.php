@@ -11,7 +11,7 @@ trait Filterable
     /**
      * Fetch all relevant threads.
      *
-     * @param \App\Channel $channel
+     * @param \App\Channel               $channel
      * @param \App\Filters\ThreadFilters $filters
      *
      * @return mixed
@@ -21,7 +21,7 @@ trait Filterable
         $threads = Thread::latest('pinned')->latest()->with('channel')->filter($filters);
 
         if ($channel->exists) {
-            $threads->where('channel_id', $channel->id);
+            $threads = $threads->where('channel_id', $channel->id);
         }
 
         return $threads->paginate(config('ignite.pagination'));

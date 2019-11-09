@@ -3180,6 +3180,154 @@ h3 {
   }
 }
 
+.markdown-container a {
+  text-decoration: none;
+  color: #2d3748;
+}
+
+.markdown-container a:hover {
+  color: #667eea;
+}
+
+.markdown-container blockquote {
+  border-color: #7f9cf5;
+  border-left-width: 4px;
+  font-weight: 400;
+  font-style: italic;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+  color: #2d3748;
+  font-size: 1.125rem;
+}
+
+.markdown-container code {
+  background-color: #e2e8f0;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.markdown-container code.hljs {
+  background-color: transparent;
+  padding: 0;
+}
+
+.markdown-container code.hljs .hljs-comment,
+.markdown-container code.hljs .hljs-keyword,
+.markdown-container code.hljs .hljs-meta {
+  font-weight: 400;
+  font-style: normal;
+}
+
+.markdown-container h1,
+.markdown-container h2,
+.markdown-container h3,
+.markdown-container h4,
+.markdown-container h5,
+.markdown-container h6 {
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+  color: #1a202c;
+}
+
+.markdown-container h1:first-child,
+.markdown-container h2:first-child,
+.markdown-container h3:first-child,
+.markdown-container h4:first-child,
+.markdown-container h5:first-child,
+.markdown-container h6:first-child {
+  margin-top: 0;
+}
+
+.markdown-container h1 {
+  font-size: 3rem;
+}
+
+.markdown-container h2 {
+  font-size: 2.25rem;
+}
+
+.markdown-container h3 {
+  font-size: 1.875rem;
+}
+
+.markdown-container h4 {
+  font-size: 1.5rem;
+}
+
+.markdown-container h5 {
+  font-size: 1.25rem;
+}
+
+.markdown-container h6 {
+  font-size: 1.125rem;
+}
+
+.markdown-container hr {
+  border-bottom-width: 1px;
+  border-color: #c3dafe;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  border-radius: 9999px;
+}
+
+.markdown-container li ul,
+.markdown-container li ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-container ol,
+.markdown-container ul {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-container p {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .markdown-container p {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.markdown-container pre {
+  background-color: #edf2f7;
+  line-height: 2;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  font-size: 1rem;
+}
+
+.markdown-container pre code {
+  background-color: transparent;
+  display: block;
+  padding: 0;
+}
+
+.markdown-container ::-moz-selection {
+  background-color: #667eea;
+  color: #fff;
+}
+
+.markdown-container ::selection {
+  background-color: #667eea;
+  color: #fff;
+}
+
 .bg-sp {
   background-color: #f8f9fa !important;
 }
@@ -3198,6 +3346,7 @@ h3 {
 .form-input:focus {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   border-style: none;
+  outline: 0;
 }
 
 .form-input.is-invalid {

@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->registerMarkdownParser();
     }
 
     /**
@@ -21,5 +21,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
+    }
+
+    /**
+     * Register markdown parser into the service container.
+     */
+    protected function registerMarkdownParser()
+    {
+        $this->app->singleton('markdown', function () {
+            $parsedown = new \Parsedown();
+
+            $parsedown->setSafeMode(true);
+
+            $parsedown->setMarkupEscaped(true);
+
+            return $parsedown;
+        });
     }
 }

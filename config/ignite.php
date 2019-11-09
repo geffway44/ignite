@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'pagination' => 10,
+    'pagination' => 5,
 
     'administrators' => [
         'tjthavarshan@gmail.com',

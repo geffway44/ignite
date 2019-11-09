@@ -24,8 +24,12 @@
                     </div>
 
                     <div>
-                        <h3 class="text-gray-800 text-xl font-medium m-0">
+                        <h3 class="text-gray-800 text-xl font-medium m-0 relative">
                             <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+
+                            @if ($thread->hasUpdatesFor(auth()->user()))
+                                <span class="rounded-full bg-indigo-500 h-2 w-2 inline-block">&nbsp;</span>
+                            @endif
                         </h3>
 
                         <div class="flex items-center">
@@ -38,7 +42,11 @@
                             </span>
 
                             <span class="text-gray-500 text-sm mr-4">
-                                {{ $thread->replies_count }} replies
+                                {{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count) }}
+                            </span>
+
+                            <span class="text-gray-500 text-sm mr-4">
+                                {{ $thread->visits }} {{ str_plural('visit', $thread->visits) }}
                             </span>
                         </div>
                     </div>
@@ -57,45 +65,5 @@
 @endsection
 
 @section('sidebar')
-    <section class="py-12">
-        <div class="mb-4">
-            <h2 class="text-2xl text-gray-800 font-bold m-0">General Links</h2>
-
-            <span class="text-gray-500">
-                To make it easy for you to navigate around the site.
-            </span>
-        </div>
-
-        <ul class="unstyled">
-            <li class="block py-3">
-                <a href="/" class="text-gray-700 hover:text-indigo-500 whitespace-no-wrap font-medium">
-                    All threads
-                </a>
-            </li>
-
-            <li class="block py-3">
-                <a href="/" class="text-gray-700 hover:text-indigo-500 whitespace-no-wrap font-medium">
-                    Popular threads
-                </a>
-            </li>
-
-            <li class="block py-3">
-                <a href="/" class="text-gray-700 hover:text-indigo-500 whitespace-no-wrap font-medium">
-                    Unsolved threads
-                </a>
-            </li>
-
-            <li class="block py-3">
-                <a href="/" class="text-gray-700 hover:text-indigo-500 whitespace-no-wrap font-medium">
-                    Solved threads
-                </a>
-            </li>
-
-            <li class="block py-3">
-                <a href="/" class="text-gray-700 hover:text-indigo-500 whitespace-no-wrap font-medium">
-                    My threads
-                </a>
-            </li>
-        </ul>
-    </section>
+    @include('threads.partials.sidebar')
 @endsection

@@ -8,7 +8,7 @@
 
         data() {
             return {
-                repliesCount: this.thread.replies_count
+                //
             }
         },
     }

@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <button @click="subscribe" v-if="!active" class="button-secondary outline-none">Follow</button>
+    <span>
+        <button @click="subscribe" v-if="!active" class="text-gray-500 hover:text-gray-600 mr-6 outline-none">Follow</button>
 
-        <button @click="unsubscribe" v-else class="button outline-none">Following</button>
-    </div>
+        <button @click="unsubscribe" v-else class="text-indigo-500 hover:text-indigo-400 mr-6 outline-none">Following</button>
+    </span>
 </template>
 
 <script>

@@ -14,6 +14,8 @@ return [
 
     'name' => env('APP_NAME', 'Ignite'),
 
+    'title' => 'Ignite a conversation',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -173,8 +175,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\ViewServiceProvider::class,
-        App\Providers\AdminServiceProvider::class,
     ],
 
     /*

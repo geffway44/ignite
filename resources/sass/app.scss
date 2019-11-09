@@ -3,6 +3,7 @@
 @tailwind components;
 
 @import 'bootstrap/bootstrap';
+@import './markdown';
 
 .bg-sp {
     background-color: #f8f9fa !important;
@@ -20,6 +21,7 @@
 .form-input:focus {
     @apply shadow-md;
     @apply border-none;
+    @apply outline-none;
 }
 
 .form-input.is-invalid {
@@ -30,7 +32,6 @@
     @apply .bg-indigo-500;
     @apply .text-white;
 }
-
 
 .activity-feed {
   padding: 15px;

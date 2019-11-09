@@ -11,8 +11,8 @@
         <div class="mb-4 flex-1">
             <div v-if="editing">
                 <form @submit="update" class="block">
-                    <div class="form-group">
-                        <textarea name="body" id="body" class="w-full" rows="7" v-model="body" required></textarea>
+                    <div class="form-group mb-5">
+                        <textarea name="body" id="body" class="w-full rounded-lg border border-gray-300 px-3 py-2" rows="5" v-model="body" required></textarea>
 
                         <span v-if="error"  v-text="message" class="text-red-500 text-xs mt-2 block" role="alert"></span>
                     </div>
@@ -37,11 +37,11 @@
                 </div>
 
                 <div class="text-sm text-gray-500">
-                    <favorite :reply="reply"></favorite>
+                    <favorite v-if="!canUpdate" :reply="reply"></favorite>
 
-                    <a class="mr-5" href="#" @click.prevent="editing = true">Edit</a>
+                    <a class="mr-5" href="#" v-if="canUpdate" @click.prevent="editing = true">Edit</a>
 
-                    <a class="mr-5" href="#" @click.prevent="destroy">Delete</a>
+                    <a class="mr-5" href="#" v-if="canUpdate" @click.prevent="destroy">Delete</a>
                 </div>
             </div>
         </div>

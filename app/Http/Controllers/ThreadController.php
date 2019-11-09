@@ -19,9 +19,9 @@ class ThreadController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param \App\Channel $channel
+     * @param \App\Channel               $channel
      * @param \App\Filters\ThreadFilters $fileter
-     * @param \App\Trending $trending
+     * @param \App\Trending              $trending
      *
      * @return \Illuminate\Http\Response
      */
@@ -43,7 +43,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        return view('threads.create');
+        return view('threads.create', ['channels' => Channel::all()]);
     }
 
     /**
@@ -68,8 +68,8 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Channel $channel
-     * @param \App\Thread  $thread
+     * @param \App\Channel  $channel
+     * @param \App\Thread   $thread
      * @param \App\Trending $trending
      *
      * @return \Illuminate\Http\Response
@@ -89,8 +89,8 @@ class ThreadController extends Controller
      * Update the specified resource in storage.
      *
      * @param \App\Http\Requests\UpdateThreadRequest $request
-     * @param \App\Channel             $channel
-     * @param \App\Thread              $thread
+     * @param \App\Channel                           $channel
+     * @param \App\Thread                            $thread
      *
      * @return \Illuminate\Http\Response
      */

@@ -9,3 +9,17 @@ if (!function_exists('authUsername')) {
         return auth()->user()->username;
     }
 }
+
+if (!function_exists('parse')) {
+    /**
+     * Parse markdown.
+     *
+     * @param string $content
+     *
+     * @return \Parsedown
+     */
+    function parse($content)
+    {
+        return app('markdown')->text($content);
+    }
+}

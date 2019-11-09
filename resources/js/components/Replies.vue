@@ -1,28 +1,35 @@
 <template>
     <div>
+        <new-reply @replyCreated="add"></new-reply>
+
+        <div class="font-semibold text-gray-800 text-xl mb-10">
+            <span @replyAdded="++repliesCount">{{ repliesCount }}</span> Comments
+        </div>
+
         <div v-for="(reply, index) in items" :key="reply.id">
             <reply :reply="reply" @replyDeleted="remove(index)"></reply>
         </div>
 
         <paginator :dataSet="dataSet" @changed="fetchData"></paginator>
-
-        <new-reply @replyCreated="add"></new-reply>
     </div>
 </template>
 
 <script>
     import Reply from './Reply.vue';
-    import NewReply from '../components/NewReply.vue';
     import collection from '../mixins/collection';
+    import NewReply from '../components/NewReply.vue';
 
     export default {
         components: { Reply, NewReply },
+
+        props: ['count'],
 
         mixins: [collection],
 
         data() {
             return {
                 dataSet: false,
+                repliesCount: this.count
             }
         },
 
