@@ -15,6 +15,7 @@ $factory->define(Thread::class, function (Faker $faker) {
         'body' => $faker->paragraph,
         'user_id' => function () {
             $user = factory(User::class)->create();
+
             factory(Profile::class)->create(['user_id' => $user->id]);
 
             return $user->id;

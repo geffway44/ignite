@@ -17,6 +17,11 @@ Route::group([
     'middleware' => 'auth',
 ], function () {
     /*
+     * Channels Routes...
+     */
+    Route::get('/channels', 'ChannelController@index')->name('channels.index');
+
+    /*
      * Threads Routes...
      */
     Route::get('/threads/search', 'SearchController@search')->name('threads.search');
@@ -67,4 +72,11 @@ Route::group([
     'middleware' => 'admin',
 ], function () {
     Route::get('/', 'Admin\DashboardController@index')->name('admin.index');
+});
+
+/*
+ * Common Routes...
+ */
+Route::get('/help', function () {
+    return view('help');
 });

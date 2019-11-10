@@ -51,12 +51,12 @@
                                 <h6 class="font-semibold text-base">{{ auth()->user()->name }}</h6>
                             </div>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item rounded-lg">Profile</a>
-                            <a href="#" class="dropdown-item rounded-lg">Questions</a>
-                            <a href="#" class="dropdown-item rounded-lg">Activities</a>
+                            <a href="{{ route('user.show', ['user' => auth()->user()->username]) }}" class="dropdown-item rounded-lg">Profile</a>
+                            <a href="{{ url('/threads?by=' . auth()->user()->username) }}" class="dropdown-item rounded-lg">Questions</a>
+                            <a href="{{ route('user.show', ['user' => auth()->user()->username]) }}" class="dropdown-item rounded-lg">Activities</a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item rounded-lg">Settings</a>
-                            <a href="#" class="dropdown-item rounded-lg">Support</a>
+                            <a href="{{ route('user.edit', ['user' => auth()->user()->username]) }}" class="dropdown-item rounded-lg">Settings</a>
+                            <a href="{{ url('/help') }}" class="dropdown-item rounded-lg">Support</a>
                             <a class="dropdown-item rounded-lg" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">

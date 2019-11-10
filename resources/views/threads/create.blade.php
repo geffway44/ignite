@@ -67,15 +67,15 @@
         <div class="border border-gray-300 rounded-lg py-4 px-5 bg-gray-100">
             <h6 class="font-bold text-xs uppercase tracking-widest text-gray-600 mb-5">Helpful Tips</h6>
 
-            <p class="text-gray-500 leading-loose mb-4">
+            <p class="text-gray-500 text-sm mb-4">
                 Your title helps people quickly understand what your question is about so they can answer it.
             </p>
 
-            <p class="text-gray-500 leading-loose mb-4">
+            <p class="text-gray-500 text-sm mb-4">
                 Your description gives people the information they need to help you answer your question.
             </p>
 
-            <p class="text-gray-500 leading-loose">
+            <p class="text-gray-500 text-sm">
                 If you have a question, don't hesitate to ask because we’ll help you find the best way to get your answer.
             </p>
         </div>

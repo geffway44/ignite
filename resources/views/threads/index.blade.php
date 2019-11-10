@@ -8,7 +8,7 @@
                     <h2 class="text-2xl text-gray-800 font-bold m-0">Discussions &amp; Articles</h2>
 
                     <span class="text-gray-500">
-                        View all 450 discussion
+                        View all {{ count($threads) }} discussion
                     </span>
                 </div>
 

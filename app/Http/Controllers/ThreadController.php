@@ -33,7 +33,10 @@ class ThreadController extends Controller
             return $threads;
         }
 
-        return view('threads.index', compact('threads'));
+        return view('threads.index', [
+            'threads' => $threads,
+            'trending' => $trending->get(),
+        ]);
     }
 
     /**
@@ -74,7 +77,7 @@ class ThreadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($channel, Thread $thread)
+    public function show($channel, Thread $thread, Trending $trending)
     {
         auth()->user()->read($thread);
 
@@ -82,7 +85,10 @@ class ThreadController extends Controller
 
         $thread->increment('visits');
 
-        return view('threads.show', compact('thread'));
+        return view('threads.show', [
+            'thread' => $thread,
+            'trending' => $trending->get(),
+        ]);
     }
 
     /**

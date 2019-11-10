@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'pagination' => 5,
+    'pagination' => 12,
 
     'administrators' => [
         // 'add_your_email@here.com'
