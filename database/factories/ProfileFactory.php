@@ -13,7 +13,7 @@ $factory->define(Profile::class, function (Faker $faker) {
         'website' => $faker->domainName,
         'twitter' => $faker->userName,
         'github' => $faker->userName,
-        'job' => $faker->jobTitle,
+        'job' => $faker->word,
         'hometown' => $faker->city,
         'country' => $faker->country,
         'employment' => $faker->company,
