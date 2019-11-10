@@ -61,6 +61,7 @@ class ParticipateInForumTest extends TestCase
     public function authorized_users_can_delete_replies()
     {
         $this->signIn();
+
         $reply = create(Reply::class, ['user_id' => auth()->id()]);
 
         $this->delete("/replies/{$reply->id}/destroy")->assertStatus(200);
@@ -73,8 +74,6 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     public function unauthorized_users_cannot_update_replies()
     {
-        // $this->withoutExceptionHandling();
-
         $john = create(User::class, ['name' => 'John']);
         $jane = create(User::class, ['name' => 'Jane']);
 
