@@ -1,12 +1,12 @@
 # Ignite Forum: Ignite a conversation [![Build Status](https://travis-ci.com/Thavarshan/ignite.svg?branch=master)](https://travis-ci.com/Thavarshan/ignite)
 
-A plateform to get people into the conversation. This is an open source forum application built using Laravel, by *Thavarshan*.
+A plateform to get people into the conversation. This is an open source forum application built using Laravel, by **Thavarshan**.
 
 ## Installation
 
 ### Prerequisites
 
-* To run this project, you must have PHP 7.1 installed.
+* To run this project, you must have PHP 7.2 or higher installed.
 * You should setup a host on your web server for your local domain. For this you could also configure Laravel Homestead or Valet. 
 * If you want use Redis as your cache driver you need to install the Redis Server. You can either use homebrew on a Mac or compile from source (https://redis.io/topics/quickstart). 
 
