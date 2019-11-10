@@ -1,4 +1,4 @@
-# Ignite Forum: Ignite a conversation
+# Ignite Forum: Ignite a conversation [![Build Status](https://travis-ci.com/Thavarshan/ignite.svg?branch=master)](https://travis-ci.com/Thavarshan/ignite)
 
 A plateform to get people into the conversation. This is an open source forum application built using Laravel, by *Thavarshan*.
 
