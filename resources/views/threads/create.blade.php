@@ -52,9 +52,11 @@
                     </div>
 
                     <div class="row items-center justify-between">
-                        <button type="submit" class="whitespace-no-wrap rounded-full bg-indigo-500 hover:bg-indigo-400 outline-none focus:outline-none px-8 py-4 leading-none text-white text-sm">Create thread</button>
+                        <div class="col flex items-center justify-between">
+                            <button type="submit" class="whitespace-no-wrap rounded-full bg-indigo-500 hover:bg-indigo-400 outline-none focus:outline-none px-8 py-4 leading-none text-white text-sm">Create Thread</button>
 
-                        <a href="{{ url('/threads') }}" class="text-red-500 hover:text-red-400">Cancel</a>
+                            <a href="{{ url('/threads') }}" class="text-red-500 hover:text-red-400">Cancel</a>
+                        </div>
                     </div>
                 </form>
             </div>

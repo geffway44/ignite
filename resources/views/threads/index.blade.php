@@ -12,7 +12,7 @@
                     </span>
                 </div>
 
-                <a href="{{ route('threads.create') }}" class="whitespace-no-wrap rounded-full bg-indigo-500 hover:bg-indigo-400 outline-none focus:outline-none px-8 py-4 leading-none text-white text-sm">Create new post</a>
+                <a href="{{ route('threads.create') }}" class="whitespace-no-wrap rounded-full bg-indigo-500 hover:bg-indigo-400 outline-none focus:outline-none px-8 py-4 leading-none text-white text-sm">Create New Post</a>
             </div>
         </div>
 

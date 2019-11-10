@@ -9,13 +9,13 @@ export default {
         add(item) {
             this.items.push(item);
 
-            this.$emit('replyAdded');
+            this.count++;
         },
 
         remove(index) {
             this.items.splice(index, 1);
 
-            this.$emit('replyRemoved');
+            this.count--;
         }
     }
 }

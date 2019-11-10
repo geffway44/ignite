@@ -28,7 +28,7 @@ Route::group([
     Route::get('/threads/create', 'ThreadController@create')->name('threads.create');
     Route::post('/threads', 'ThreadController@store')->name('threads.store');
     Route::get('/threads/{channel}/{thread}', 'ThreadController@show')->name('threads.show');
-    Route::patch('/threads/{channel}/{thread}/update', 'ThreadController@update')->name('threads.update');
+    Route::put('/threads/{channel}/{thread}/update', 'ThreadController@update')->name('threads.update');
     Route::delete('/threads/{channel}/{thread}/delete', 'ThreadController@destroy')->name('threads.destroy');
     Route::post('/threads/{channel}/{thread}/subscribe', 'ThreadSubscriptionController@subscribe')->name('threads.subscribe');
     Route::delete('/threads/{channel}/{thread}/unsubscribe', 'ThreadSubscriptionController@unsubscribe')->name('threads.unsubscribe');
@@ -41,7 +41,7 @@ Route::group([
     Route::post('/threads/{channel}/{thread}', 'ReplyController@store')->name('replies.store');
     Route::post('replies/{reply}/favorite', 'FavoriteController@favorite')->name('replies.favorite');
     Route::delete('replies/{reply}/unfavorite', 'FavoriteController@unfavorite')->name('replies.unfavorite');
-    Route::patch('replies/{reply}/update', 'ReplyController@update')->name('replies.update');
+    Route::put('replies/{reply}/update', 'ReplyController@update')->name('replies.update');
     Route::delete('replies/{reply}/destroy', 'ReplyController@destroy')->name('replies.destroy');
 
     /*
@@ -51,10 +51,10 @@ Route::group([
     Route::get('/user/{user}/notifications', 'Auth\NotificationController@index')->name('user.notifications');
     Route::delete('/user/{user}/notifications/{notification}', 'Auth\NotificationController@destroy')->name('user.notifications.destroy');
     Route::get('/user/{user}/edit', 'Auth\AccountController@edit')->name('user.edit');
-    Route::patch('/user/{user}/update', 'Auth\AccountController@update')->name('user.update');
+    Route::put('/user/{user}/update', 'Auth\AccountController@update')->name('user.update');
     Route::get('/user/{user}/destroy', 'Auth\ProfileController@destroy')->name('user.destroy');
     Route::delete('/user/{user}/destroy', 'Auth\AccountController@destroy')->name('user.destroy');
-    Route::patch('/user/{user}/password/update', 'Auth\PasswordController@update')->name('user.password.update');
+    Route::put('/user/{user}/password/update', 'Auth\PasswordController@update')->name('user.password.update');
     Route::post('/user/{user}/avatar', 'Auth\AvatarController@store')->name('user.avatar');
     Route::delete('/user/{user}/avatar/delete', 'Auth\AvatarController@destory')->name('user.avatar.destroy');
 });

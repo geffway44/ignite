@@ -4,12 +4,6 @@
     export default {
         components: { Replies },
 
-        props: ['thread'],
-
-        data() {
-            return {
-                //
-            }
-        },
+        props: ['thread']
     }
 </script>

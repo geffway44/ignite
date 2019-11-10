@@ -69,7 +69,7 @@
                             </div>
 
                             <button type="submit" class="whitespace-no-wrap rounded-full bg-indigo-500 hover:bg-indigo-400 outline-none focus:outline-none px-8 py-4 leading-none text-white text-sm">
-                                {{ __('Create account') }} <span class="ml-1">&#8594;</span>
+                                {{ __('Create Account') }} <span class="ml-1">&#8594;</span>
                             </button>
                         </div>
                     </form>

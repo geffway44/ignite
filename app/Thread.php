@@ -59,7 +59,7 @@ class Thread extends Model
 
         static::creating(function ($thread) {
             $thread->slug = $thread->title;
-            $thread->user_id ?? Auth::id();
+            $thread->user_id = $thread->user_id ?? Auth::id();
         });
 
         static::deleting(function ($thread) {

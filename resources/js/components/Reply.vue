@@ -96,7 +96,7 @@
             destroy() {
                 axios.delete('/replies/' + this.id + '/destroy');
 
-                this.$emit('replyDeleted', this.id);
+                this.$emit('deleted', this.id);
             }
         }
     }

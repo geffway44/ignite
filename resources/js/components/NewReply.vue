@@ -7,7 +7,7 @@
         </div>
 
         <div class="mb-0 flex items-center">
-            <button class="whitespace-no-wrap rounded-full bg-indigo-500 hover:bg-indigo-400 outline-none focus:outline-none px-8 py-4 leading-none text-white text-sm" :class="postable ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed'" type="submit">Post reply</button>
+            <button class="whitespace-no-wrap rounded-full bg-indigo-500 hover:bg-indigo-400 outline-none focus:outline-none px-8 py-4 leading-none text-white text-sm" :class="postable ? 'cursor-pointer' : 'opacity-50 cursor-not-allowed'" type="submit">Post Reply</button>
         </div>
     </form>
 </template>
@@ -67,7 +67,7 @@
 
                             $('#replyModal').modal('hide');
 
-                            this.$emit('replyCreated', response.data);
+                            this.$emit('created', response.data);
 
                             flash(response.data.status);
                         }

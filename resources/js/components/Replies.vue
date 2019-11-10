@@ -1,13 +1,13 @@
 <template>
     <div>
-        <new-reply @replyCreated="add"></new-reply>
+        <new-reply @created="add"></new-reply>
 
         <div class="font-semibold text-gray-800 text-xl mb-10">
-            <span @replyAdded="++repliesCount">{{ repliesCount }}</span> Comments
+            <span v-text="count"></span> Comments
         </div>
 
         <div v-for="(reply, index) in items" :key="reply.id">
-            <reply :reply="reply" @replyDeleted="remove(index)"></reply>
+            <reply :reply="reply" @deleted="remove(index)"></reply>
         </div>
 
         <paginator :dataSet="dataSet" @changed="fetchData"></paginator>
@@ -22,14 +22,13 @@
     export default {
         components: { Reply, NewReply },
 
-        props: ['count'],
-
         mixins: [collection],
+
+        props: ['count'],
 
         data() {
             return {
                 dataSet: false,
-                repliesCount: this.count
             }
         },
 

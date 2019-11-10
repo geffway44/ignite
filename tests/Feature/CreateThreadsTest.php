@@ -20,10 +20,9 @@ class CreateThreadsTest extends TestCase
     /** @test */
     public function an_authenticated_user_may_create_new_threads()
     {
-        $this->withoutExceptionHandling();
-        $this->signIn();
+        $this->signIn($user = create(User::class));
 
-        $thread = make(Thread::class);
+        $thread = make(Thread::class, ['user_id' => $user->id]);
 
         $response = $this->post('/threads', $thread->toArray());
 

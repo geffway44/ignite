@@ -83,14 +83,14 @@ class ParticipateInForumTest extends TestCase
 
         $updatedReply = ['body' => 'Content update'];
 
-        $this->patch("/replies/{$reply->id}/update", $updatedReply)
+        $this->put("/replies/{$reply->id}/update", $updatedReply)
              ->assertStatus(200);
 
         auth()->logout();
 
         $this->signIn($jane);
 
-        $this->patch("/replies/{$reply->id}/update", $updatedReply)
+        $this->put("/replies/{$reply->id}/update", $updatedReply)
              ->assertStatus(403);
     }
 
@@ -103,7 +103,7 @@ class ParticipateInForumTest extends TestCase
         $reply = create(Reply::class, ['user_id' => $john->id]);
 
         $update = 'You been changed, fool.';
-        $this->patch("/replies/{$reply->id}/update", ['body' => $update]);
+        $this->put("/replies/{$reply->id}/update", ['body' => $update]);
 
         $this->assertDatabaseHas('replies', ['id' => $reply->id, 'body' => $update]);
     }

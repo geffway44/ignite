@@ -43,7 +43,7 @@
                             </p>
 
                             <div class="mt-8">
-                                <a href="{{ route('threads.create') }}" class="inline-block whitespace-no-wrap rounded-full bg-indigo-500 hover:bg-indigo-400 outline-none focus:outline-none px-8 py-4 leading-none text-white text-sm">Get started <span>&rarr;</span></a>
+                                <a href="{{ route('threads.create') }}" class="inline-block whitespace-no-wrap rounded-full bg-indigo-500 hover:bg-indigo-400 outline-none focus:outline-none px-8 py-4 leading-none text-white text-sm">Get Started <span>&rarr;</span></a>
                             </div>
                         </div>
                     </div>

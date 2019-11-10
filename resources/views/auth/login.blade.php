@@ -61,7 +61,7 @@
                             </label>
 
                             <button type="submit" class="whitespace-no-wrap rounded-full bg-indigo-500 hover:bg-indigo-400 outline-none focus:outline-none px-8 py-4 leading-none text-white text-sm">
-                                {{ __('Sign in') }} <span class="ml-1">&#8594;</span>
+                                {{ __('Sign In') }} <span class="ml-1">&#8594;</span>
                             </button>
                         </div>
                     </form>

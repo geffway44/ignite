@@ -88,6 +88,7 @@ class ThreadController extends Controller
         return view('threads.show', [
             'thread' => $thread,
             'trending' => $trending->get(),
+            'channels' => Channel::all(),
         ]);
     }
 
@@ -104,7 +105,7 @@ class ThreadController extends Controller
     {
         $thread->update($request->only(Thread::getFields()));
 
-        return redirect($thread->path())
+        return redirect($thread->refresh()->path())
             ->with('flash', 'Thread has been updated.');
     }
 
