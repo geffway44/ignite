@@ -24,6 +24,8 @@ class TrendingThreadsTest extends TestCase
     {
         $this->assertEmpty((static::$trending)::get());
 
+        $this->signIn();
+
         $thread = create(Thread::class);
 
         $this->call('GET', $thread->path());

@@ -13,6 +13,8 @@ class UserTest extends TestCase
     {
         $user = create(User::class);
 
+        $this->signIn($user);
+
         $reply = create(Reply::class, ['user_id' => $user->id]);
 
         $this->assertEquals($reply->id, $user->lastReply->id);

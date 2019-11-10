@@ -10,15 +10,6 @@ use Tests\TestCase;
 class ParticipateInForumTest extends TestCase
 {
     /** @test **/
-    public function unauthenticated_users_may_not_add_replies()
-    {
-        $thread = create(Thread::class);
-        $reply = create(Reply::class, ['thread_id' => $thread->id]);
-
-        $this->post($thread->path(), $reply->toArray())->assertStatus(302);
-    }
-
-    /** @test **/
     public function an_authenticated_user_may_participate_in_forum_threads()
     {
         $user = create(User::class);
@@ -50,15 +41,19 @@ class ParticipateInForumTest extends TestCase
     /** @test */
     public function unauthorized_users_cannot_delete_replies()
     {
-        $this->withExceptionHandling();
+        $this->signIn();
 
-        $reply = create(Reply::class);
+        $reply = create(Reply::class, ['user_id' => auth()->id()]);
 
         $this->delete("/replies/{$reply->id}/destroy")
-             ->assertRedirect('login');
+             ->assertStatus(200);
+
+        $reply2 = create(Reply::class, ['user_id' => auth()->id()]);
+
+        auth()->logout();
 
         $this->signIn()
-             ->delete("/replies/{$reply->id}/destroy")
+             ->delete("/replies/{$reply2->id}/destroy")
              ->assertStatus(403);
     }
 

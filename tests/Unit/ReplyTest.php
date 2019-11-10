@@ -12,6 +12,8 @@ class ReplyTest extends TestCase
     /** @test **/
     public function it_has_an_owner()
     {
+        $this->signIn();
+
         $reply = create(Reply::class);
 
         $this->assertInstanceOf(User::class, $reply->user);
@@ -20,6 +22,8 @@ class ReplyTest extends TestCase
     /** @test */
     public function it_knows_if_it_was_just_published()
     {
+        $this->signIn();
+
         $reply = create(Reply::class);
 
         $this->assertTrue($reply->wasJustPublished());
@@ -32,6 +36,8 @@ class ReplyTest extends TestCase
     /** @test */
     public function it_can_detect_all_mentioned_users_in_the_body()
     {
+        $this->signIn();
+
         $reply = new Reply([
             'body' => '@JaneDoe wants to talk to @JohnDoe',
         ]);
@@ -42,6 +48,8 @@ class ReplyTest extends TestCase
     /** @test */
     public function it_wraps_mentioned_usernames_in_the_body_within_anchor_tags()
     {
+        $this->signIn();
+
         $reply = new Reply([
             'body' => 'Hello @Jane-Doe.',
         ]);

@@ -61,10 +61,12 @@ class ReadThreadsTest extends TestCase
     /** @test **/
     public function a_user_can_filter_threads_by_username()
     {
-        $this->signIn(create(User::class, ['username' => 'JohnDoe']));
+        $this->signIn($john = create(User::class, ['username' => 'JohnDoe']));
+        $johnsThread = create(Thread::class, ['user_id' => $john->id]);
+        auth()->logout();
 
-        $johnsThread = create(Thread::class, ['user_id' => auth()->id()]);
-        $janesThread = create(Thread::class);
+        $this->signIn($jane = create(User::class, ['username' => 'JaneDoe']));
+        $janesThread = create(Thread::class, ['user_id' => $jane->id]);
 
         $this->get('threads?by=JohnDoe')
              ->assertSee($johnsThread->title)
@@ -90,7 +92,7 @@ class ReadThreadsTest extends TestCase
     }
 
     /** @test **/
-    public function a_user_can_filter_threads_by_those_that_are_unanswered()
+    public function a_user_can_filter_threads_by_those_that_are_unsolved()
     {
         $this->signIn();
 
@@ -99,7 +101,7 @@ class ReadThreadsTest extends TestCase
 
         $threadWithNoReplies = create(Thread::class);
 
-        $response = $this->getJson('threads?unanswered=1')->json();
+        $response = $this->getJson('threads?unsolved=1')->json();
 
         $this->assertCount(1, $response['data']);
     }

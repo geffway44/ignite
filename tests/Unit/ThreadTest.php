@@ -14,6 +14,8 @@ class ThreadTest extends TestCase
     /** @test **/
     public function it_has_replies()
     {
+        $this->signIn();
+
         $thread = create(Thread::class);
         create(Reply::class, ['thread_id' => $thread->id]);
 
@@ -23,6 +25,8 @@ class ThreadTest extends TestCase
     /** @test **/
     public function it_has_an_owner()
     {
+        $this->signIn();
+
         $thread = create(Thread::class);
 
         $this->assertInstanceOf(User::class, $thread->user);
@@ -31,6 +35,8 @@ class ThreadTest extends TestCase
     /** @test **/
     public function it_belongs_to_a_channel()
     {
+        $this->signIn();
+
         $thread = create(Thread::class);
 
         $this->assertInstanceOf(Channel::class, $thread->channel);
@@ -39,6 +45,8 @@ class ThreadTest extends TestCase
     /** @test */
     public function it_can_add_a_reply()
     {
+        $this->signIn();
+
         $thread = create(Thread::class);
 
         $thread->addReply([
@@ -52,6 +60,8 @@ class ThreadTest extends TestCase
     /** @test **/
     public function it_can_make_a_string_path()
     {
+        $this->signIn();
+
         $thread = create(Thread::class);
 
         $this->assertSame(route('threads.show', [
@@ -63,9 +73,9 @@ class ThreadTest extends TestCase
     /** @test */
     public function a_thread_can_be_subscribed_to()
     {
-        $thread = create(Thread::class);
-
         $this->signIn();
+
+        $thread = create(Thread::class);
 
         $thread->subscribe($userId = auth()->id());
 
@@ -75,9 +85,9 @@ class ThreadTest extends TestCase
     /** @test */
     public function a_thread_can_be_unsubscribed_from()
     {
-        $thread = create(Thread::class);
-
         $this->signIn();
+
+        $thread = create(Thread::class);
 
         $thread->subscribe($userId = auth()->id());
 
@@ -88,9 +98,9 @@ class ThreadTest extends TestCase
     /** @test */
     public function is_knows_if_the_authenticated_user_is_subscribed_to_it()
     {
-        $thread = create(Thread::class);
-
         $this->signIn();
+
+        $thread = create(Thread::class);
 
         $this->assertFalse($thread->isSubscribedTo);
 
