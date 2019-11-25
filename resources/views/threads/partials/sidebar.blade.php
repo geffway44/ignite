@@ -10,31 +10,31 @@
     <ul class="unstyled mb-10">
         <li class="block py-3">
             <a href="/threads" class="text-gray-700 hover:text-indigo-500 whitespace-no-wrap font-medium">
-                All threads
+                All Threads
             </a>
         </li>
 
         <li class="block py-3">
             <a href="/threads?popular=1" class="text-gray-700 hover:text-indigo-500 whitespace-no-wrap font-medium">
-                Popular threads
+                Popular Threads
             </a>
         </li>
 
         <li class="block py-3">
             <a href="/threads?unsolved=1" class="text-gray-700 hover:text-indigo-500 whitespace-no-wrap font-medium">
-                Unsolved threads
+                Unsolved Threads
             </a>
         </li>
 
         <li class="block py-3">
             <a href="/threads?solved=1" class="text-gray-700 hover:text-indigo-500 whitespace-no-wrap font-medium">
-                Solved threads
+                Solved Threads
             </a>
         </li>
 
         <li class="block py-3">
             <a href="/threads?by={{ auth()->user()->username }}" class="text-gray-700 hover:text-indigo-500 whitespace-no-wrap font-medium">
-                My threads
+                My Threads
             </a>
         </li>
     </ul>

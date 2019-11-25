@@ -34,7 +34,7 @@
                         <div class="mb-4">
                             <label for="username" class="block uppercase font-semibold tracking-widest text-gray-500 text-xs mb-2 outline-none">{{ __('Username') }}</label>
 
-                            <input id="username" type="text" class="form-input @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Username">
+                            <input id="username" type="text" class="form-input @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" placeholder="Username">
 
                             @error('username')
                                 <span class="text-sm text-red-500 font-medium" role="alert">
@@ -46,7 +46,7 @@
                         <div class="mb-4">
                             <label for="email" class="block uppercase font-semibold tracking-widest text-gray-500 text-xs mb-2 outline-none">{{ __('Email') }}</label>
 
-                            <input id="email" type="email" class="form-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+                            <input id="email" type="email" class="form-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
 
                             @error('email')
                                 <span class="text-sm text-red-500 font-medium" role="alert">

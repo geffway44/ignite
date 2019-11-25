@@ -66,7 +66,7 @@
 
 @section('sidebar')
     <section id="guide-section" class="py-12">
-        <div class="border border-gray-300 rounded-lg py-4 px-5 bg-gray-100">
+        <div class="border border-gray-200 rounded-lg py-4 px-5 bg-gray-100">
             <h6 class="font-bold text-xs uppercase tracking-widest text-gray-600 mb-5">Helpful Tips</h6>
 
             <p class="text-gray-500 text-sm mb-4">
