@@ -4,7 +4,7 @@
     <section id="user-profile-section">
         @include('users.components.profile', ['user' => $user])
 
-        @include('users.components.activity.feed', ['user' => $user])
+        @include('users.components.activity.feed', ['user' => $user, 'activities' => $activities])
     </section>
 @endsection
 

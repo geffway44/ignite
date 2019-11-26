@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Reply;
-use App\Thread;
 use App\Channel;
-use Illuminate\Http\Request;
 use App\Http\Requests\PostReplyRequest;
 use App\Http\Requests\UpdateReplyRequest;
+use App\Reply;
+use App\Thread;
+use Illuminate\Http\Request;
 
 class ReplyController extends Controller
 {
@@ -27,23 +27,19 @@ class ReplyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \App\Http\Requests\PostReplyRequest $request
-     * @param \App\Channel                        $channel
-     * @param \App\Thread                         $thread
+     * @param \App\Channel $channel
      *
      * @return \Illuminate\Http\Response
      */
     public function store(PostReplyRequest $request, $channel, Thread $thread)
     {
-        return $thread->addReply($request->only('body', 'user_id'))
-                      ->load('user');
+        return $thread->addReply($request->only('body', 'user_id'))->load('user');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Reply               $reply
      *
      * @return \Illuminate\Http\Response
      */
@@ -56,8 +52,6 @@ class ReplyController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param \App\Reply $reply
      *
      * @return \Illuminate\Http\Response
      */

@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use App\Profile;
 use App\Activity;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserProfileRequest;
+use App\Profile;
+use App\User;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
     /**
      * Display the specified resource.
      *
-     * @param \App\User $user
-     *
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
     {
         return view('users.show', [
-            'user' => $user, 'activity' => Activity::feed($user),
+            'user' => $user, 'activities' => Activity::feed($user),
         ]);
     }
 

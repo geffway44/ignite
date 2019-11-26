@@ -65,5 +65,5 @@
 @endsection
 
 @section('sidebar')
-    @include('threads.partials.sidebar')
+    @include('threads.components.sidebar')
 @endsection

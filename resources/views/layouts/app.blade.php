@@ -48,6 +48,8 @@
             @include('layouts.partials.footer')
         </footer>
 
+        <flash message="{{ session('flash') }}"></flash>
+
         <!-- Modals -->
         @yield('modals')
     </div>

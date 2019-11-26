@@ -23,3 +23,38 @@ if (!function_exists('parse')) {
         return app('markdown')->text($content);
     }
 }
+
+if (!function_exists('getExcerpt')) {
+    /**
+     * Trim large text body to size of an excerpt.
+     *
+     * @param string $content
+     * @param int    $length
+     *
+     * @return string
+     */
+    function getExcerpt($content, $length = 255)
+    {
+        $content = preg_split('/<!-- more -->/m', $content, 2);
+        $cleaned = trim(
+            strip_tags(
+                preg_replace(['/<pre>[\w\W]*?<\/pre>/', '/<h\d>[\w\W]*?<\/h\d>/'], '', $content[0]),
+                '<code>'
+            )
+        );
+
+        if (count($content) > 1) {
+            return $content[0];
+        }
+
+        $truncated = substr($cleaned, 0, $length);
+
+        if (substr_count($truncated, '<code>') > substr_count($truncated, '</code>')) {
+            $truncated .= '</code>';
+        }
+
+        return strlen($cleaned) > $length
+            ? preg_replace('/\s+?(\S+)?$/', '', $truncated) . '...'
+            : $cleaned;
+    }
+}

@@ -60,7 +60,7 @@
 
                         this.message = error.response.data.message;
 
-                        flash('Your reply could not be saved at this time.', 'error');
+                        flash('Your reply could not be saved at this time.');
                     }).then(response => {
                         if (this.error === false) {
                             this.body = '';
@@ -69,7 +69,7 @@
 
                             this.$emit('created', response.data);
 
-                            flash(response.data.status);
+                            flash('Your reply has been posted.');
                         }
                     });
                 }

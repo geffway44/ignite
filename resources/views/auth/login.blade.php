@@ -19,38 +19,16 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        <div class="mb-4">
-                            <label for="email" class="block uppercase font-semibold tracking-widest text-gray-700 text-xs mb-2 outline-none">{{ __('Email') }}</label>
+                        @include('auth.components.forms.fields.email')
 
-                            <input id="email" type="email" class="form-input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+                        @include('auth.components.forms.fields.current-password')
 
-                            @error('email')
-                                <span class="text-sm text-red-500 font-medium" role="alert">
-                                    {{ $message }}
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="password" class="block uppercase font-semibold tracking-widest text-gray-700 text-xs mb-2 outline-none">{{ __('Password') }}</label>
-
-                            <input id="password" type="password" class="form-input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
-
-                            <div class="mt-2">
-                                @error('password')
-                                    <span class="text-sm text-red-500 font-medium" role="alert">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-
-                                <div class="text-right">
-                                    @if (Route::has('password.request'))
-                                        <a class="text-indigo-500 hover:text-indigo-400 text-sm" href="{{ route('password.request') }}">
-                                            {{ __('Forgot your password?') }}
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
+                        <div class="text-right">
+                            @if (Route::has('password.request'))
+                                <a class="text-indigo-500 hover:text-indigo-400 text-sm" href="{{ route('password.request') }}">
+                                    {{ __('Forgot your password?') }}
+                                </a>
+                            @endif
                         </div>
 
                         <div class="my-4">
