@@ -16,7 +16,7 @@
 
     @include('auth.components.forms.fields.email', ['user' => $user])
 
-    <div class="mb-4">
+    <div class="mb-4 mt-8">
         <button type="submit" class="whitespace-no-wrap rounded-full bg-indigo-500 hover:bg-indigo-400 outline-none focus:outline-none px-8 py-4 leading-none text-white text-sm">
             {{ __('Save Changes') }}
         </button>

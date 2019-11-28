@@ -1,6 +1,12 @@
 <?php
 
 return [
+    /*
+     * Images and user avatars are stored in.
+     */
+    'images' => 'img',
+    'avatars' => 'img/avatars',
+
     'pagination' => 12,
 
     'administrators' => [

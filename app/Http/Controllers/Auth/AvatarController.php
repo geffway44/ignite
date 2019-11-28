@@ -5,36 +5,40 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Http\Controllers\Traits\Uploadable;
 use App\Http\Requests\UploadAvatarRequest;
 
 class AvatarController extends Controller
 {
+    use Uploadable;
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\User  $user
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\UploadAvatarRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(UploadAvatarRequest $request, User $user)
     {
         $user->profile->update([
-            'avatar' => $request->file('avatar')->store('img/avatars', 'public'),
+            'avatar' => $this->saveAvatar($request 'avatar')
         ]);
 
-        return response([], 204);
+        return response(['message' => 'Avatar saved.'], 204);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($user)
     {
         $user->avatar = null;
 
-        return response([], 204);
+        return response(['message' => 'Avatar deleted.'], 204);
     }
 }

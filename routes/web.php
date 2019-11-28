@@ -52,6 +52,7 @@ Route::group([
     Route::delete('/user/{user}/notifications/{notification}', 'Auth\NotificationController@destroy')->name('user.notifications.destroy');
     Route::get('/user/{user}/edit', 'Auth\AccountController@edit')->name('user.edit');
     Route::put('/user/{user}/update', 'Auth\AccountController@update')->name('user.update');
+    Route::put('/user/{user}/profile/update', 'Auth\ProfileController@update')->name('user.profile.update');
     Route::get('/user/{user}/destroy', 'Auth\ProfileController@destroy')->name('user.destroy');
     Route::delete('/user/{user}/destroy', 'Auth\AccountController@destroy')->name('user.destroy');
     Route::put('/user/{user}/password/update', 'Auth\PasswordController@update')->name('user.password.update');
