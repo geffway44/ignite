@@ -2,6 +2,8 @@
 
 A plateform to get people into the conversation. This is an open source forum application built using Laravel, by **Thavarshan**.
 
+Demo: [ignite-forum.herokuapp.com](http://ignite-forum.herokuapp.com)
+
 ## Installation
 
 ### Prerequisites
