@@ -1,8 +1,11 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://rsms.me/inter/inter.css');
 
-// Variables
+@tailwind base;
+
+@tailwind components;
+
 @import 'variables';
+@import 'vendor/bootstrap/bootstrap';
+@import 'custom/styles';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@tailwind utilities;
