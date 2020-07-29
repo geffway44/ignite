@@ -1,14 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Traits\HasImage;
+use App\Models\Casts\SettingsCast;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Concerns\ManagesRolesAndAbilities;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasImage;
+    use ManagesRolesAndAbilities;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +20,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'phone', 'password',
+        'username', 'image', 'settings',
     ];
 
     /**
@@ -35,5 +40,16 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'settings' => SettingsCast::class,
     ];
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 }
