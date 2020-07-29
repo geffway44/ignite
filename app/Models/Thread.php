@@ -19,6 +19,16 @@ class Thread extends Model
     ];
 
     /**
+     * Get the user the thread belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
      * Get the channel the thread is associated with.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

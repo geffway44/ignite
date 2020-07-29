@@ -6,11 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class ChannelTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
+    /** @test */
     public function testExample()
     {
         $this->assertTrue(true);

@@ -14,13 +14,9 @@
 </head>
 <body class="leading-normal antialiased bg-white text-gray-600 overflow-x-hidden">
     <div id="app">
-        @include('layouts.web.partials._header')
-
         <main role="main">
             @yield('body')
         </main>
-
-        @include('layouts.web.partials._footer')
     </div>
 
     <!-- Scripts -->

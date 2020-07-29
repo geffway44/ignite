@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use App\Models\Thread;
 
 class ReadThreadsTest extends TestCase
 {
@@ -13,8 +14,10 @@ class ReadThreadsTest extends TestCase
 
         $this->signIn();
 
-        $response = $this->get('/threads');
+        $thread = create(Thread::class);
 
-        $response->assertStatus(200);
+        $this->get('/threads')
+            ->assertStatus(200)
+            ->assertSee($thread->title);
     }
 }
