@@ -1,47 +1,49 @@
-@extends('layouts.app')
+@extends('layouts.auth.base')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    <section class="py-16">
+        <div class="container">
+            <div class="row justify-center">
+                <div class="col-xl-4 col-lg-5 col-md-7 col-sm-8">
+                    <div class="text-center">
+                        <a href="{{ url('/') }}" class="block h-6 w-auto text-center">
+                            <img class="h-6 w-auto inline-block" src="{{ asset('img/logo.png') }}" alt="{{ config('app.name') }}" />
+                        </a>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                        <h2 class="mt-6">
+                            Reset password
+                        </h2>
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                        <h6 class="text-gray-600">
+                            Enter the email address associated with your account and we'll send you a link to reset your password.
+                        </h6>
+                    </div>
+
+                    <form class="mt-4" action="{{ route('password.email') }}" method="POST">
                         @csrf
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
                             </div>
+                        @endif
+
+                        @include('components.forms.fields._email')
+
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary w-full">
+                                Request password reset link <span class="ml-1">&rarr;</span>
+                            </button>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
+                        <div class="mt-6 text-center">
+                            <span class="text-sm text-gray-600">
+                                Just remembered your password? <a href="{{ route('login') }}">Sign in</a>
+                            </span>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 @endsection
