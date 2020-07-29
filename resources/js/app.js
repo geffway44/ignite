@@ -1,44 +1,31 @@
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
 require('./bootstrap');
-window.fuse = require('fuse.js');
+
 window.Vue = require('vue');
 
-import hljs from 'highlight.js/lib/highlight';
+/**
+ * The following block of code may be used to automatically register your
+ * Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ */
 
-// Syntax highlighting
-hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
-hljs.registerLanguage('css', require('highlight.js/lib/languages/css'));
-hljs.registerLanguage('html', require('highlight.js/lib/languages/xml'));
-hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
-hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
-hljs.registerLanguage('markdown', require('highlight.js/lib/languages/markdown'));
-hljs.registerLanguage('php', require('highlight.js/lib/languages/php'));
-hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
-hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
+// const files = require.context('./', true, /\.vue$/i)
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-document.querySelectorAll('pre code').forEach((block) => {
-    hljs.highlightBlock(block);
-});
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.prototype.authorize = function (handler) {
-    let user = window.App.user;
-
-    return user ? handler(user) : false;
-};
-
-window.events = new Vue();
-
-window.flash = function (message, level = 'success') {
-    window.events.$emit('flash', message, level);
-};
-
-Vue.config.productionTip = false;
-
-Vue.component('flash', require('./components/Flash.vue').default);
-Vue.component('paginator', require('./components/Paginator.vue').default);
-Vue.component('subscribe', require('./components/Subscribe.vue').default);
-Vue.component('thread', require('./pages/Thread.vue').default);
-Vue.component('notifications', require('./components/Notifications.vue').default);
-Vue.component('avatar', require('./components/Avatar.vue').default);
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
 
 const app = new Vue({
     el: '#app',

@@ -1,10 +1,8 @@
-@tailwind base;
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 
-@tailwind components;
+// Variables
+@import 'variables';
 
-@import '~highlight.js/styles/a11y-light.css';
-@import 'bootstrap/bootstrap';
-@import './markdown';
-@import './custom';
-
-@tailwind utilities;
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';

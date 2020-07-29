@@ -3,39 +3,26 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
+     *
+     * @return void
      */
     public function register()
     {
-        $this->registerMarkdownParser();
+        //
     }
 
     /**
      * Bootstrap any application services.
+     *
+     * @return void
      */
     public function boot()
     {
-        Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
-    }
-
-    /**
-     * Register markdown parser into the service container.
-     */
-    protected function registerMarkdownParser()
-    {
-        $this->app->singleton('markdown', function () {
-            $parsedown = new \Parsedown();
-
-            $parsedown->setSafeMode(true);
-
-            $parsedown->setMarkupEscaped(true);
-
-            return $parsedown;
-        });
+        //
     }
 }
