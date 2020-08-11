@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Thread;
 use Illuminate\Http\Request;
+use App\Http\Requests\ThreadRequest;
 
 class ThreadController extends Controller
 {
@@ -37,8 +38,11 @@ class ThreadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThreadRequest $request)
     {
+        user()->threads()->create($request->validated());
+
+        return redirect($thread->path());
     }
 
     /**
