@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Thread;
-use Illuminate\Http\Request;
+use App\Http\Requests\ThreadRequest;
 
 class ThreadController extends Controller
 {
+    use Concerns\GetsThreads;
+
+    /**
+     * Create new instance of thread controller.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,11 +24,7 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        return view('threads.index', [
-            'threads' => Thread::latest()
-                ->with('user', 'channel')
-                ->get(),
-        ]);
+        return view('threads.index', ['threads' => $this->getThreads()]);
     }
 
     /**
@@ -28,17 +34,21 @@ class ThreadController extends Controller
      */
     public function create()
     {
+        return view('threads.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \App\Http\Requests\ThreadRequest $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThreadRequest $request)
     {
+        user()->threads()->create($request->validated());
+
+        return redirect($thread->path());
     }
 
     /**
@@ -50,6 +60,7 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
+        return view('threads.show', compact('thread'));
     }
 
     /**
@@ -61,18 +72,22 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread)
     {
+        return view('threads.edit', compact('thread'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Thread       $thread
+     * @param \App\Http\Requests\ThreadRequest $request
+     * @param \App\Models\Thread               $thread
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Thread $thread)
+    public function update(ThreadRequest $request, Thread $thread)
     {
+        $thread->update($request->validated());
+
+        return redirect()->to($thread->refresh()->path());
     }
 
     /**
@@ -84,5 +99,8 @@ class ThreadController extends Controller
      */
     public function destroy(Thread $thread)
     {
+        $thread->delete();
+
+        return redirect()->to('/threads');
     }
 }

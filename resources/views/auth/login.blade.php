@@ -6,8 +6,8 @@
             <div class="row">
                 <div class="col-xl-4 col-lg-5 col-md-7">
                     <div>
-                        <a href="{{ url('/') }}" class="block h-6 w-auto">
-                            <img class="h-6 w-auto" src="{{ asset('img/logo.png') }}" alt="{{ config('app.name') }}" />
+                        <a href="{{ url('/') }}" class="block h-10 w-auto">
+                            <img class="h-10 w-auto" src="{{ asset('img/logo.png') }}" alt="{{ config('app.name') }}" />
                         </a>
 
                         <h2 class="mt-6">

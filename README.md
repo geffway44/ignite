@@ -1,4 +1,4 @@
-# Ignite Forum: Ignite a conversation
+# Ignite Forum: Ignite a conversation (Under Develpement)
 
 A plateform to get people into the conversation. This is an open source forum application built using Laravel, by **Thavarshan**.
 
@@ -9,8 +9,8 @@ Demo: [ignite-forum.herokuapp.com](http://ignite-forum.herokuapp.com)
 ### Prerequisites
 
 * To run this project, you must have PHP 7.2 or higher installed.
-* You should setup a host on your web server for your local domain. For this you could also configure Laravel Homestead or Valet. 
-* If you want use Redis as your cache driver you need to install the Redis Server. You can either use homebrew on a Mac or compile from source (https://redis.io/topics/quickstart). 
+* You should setup a host on your web server for your local domain. For this you could also configure Laravel Homestead or Valet.
+* If you want use Redis as your cache driver you need to install the Redis Server. You can either use homebrew on a Mac or compile from source (https://redis.io/topics/quickstart).
 
 ### Step 1
 
@@ -25,7 +25,7 @@ npm run dev
 
 ### Step 2
 
-Next, boot up a server and visit your forum. If using a tool like Laravel Valet, of course the URL will default to `http://ignite.test`. 
+Next, boot up a server and visit your forum. If using a tool like Laravel Valet, of course the URL will default to `http://ignite.test`.
 
 1. Visit: `http://ignite.test/register` to register a new forum account.
 2. Edit `config/ignite.php`, and add any email address that should be marked as an administrator.

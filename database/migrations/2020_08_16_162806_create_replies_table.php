@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateThreadsTable extends Migration
+class CreateRepliesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateThreadsTable extends Migration
      */
     public function up()
     {
-        Schema::create('threads', function (Blueprint $table) {
+        Schema::create('replies', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug')->unique();
             $table->text('body');
-            $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('channel_id')->constrained('channels');
+            $table->foreignId('thread_id')
+                ->constrained('threads')
+                ->cascade('delete');
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->cascade('delete');
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateThreadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('threads');
+        Schema::dropIfExists('replies');
     }
 }
