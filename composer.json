@@ -73,7 +73,7 @@
             "@php artisan key:generate --ansi"
         ],
         "test": [
-            "vendor/bin/phpunit && @php artisan test"
+            "vendor/bin/phpunit"
         ]
     }
 }
