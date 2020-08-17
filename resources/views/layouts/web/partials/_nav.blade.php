@@ -1,35 +1,43 @@
-<nav class="h-16 flex items-center {{ $bgNav ?? 'bg-white' }} border-b border-gray-300">
+<nav class="h-16 flex items-center {{ $bgNav ?? 'bg-white' }} border-b border-gray-200">
     <div class="flex-1 container">
         <div class="flex justify-between items-center">
-            <a class="block h-6 w-auto" href="/" title="{{ config('app.name') }}">
-                <img class="h-6 w-auto" src="{{ asset('img/logo.png') }}" alt="{{ config('app.name') }}">
+            <a class="block h-10 w-auto" href="/" title="{{ config('app.name') }}">
+                <img class="h-10 w-auto" src="{{ asset('img/logo.png') }}" alt="{{ config('app.name') }}">
             </a>
 
             <div class="ml-10 hidden md:flex flex-1 items-center justify-between">
                 <ul class="flex items-center">
                     <li>
-                        <a class="text-sm font-semibold text-gray-700 hover:text-blue-500 focus:text-blue-500 active:text-blue-500" href="/listings">{{ __('Browse') }}</a>
+                        <a class="text-sm font-semibold text-gray-700 hover:text-blue-500 focus:text-blue-500 active:text-blue-500" href="/threads">{{ __('Browse') }}</a>
                     </li>
 
                     <li class="ml-6">
-                        <a class="text-sm font-semibold text-gray-700 hover:text-blue-500 focus:text-blue-500 active:text-blue-500" href="/businesses">{{ __('Popular') }}</a>
+                        <a class="text-sm font-semibold text-gray-700 hover:text-blue-500 focus:text-blue-500 active:text-blue-500" href="/threads?popular=1">{{ __('Popular') }}</a>
                     </li>
 
                     <li class="ml-6">
-                        <a class="text-sm font-semibold text-gray-700 hover:text-blue-500 focus:text-blue-500 active:text-blue-500" href="/pricing">{{ __('Featured') }}</a>
+                        <a class="text-sm font-semibold text-gray-700 hover:text-blue-500 focus:text-blue-500 active:text-blue-500" href="//threads?featured=1">{{ __('Featured') }}</a>
                     </li>
 
                     <li class="ml-6">
-                        <a class="text-sm font-semibold text-gray-700 hover:text-blue-500 focus:text-blue-500 active:text-blue-500" href="/support">{{ __('Recent') }}</a>
+                        <a class="text-sm font-semibold text-gray-700 hover:text-blue-500 focus:text-blue-500 active:text-blue-500" href="//threads?recent=1">{{ __('Recent') }}</a>
                     </li>
 
                     <li class="ml-6">
-                        <a class="text-sm font-semibold text-gray-700 hover:text-blue-500 focus:text-blue-500 active:text-blue-500" href="/support">{{ __('Unanswered') }}</a>
+                        <a class="text-sm font-semibold text-gray-700 hover:text-blue-500 focus:text-blue-500 active:text-blue-500" href="//threads?unanswered=1">{{ __('Unanswered') }}</a>
                     </li>
                 </ul>
 
                 <ul class="flex items-center">
                     @auth
+                        <li class="ml-6">
+                            <a class="text-sm font-semibold text-blue-500 hover:text-blue-600 focus:text-blue-600 active:text-blue-600" href="{{ route('threads.create') }}">
+                                <span class="mr-1">&plus;</span>
+
+                                <span>{{ __('New discussion') }}</span>
+                            </a>
+                        </li>
+
                         <li class="ml-6 dropdown">
                             <a class="bg-blue-200 shadow-none px-0 h-8 w-8 flex items-center justify-center rounded-full overflow-hidden dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img class="h-8 w-8" src="{{ asset('img/person.png') }}">
@@ -50,7 +58,7 @@
                         </li>
                     @else
                         <li class="ml-6">
-                            <a class="btn btn-secondary px-3 py-0 leading-9 text-sm" href="{{ route('login') }}">
+                            <a class="text-sm font-semibold text-blue-500 hover:text-blue-600 focus:text-blue-600 active:text-blue-600" href="{{ route('login') }}">
                                 <span>{{ __('Sign in') }}</span>
 
                                 <span class="ml-1">&rarr;</span>

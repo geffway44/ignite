@@ -2,12 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/test', function () {
+    return view('threads.create');
+});
+
 /*
  * Landing Page...
  */
-Route::get('/', function () {
-    return 'Landing page';
-});
+Route::get('/', 'GeneralPagesController@index');
 
 /*
  * User Authentication Routes...
@@ -17,8 +19,4 @@ Auth::routes();
 /*
  * Threads Resource Routes...
  */
-Route::group([
-    'middleware' => 'auth',
-], function (): void {
-    Route::resource('/threads', 'ThreadController');
-});
+Route::resource('/threads', 'ThreadController');

@@ -1,12 +1,12 @@
 @extends('layouts.web.base')
 
 @section('content')
-    <section>
+    <section class="py-8">
         <div class="container">
             <div class="row">
-                <div class="col-xl-7 col-lg-8 col-md-10">
+                <div class="col-xl-7 col-lg-8">
                     <div>
-                        <h4 class="mt-6">
+                        <h4>
                             Discussions &amp; Articles
                         </h4>
 
@@ -63,6 +63,33 @@
                                 </p>
                             </div>
                         @endforelse
+                    </div>
+                </div>
+
+                <div class="col-lg-3 offset-xl-2 offset-lg-1">
+                    <div class="rounded-lg overflow-hidden">
+                        <div class="px-4 py-5 sm:px-6 bg-gray-100">
+                            <div>
+                                <a href="#">Contact support</a>
+
+                                <div>
+                                    <span class="text-gray-500 text-sm">24×7 help from our support staff</span>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div>
+                                <h6 class="font-bold text-gray-800">Popular Topics</h6>
+
+                                <div class="mt-4">
+                                    <a class="inline-block text-sm" href="#">Sed posuere consectetur est at lobortis.</a>
+                                    <a class="mt-2 inline-block text-sm" href="#">Etiam porta sem malesuada magna mollis euismod.</a>
+                                    <a class="mt-2 inline-block text-sm" href="#">Nullam id dolor id nibh ultricies vehicula ut id elit.</a>
+                                    <a class="mt-2 inline-block text-sm" href="#">Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

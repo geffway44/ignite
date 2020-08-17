@@ -33,7 +33,8 @@ abstract class TestCase extends BaseTestCase
     {
         $this->user = $user ?: create(User::class);
 
-        $this->assignRolesAndAbilities()->actingAs($this->user);
+        $this->assignRolesAndAbilities()
+            ->actingAs($this->user);
 
         return $this->user;
     }

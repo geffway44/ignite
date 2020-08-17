@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\Traits\AuthorizesRequest;
 use App\Http\Requests\Traits\HasValidationRules;
 
-class ThreadRequest extends FormRequest
+class ReplyRequest extends FormRequest
 {
     use HasValidationRules;
     use AuthorizesRequest;
@@ -18,8 +18,8 @@ class ThreadRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->thread) {
-            return $this->resourceBelongsToUser($this->thread);
+        if ($this->reply) {
+            return $this->resourceBelongsToUser($this->reply);
         }
 
         return $this->authenticated();
@@ -32,6 +32,6 @@ class ThreadRequest extends FormRequest
      */
     public function rules()
     {
-        return $this->getRulesFor('thread');
+        return $this->getRulesFor('reply');
     }
 }

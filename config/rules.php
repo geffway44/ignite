@@ -36,6 +36,22 @@ return [
     'thread' => [
         'title' => ['required', 'string', 'max:255'],
         'body' => ['required', 'string'],
+        'channel_id' => ['required', 'integer'],
+    ],
+
+    /*
+     * Reply Inputs Rules
+     */
+    'reply' => [
+        'body' => ['required', 'string'],
+    ],
+
+    /*
+     * Channel Inputs Rules
+     */
+    'channel' => [
+        'name' => ['required', 'string', 'max:255'],
+        'description' => ['nullable', 'string'],
     ],
 
     /*

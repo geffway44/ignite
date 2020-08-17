@@ -2,17 +2,38 @@
 
 namespace Tests\Unit\Resources;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
+use App\Models\User;
+use App\Models\Reply;
+use App\Models\Thread;
+use App\Models\Channel;
+use Illuminate\Support\Collection;
 
 class ThreadTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    /** @test */
+    public function it_belongs_to_a_user()
     {
-        $this->assertTrue(true);
+        $thread = create(Thread::class);
+
+        $this->assertInstanceOf(User::class, $thread->user);
+    }
+
+    /** @test */
+    public function it_belongs_to_a_channel()
+    {
+        $thread = create(Thread::class);
+
+        $this->assertInstanceOf(Channel::class, $thread->channel);
+    }
+
+    /** @test */
+    public function it_has_replies()
+    {
+        $thread = create(Thread::class);
+        $replies = create(Reply::class, ['thread_id' => $thread->id]);
+
+        $this->assertInstanceOf(Collection::class, $thread->replies);
+        $this->assertInstanceOf(Reply::class, $thread->replies->first());
     }
 }

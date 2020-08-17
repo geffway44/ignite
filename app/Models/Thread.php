@@ -39,7 +39,29 @@ class Thread extends Model
     }
 
     /**
-     * Get full url of thread page.
+     * Get the channel the thread is associated with.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class, 'thread_id');
+    }
+
+    /**
+     * Add new reply and associate it with the thread.
+     *
+     * @param array $data
+     *
+     * @return \App\Models\Reply
+     */
+    public function addReply(array $data): Reply
+    {
+        return $this->replies()->create($data);
+    }
+
+    /**
+     * Get full URL of thread page.
      *
      * @return string
      */
