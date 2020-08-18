@@ -19,7 +19,7 @@ class UserPolicy
      */
     public function manage(User $user, User $model)
     {
-        return $this->isOwner($user, $model) || $user->hasAbility('all');
+        return $this->isOwner($user, $model);
     }
 
     /**
@@ -32,6 +32,6 @@ class UserPolicy
      */
     protected function isOwner(User $user, User $model): bool
     {
-        return $user->is($model) && $user->hasAbility('edit_user_settings');
+        return $user->is($model);
     }
 }

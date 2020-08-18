@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChannelsTable extends Migration
+class CreateActivitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateChannelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('channels', function (Blueprint $table) {
+        Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('slug')->unique();
-            $table->text('description')->nullable();
-            $table->boolean('archived')->default(false);
-            $table->string('color', 7)->default('#000000');
+            $table->foreignId('user_id')->constrained('users');
+            $table->unsignedBigInteger('subject_id')->index();
+            $table->string('subject_type', 50);
+            $table->string('type', 50);
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateChannelsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('channels');
+        Schema::dropIfExists('activities');
     }
 }

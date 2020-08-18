@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Channel;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -31,6 +32,10 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
+
+        Route::bind('channel', function ($slug) {
+            return Channel::withArchived()->where('slug', $slug)->firstOrFail();
+        });
     }
 
     /**

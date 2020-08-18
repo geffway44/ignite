@@ -36,4 +36,28 @@ class ThreadTest extends TestCase
         $this->assertInstanceOf(Collection::class, $thread->replies);
         $this->assertInstanceOf(Reply::class, $thread->replies->first());
     }
+
+    /** @test */
+    public function a_thread_has_a_path()
+    {
+        $thread = create(Thread::class);
+
+        $this->assertEquals(
+            "http://localhost/threads/{$thread->channel->slug}/{$thread->slug}",
+            $thread->path()
+        );
+    }
+
+    /** @test */
+    public function a_thread_can_have_a_best_reply()
+    {
+        $reply = $this->thread->addReply([
+            'body' => 'Foobar',
+            'user_id' => 1,
+        ]);
+
+        $this->thread->markBestReply($reply);
+
+        $this->assertEquals($reply->id, $this->thread->bestReply->id);
+    }
 }
