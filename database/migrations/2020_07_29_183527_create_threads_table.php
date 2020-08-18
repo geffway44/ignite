@@ -20,10 +20,11 @@ class CreateThreadsTable extends Migration
             $table->text('body');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('channel_id')->constrained('channels');
-            $table->foreignId('best_reply_id')
-                ->constrained('replies')
-                ->onDelete('set null')
-                ->nullable();
+            $table->unsignedBigInteger('best_reply_id')->nullable();
+            $table->foreign('best_reply_id')
+                ->references('id')
+                ->on('replies')
+                ->onDelete('set null');
             $table->unsignedInteger('replies_count')->default(0);
             $table->unsignedInteger('visits')->default(0);
             $table->boolean('locked')->default(false);

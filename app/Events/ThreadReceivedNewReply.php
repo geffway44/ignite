@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\Thread;
+use App\Models\Reply;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -14,21 +14,27 @@ class ThreadReceivedNewReply
     use SerializesModels;
 
     /**
-     * Instance of thread being broadcast.
+     * The reply that was posted.
      *
-     * @var \App\Models\Thread
+     * @param \App\Models\Reply $reply
      */
-    protected $thread;
+    public $reply;
 
     /**
      * Create a new event instance.
      *
-     * @param \App\Models\Thread $thread
-     *
-     * @return void
+     * @param \App\Models\Reply $reply
      */
-    public function __construct(Thread $thread)
+    public function __construct(Reply $reply)
     {
-        $this->thread = $thread;
+        $this->reply = $reply;
+    }
+
+    /**
+     * Get the subject of the event.
+     */
+    public function subject()
+    {
+        return $this->reply;
     }
 }

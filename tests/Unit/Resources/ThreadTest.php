@@ -51,13 +51,14 @@ class ThreadTest extends TestCase
     /** @test */
     public function a_thread_can_have_a_best_reply()
     {
-        $reply = $this->thread->addReply([
+        $thread = create(Thread::class);
+        $reply = $thread->addReply([
             'body' => 'Foobar',
             'user_id' => 1,
         ]);
 
-        $this->thread->markBestReply($reply);
+        $thread->markBestReply($reply);
 
-        $this->assertEquals($reply->id, $this->thread->bestReply->id);
+        $this->assertEquals($reply->id, $thread->bestReply->id);
     }
 }

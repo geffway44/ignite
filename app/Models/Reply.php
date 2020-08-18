@@ -67,7 +67,7 @@ class Reply extends Model implements Redirectable
      *
      * @return string
      */
-    public function path()
+    public function path(): string
     {
         $perPage = config('defaults.pagination.perPage');
 

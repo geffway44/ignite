@@ -95,11 +95,23 @@ class Thread extends Model implements Redirectable
      */
     public function addReply(array $data): Reply
     {
-        $reply = $this->replies()->create($reply);
+        $reply = $this->replies()->create($data);
 
         event(new ThreadReceivedNewReply($reply));
 
         return $reply;
+    }
+
+    /**
+     * Fetch the path to the thread as a property.
+     */
+    public function getPathAttribute()
+    {
+        if (!$this->channel) {
+            return '';
+        }
+
+        return $this->path();
     }
 
     /**

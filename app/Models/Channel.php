@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Models\Traits\Sluggable;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Channel extends Model
 {
@@ -61,22 +61,9 @@ class Channel extends Model
     }
 
     /**
-     * Set the name of the channel.
-     *
-     * @param string $name
-     *
-     * @return void
-     */
-    public function setNameAttribute(string $name): void
-    {
-        $this->attributes['name'] = $name;
-        $this->attributes['slug'] = str_slug($name);
-    }
-
-    /**
      * Get a new query builder that includes archives.
      *
-     * @return \Illuminate\Database\Query\Builder
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function withArchived(): Builder
     {

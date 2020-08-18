@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone', 50)->nullable();
             $table->json('settings')->nullable();
+            $table->unsignedBigInteger('reputation')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
