@@ -20,16 +20,18 @@ return [
         ],
     ],
 
-    'business' => [
-        'name' => 'Cratespace',
-        'slug' => 'cratespace',
-        'description' => 'Nullam id dolor id nibh ultricies vehicula ut id elit.',
-        'street' => '22 Auburn Side',
-        'city' => 'Sri Lanka',
-        'state' => 'Western',
-        'country' => 'Sri Lanka',
-        'postcode' => 13500,
-        'email' => 'tjthavarshan@gmail.com',
-        'phone' => '775018794',
+    'administrators' => [
+        // Add the email addresses of users who should be administrators here.
+    ],
+
+    'reputation' => [
+        'thread_published' => 10,
+        'reply_posted' => 2,
+        'best_reply_awarded' => 50,
+        'reply_favorited' => 5,
+    ],
+
+    'pagination' => [
+        'perPage' => 25,
     ],
 ];

@@ -112,6 +112,18 @@ class UserTest extends TestCase
         $this->assertEquals('leave me alone', $user->refresh()->settings['new_entry']);
     }
 
+    /** @test */
+    public function a_user_can_determine_their_avatar_path()
+    {
+        $user = create(User::class);
+
+        $this->assertEquals(asset('img/default.jpg'), $user->image);
+
+        $user->image = 'img/me.jpg';
+
+        $this->assertEquals(asset('img/me.jpg'), $user->image);
+    }
+
     /**
      * Get fake user details.
      *

@@ -2,8 +2,8 @@
 
 namespace App\Filters;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 abstract class Filter
 {

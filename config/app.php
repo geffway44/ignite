@@ -12,9 +12,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Cratespace'),
+    'name' => env('APP_NAME', 'Ignite'),
 
-    'title' => 'Cratespace | Find the best deals on shipping',
+    'title' => 'Ignite | Discussion & Support Forum',
 
     /*
     |--------------------------------------------------------------------------

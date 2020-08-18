@@ -1,8 +1,8 @@
 <nav class="h-16 flex items-center {{ $bgNav ?? 'bg-white' }} border-b border-gray-200">
     <div class="flex-1 container">
         <div class="flex justify-between items-center">
-            <a class="block h-10 w-auto" href="/" title="{{ config('app.name') }}">
-                <img class="h-10 w-auto" src="{{ asset('img/logo.png') }}" alt="{{ config('app.name') }}">
+            <a class="block h-6 w-auto" href="/" title="{{ config('app.name') }}">
+                <img class="h-6 w-auto" src="{{ asset('img/logo.png') }}" alt="{{ config('app.name') }}">
             </a>
 
             <div class="ml-10 hidden md:flex flex-1 items-center justify-between">

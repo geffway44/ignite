@@ -20,3 +20,5 @@ Auth::routes();
  * Threads Resource Routes...
  */
 Route::resource('/threads', 'ThreadController');
+
+Route::get('/threads/{channel}/{thread}', 'ThreadController@show')->name('threads.show');
