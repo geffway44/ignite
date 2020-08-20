@@ -4,7 +4,7 @@ namespace App\Filters;
 
 use App\Models\User;
 
-class ThreadFilters extends Filters
+class ThreadFilters extends Filter
 {
     /**
      * Registered filters to operate upon.

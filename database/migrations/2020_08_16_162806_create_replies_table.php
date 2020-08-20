@@ -18,10 +18,10 @@ class CreateRepliesTable extends Migration
             $table->text('body');
             $table->foreignId('thread_id')
                 ->constrained('threads')
-                ->cascade('delete');
+                ->onDelete('cascade');
             $table->foreignId('user_id')
                 ->constrained('users')
-                ->cascade('delete');
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

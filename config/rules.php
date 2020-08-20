@@ -1,6 +1,8 @@
 <?php
 
-/**
+use Illuminate\Validation\Rule;
+
+/*
  * All Validation Rules.
  */
 return [
@@ -36,7 +38,12 @@ return [
     'thread' => [
         'title' => ['required', 'string', 'max:255'],
         'body' => ['required', 'string'],
-        'channel_id' => ['required', 'integer'],
+        'channel_id' => [
+            'required', 'integer',
+            Rule::exists('channels', 'id')->where(function ($query) {
+                $query->where('archived', false);
+            }),
+        ],
     ],
 
     /*

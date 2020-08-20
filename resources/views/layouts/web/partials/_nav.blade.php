@@ -40,12 +40,12 @@
 
                         <li class="ml-6 dropdown">
                             <a class="bg-blue-200 shadow-none px-0 h-8 w-8 flex items-center justify-center rounded-full overflow-hidden dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="h-8 w-8" src="{{ asset('img/person.png') }}">
+                                <img class="h-8 w-8" src="{{ user('image') }}">
                             </a>
 
                             <div class="mt-3 dropdown-menu dropdown-menu-right rounded-lg shadow-lg" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item text-sm font-semibold text-gray-700 hover:text-gray-800 focus:text-white active:text-white py-2" href="#">{{ __('Profile') }}</a>
-                                <a class="dropdown-item text-sm font-semibold text-gray-700 hover:text-gray-800 focus:text-white active:text-white py-2" href="#">{{ __('Settings') }}</a>
+                                <a class="dropdown-item text-sm font-semibold text-gray-700 hover:text-gray-800 focus:text-white active:text-white py-2" href="{{ route('users.edit', user()) }}">{{ __('Profile') }}</a>
+                                <a class="dropdown-item text-sm font-semibold text-gray-700 hover:text-gray-800 focus:text-white active:text-white py-2" href="{{ route('users.edit', user()) }}">{{ __('Settings') }}</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item text-sm font-semibold text-gray-700 hover:text-gray-800 focus:text-white active:text-white py-2" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Sign out') }}

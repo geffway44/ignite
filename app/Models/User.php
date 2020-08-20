@@ -57,6 +57,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get all threads the user created.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function threads()
+    {
+        return $this->hasMany(Thread::class)->latest();
+    }
+
+    /**
      * Get all replies the user made.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

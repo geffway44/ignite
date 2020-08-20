@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\Favoritable;
 use App\Models\Traits\Sluggable;
 use App\Models\Traits\Filterable;
 use App\Models\Traits\Recordable;
+use App\Models\Traits\Favoritable;
 use App\Models\Traits\Presentable;
 use App\Contracts\Models\Redirectable;
 use App\Events\ThreadReceivedNewReply;
@@ -26,7 +26,16 @@ class Thread extends Model implements Redirectable
      * @var array
      */
     protected $fillable = [
-        'title', 'slug', 'body', 'user_id', 'channel_id',
+        'title',
+        'slug',
+        'body',
+        'user_id',
+        'channel_id',
+        'best_reply_id',
+        'replies_count',
+        'visits',
+        'locked',
+        'pinned',
     ];
 
     /**
@@ -73,7 +82,7 @@ class Thread extends Model implements Redirectable
      */
     public function bestReply()
     {
-        return $this->hasOne(Reply::class, 'thread_id');
+        return $this->hasOne(Reply::class, 'thread_id')->latest();
     }
 
     /**
@@ -83,7 +92,7 @@ class Thread extends Model implements Redirectable
      */
     public function replies()
     {
-        return $this->hasMany(Reply::class, 'thread_id');
+        return $this->hasMany(Reply::class, 'thread_id')->latest();
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Thread;
 use App\Models\Channel;
+use App\Models\Trending;
+use App\Filters\ThreadFilters;
 use App\Http\Requests\ThreadRequest;
 
 class ThreadController extends Controller
@@ -21,11 +23,23 @@ class ThreadController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \App\Models\Channel        $chhanel
+     * @param \App\Filters\ThreadFilters $filters
+     *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Channel $channel, ThreadFilters $filters)
     {
-        return view('threads.index', ['threads' => $this->getThreads()]);
+        $threads = $this->getThreads($channel, $filters);
+
+        if (request()->wantsJson()) {
+            return $threads;
+        }
+
+        return view('threads.index', [
+            'threads' => $threads,
+            'channel' => $channel,
+        ]);
     }
 
     /**
@@ -35,7 +49,9 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        return view('threads.create');
+        return view('threads.create', [
+            'channels' => Channel::all(),
+        ]);
     }
 
     /**
@@ -47,7 +63,12 @@ class ThreadController extends Controller
      */
     public function store(ThreadRequest $request)
     {
-        user()->threads()->create($request->validated());
+        $thread = user()->threads()
+            ->create($request->validated());
+
+        if (request()->wantsJson()) {
+            return response($thread, 201);
+        }
 
         return redirect($thread->path());
     }
@@ -55,13 +76,26 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Thread $thread
+     * @param \App\Models\Channel  $channel
+     * @param \App\Models\Thread   $thread
+     * @param \App\Models\Trending $trending
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Channel $channel, Thread $thread)
+    public function show(Channel $channel, Thread $thread, Trending $trending)
     {
-        return view('threads.show', compact('thread'));
+        if (auth()->check()) {
+            auth()->user()->read($thread);
+        }
+
+        $trending->push($thread);
+
+        $thread->increment('visits');
+
+        return view('threads.show', [
+            'thread' => $thread,
+            'channels' => Channel::all(),
+        ]);
     }
 
     /**
@@ -86,6 +120,8 @@ class ThreadController extends Controller
      */
     public function update(ThreadRequest $request, Thread $thread)
     {
+        $this->authorize('update', $thread);
+
         $thread->update($request->validated());
 
         return redirect()->to($thread->refresh()->path());
@@ -100,7 +136,13 @@ class ThreadController extends Controller
      */
     public function destroy(Thread $thread)
     {
+        $this->authorize('update', $thread);
+
         $thread->delete();
+
+        if (request()->wantsJson()) {
+            return response([], 204);
+        }
 
         return redirect()->to('/threads');
     }

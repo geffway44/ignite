@@ -18,35 +18,40 @@
                     <form class="mt-10" action="{{ route('threads.store') }}" method="POST">
                         @csrf
 
-                        <div class="flex items-center">
-                            <div class="flex-1">
+                        <div class="flex flex-col md:flex-row items-end md:items-center">
+                            <div class="flex-1 w-full">
                                 <label class="block">
-                                    <input class="form-input mt-1 border-transparent bg-white text-gray-800 font-bold text-lg block w-full" placeholder="Add a title">
+                                    <input name="title" id="title" class="form-input mt-1 md:border-transparent md:bg-white text-gray-800 font-bold text-lg block w-full" placeholder="Add a title">
                                 </label>
                             </div>
 
-                            <div class="ml-4">
+                            <div class="mt-6 md:mt-0 md:ml-4">
                                 <label class="block">
-                                    <select name="channel_id" id="channel_id" class="form-select mt-1 block w-full bg-white shadow">
+                                    <select name="channel_id" id="channel_id" class="form-select block w-full bg-white text-sm font-medium shadow">
                                         <option>Choose a channel</option>
-                                        <option>Pharetra</option>
-                                        <option>Venenatis</option>
-                                        <option>Pharetra</option>
+
+                                        @foreach ($channels as $channel)
+                                            <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                                        @endforeach
                                     </select>
                                 </label>
                             </div>
                         </div>
 
-                        <div class="mt-6">
-                            <textarea id="body" name="body" class="form-textarea block w-full" rows="7" placeholder="What's on your mind?"></textarea>
+                        <hr class="my-6">
+
+                        <div>
+                            <textarea id="body" name="body" class="form-textarea md:border-transparent md:bg-white block w-full" rows="10" placeholder="What's on your mind?"></textarea>
 
                             <div class="mt-2">
                                 <span class="text-sm text-gray-500">You may use Markdown with <a href="https://help.github.com/articles/creating-and-highlighting-code-blocks/">GitHub-flavored</a> code blocks. </span>
                             </div>
                         </div>
 
-                        <div class="mt-10">
-                            <button class="btn btn-primary">Create discussion</button>
+                        <div class="mt-10 flex items-center justify-end">
+                            <a class="btn btn-secondary" href="{{ url()->previous() }}">Cancel</a>
+
+                            <button class="ml-4 btn btn-primary">Create discussion</button>
                         </div>
                     </form>
                 </div>

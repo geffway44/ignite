@@ -11,5 +11,7 @@ $factory->define(Channel::class, function (Faker $faker) {
         'name' => $name = $faker->unique()->word,
         'slug' => Str::slug($name),
         'description' => $faker->paragraph(4),
+        'archived' => false,
+        'color' => $faker->hexColor,
     ];
 });

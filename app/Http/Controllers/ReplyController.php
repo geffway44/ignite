@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reply;
+use App\Models\Thread;
 use App\Http\Requests\ReplyRequest;
 
 class ReplyController extends Controller
@@ -16,7 +17,9 @@ class ReplyController extends Controller
      */
     public function store(ReplyRequest $request, Thread $thread)
     {
-        $reply = $thread->addReply($request->validated());
+        $reply = $thread->addReply(
+            $request->merge(['user_id' => user('id')])->except('_token')
+        );
 
         if ($request->wantsJson()) {
             return response($reply, 200);
@@ -29,11 +32,12 @@ class ReplyController extends Controller
      * Update the specified resource in storage.
      *
      * @param \App\Http\Requests\ReplyRequest $request
+     * @param \App\Models\Thread              $thread
      * @param \App\Models\Reply               $reply
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(ReplyRequest $request, Reply $reply)
+    public function update(ReplyRequest $request, Thread $thread, Reply $reply)
     {
         $reply->update($request->validated());
 
@@ -41,7 +45,7 @@ class ReplyController extends Controller
             return response($reply->refresh(), 200);
         }
 
-        return redirect()->to($reply->thread->path());
+        return redirect()->to($thread->path());
     }
 
     /**
@@ -51,7 +55,7 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reply $reply)
+    public function destroy(Thread $thread, Reply $reply)
     {
         $reply->delete();
 

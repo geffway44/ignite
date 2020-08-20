@@ -11,7 +11,7 @@
                         </h4>
 
                         <h6 class="text-gray-600">
-                            View all 0 discussions
+                            View all {{ $threads->total() }} discussions
                         </h6>
                     </div>
 
@@ -20,19 +20,19 @@
                             <div class="mb-8 flex items-start">
                                 <div class="">
                                     <a href="#" class="block h-12 w-12 rounded-full overflow-hidden">
-                                        <img class="h-12 w-12" src="{{ asset('img/person.png') }}">
+                                        <img class="h-12 w-12" src="{{ $thread->user->image }}">
                                     </a>
                                 </div>
 
                                 <div class="ml-6 flex-1">
                                     <a href="{{ $thread->path() }}">
-                                        <h5 class="leading-snug">
+                                        <h6 class="text-base font-semibold text-gray-800 leading-snug">
                                             {{ $thread->title }}
-                                        </h5>
+                                        </h6>
                                     </a>
 
-                                    <p class="mt-2 text-sm">
-                                        {{ App\Support\Formatter::excerpt($thread->body, 100) }}
+                                    <p class="mt-1 text-sm">
+                                        {{ App\Support\Formatter::excerpt($thread->body, 150) }}
                                     </p>
 
                                     <div class="mt-4 text-xs">
@@ -48,11 +48,11 @@
 
                                         <span class="mx-2"></span>
 
-                                        <span class="text-gray-500">12 replies</span>
+                                        <span class="text-gray-500">{{ $thread->replies_count }} replies</span>
 
                                         <span class="mx-2"></span>
 
-                                        <span class="text-gray-500">15 views</span>
+                                        <span class="text-gray-500">{{ $thread->visits }} views</span>
                                     </div>
                                 </div>
                             </div>
@@ -91,6 +91,16 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    {{ $threads->links() }}
                 </div>
             </div>
         </div>

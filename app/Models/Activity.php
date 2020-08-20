@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class Activity extends Model
 {
@@ -56,9 +56,9 @@ class Activity extends Model
      *
      * @param \App\Models\User $user
      *
-     * @return \Illuminate\Database\Eloquent\Collection;
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public static function feed(User $user): Collection
+    public static function feed(User $user): LengthAwarePaginator
     {
         return static::where('user_id', $user->id)
             ->latest()

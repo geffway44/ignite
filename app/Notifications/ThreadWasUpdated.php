@@ -2,6 +2,8 @@
 
 namespace App\Notifications;
 
+use App\Models\Reply;
+use App\Models\Thread;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 

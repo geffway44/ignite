@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Favoritable;
+use Carbon\Carbon;
 use App\Models\Traits\Recordable;
+use App\Models\Traits\Favoritable;
 use App\Models\Traits\Presentable;
 use App\Contracts\Models\Redirectable;
 use Stevebauman\Purify\Facades\Purify;
@@ -107,7 +108,7 @@ class Reply extends Model implements Redirectable
     {
         $this->attributes['body'] = preg_replace(
             '/@([\w\-]+)/',
-            '<a href="/profiles/$1">$0</a>',
+            '<a href="/users/$1">$0</a>',
             $body
         );
     }
@@ -119,7 +120,7 @@ class Reply extends Model implements Redirectable
      */
     public function isBest(): bool
     {
-        return $this->thread->best_reply_id == $this->id;
+        return (int) $this->thread->best_reply_id === $this->id;
     }
 
     /**
@@ -144,5 +145,15 @@ class Reply extends Model implements Redirectable
         }
 
         return $xp += $this->favorites()->count() * config('defaults.reputation.reply_favorited');
+    }
+
+    /**
+     * Determine if the reply was just published a moment ago.
+     *
+     * @return bool
+     */
+    public function wasJustPublished()
+    {
+        return $this->created_at->gt(Carbon::now()->subMinute());
     }
 }
