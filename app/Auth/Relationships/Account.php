@@ -18,10 +18,7 @@ class Account implements Responsibility
      */
     public function handle(User $user, array $data): User
     {
-        AccountModel::create([
-            'user_id' => $user->id,
-            'credit' => 0,
-        ]);
+        AccountModel::create(['user_id' => $user->id]);
 
         return $user;
     }
