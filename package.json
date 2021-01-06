@@ -12,7 +12,7 @@
     "devDependencies": {
         "@tailwindcss/custom-forms": "^0.2.1",
         "@tailwindcss/typography": "^0.2.0",
-        "axios": "^0.19",
+        "axios": "^0.21",
         "bootstrap": "^4.5.2",
         "browser-sync": "^2.26.12",
         "browser-sync-webpack-plugin": "^2.2.2",
