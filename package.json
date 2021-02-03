@@ -11,6 +11,7 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000"
     },
     "devDependencies": {
+<<<<<<< HEAD
         "@inertiajs/inertia": "^0.8.2",
         "@inertiajs/inertia-vue": "^0.5.4",
         "@inertiajs/progress": "^0.2.4",
@@ -25,6 +26,18 @@
         "browser-sync-webpack-plugin": "^2.0.1",
         "jest": "^26.5.0",
         "laravel-mix": "^6.0.6",
+=======
+        "@tailwindcss/custom-forms": "^0.2.1",
+        "@tailwindcss/typography": "^0.2.0",
+        "axios": "^0.21",
+        "bootstrap": "^4.5.2",
+        "browser-sync": "^2.26.12",
+        "browser-sync-webpack-plugin": "^2.2.2",
+        "cross-env": "^7.0",
+        "flatpickr": "^4.6.5",
+        "jquery": "^3.2",
+        "laravel-mix": "^5.0.1",
+>>>>>>> main
         "lodash": "^4.17.19",
         "moment": "^2.29.1",
         "portal-vue": "^2.1.7",
