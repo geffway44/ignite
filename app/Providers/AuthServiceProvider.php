@@ -2,13 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\User;
-use App\Models\Reply;
-use App\Models\Thread;
-use App\Policies\UserPolicy;
-use App\Policies\ReplyPolicy;
-use App\Policies\ThreadPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -18,9 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Thread::class => ThreadPolicy::class,
-        Reply::class => ReplyPolicy::class,
-        User::class => UserPolicy::class,
+        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
     ];
 
     /**
@@ -31,5 +24,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        //
     }
 }
