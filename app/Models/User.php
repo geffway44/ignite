@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cratespace\Citadel\Models\Traits\HasProfilePhoto;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,7 +57,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'two_factor_enabled' => 'boolean',
         'settings' => 'array',
-        'locked' => 'boolean',
     ];
 
     /**
@@ -71,24 +69,4 @@ class User extends Authenticatable
         'sessions',
         'two_factor_enabled',
     ];
-
-    /**
-     * Get all threads that belong to the thread.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function threads(): HasMany
-    {
-        return $this->hasMany(Thread::class);
-    }
-
-    /**
-     * Get all replies that belong to the thread.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function replies(): HasMany
-    {
-        return $this->hasMany(Reply::class);
-    }
 }
