@@ -2,71 +2,49 @@
 
 namespace App\Models;
 
-use App\Models\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Channel extends Model
 {
-    use Sluggable;
+    use HasFactory;
 
     /**
      * The attributes that aren't mass assignable.
      *
-     * @var array
+     * @var string[]|bool
      */
     protected $guarded = [];
 
     /**
-     * Attributes to cast.
+     * Get the route key for the model.
+     *
+     * @return string
      */
-    protected $casts = [
-        'archived' => 'boolean',
-    ];
-
-    /**
-     * Boot the channels model.
-     */
-    protected static function boot()
+    public function getRouteKeyName()
     {
-        parent::boot();
-
-        static::addGlobalScope('active', function ($builder) {
-            $builder->where('archived', false);
-        });
-
-        static::addGlobalScope('sorted', function ($builder) {
-            $builder->orderBy('name', 'asc');
-        });
+        return 'slug';
     }
 
     /**
-     * A channel consists of threads.
+     * Get all threads belonging to this channel.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function threads()
+    public function threads(): HasMany
     {
         return $this->hasMany(Thread::class);
     }
 
     /**
-     * Archive the channel.
+     * Get all threads the user is allowed to view.
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function archive(): void
+    public function viewableThreads(): Collection
     {
-        $this->update(['archived' => true]);
-    }
-
-    /**
-     * Get a new query builder that includes archives.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public static function withArchived(): Builder
-    {
-        return (new static())->newQueryWithoutScope('active');
+        return $this->threads()->where('locked', false)->with('replies')->get();
     }
 }

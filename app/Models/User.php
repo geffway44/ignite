@@ -2,20 +2,23 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
-use App\Models\Traits\HasImage;
-use App\Models\Casts\SettingsCast;
-use App\Models\Traits\HasReputation;
+use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Concerns\ManagesRolesAndAbilities;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Cratespace\Citadel\Models\Traits\HasProfilePhoto;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cratespace\Citadel\Models\Concerns\InteractsWithSessions;
+use Cratespace\Citadel\Models\Traits\TwoFactorAuthenticatable;
 
 class User extends Authenticatable
 {
+    use HasApiTokens;
+    use HasFactory;
+    use HasProfilePhoto;
     use Notifiable;
-    use HasImage;
-    use ManagesRolesAndAbilities;
-    use HasReputation;
+    use InteractsWithSessions;
+    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -23,8 +26,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'phone', 'password',
-        'username', 'image', 'settings', 'reputation',
+        'name',
+        'email',
+        'password',
+        'username',
+        'settings',
+        'locked',
+        'profile_photo_path',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
     ];
 
     /**
@@ -33,7 +43,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
+        'two_factor_recovery_codes',
+        'two_factor_secret',
     ];
 
     /**
@@ -43,86 +56,38 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'settings' => SettingsCast::class,
+        'two_factor_enabled' => 'boolean',
+        'settings' => 'array',
     ];
 
     /**
-     * Get the route key for the model.
+     * The accessors to append to the model's array form.
      *
-     * @return string
+     * @var array
      */
-    public function getRouteKeyName()
-    {
-        return 'username';
-    }
+    protected $appends = [
+        'profile_photo_url',
+        'sessions',
+        'two_factor_enabled',
+    ];
 
     /**
-     * Get all replies the user made.
+     * Get all threads that belong to the thread.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function replies()
+    public function threads(): HasMany
     {
-        return $this->hasMany(Reply::class, 'user_id')->latest();
+        return $this->hasMany(Thread::class);
     }
 
     /**
-     * Get all activity for the user.
+     * Get all replies that belong to the thread.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function activity()
+    public function replies(): HasMany
     {
-        return $this->hasMany(Activity::class);
-    }
-
-    /**
-     * Determine if the user is an administrator.
-     *
-     * @return bool
-     */
-    public function isAdmin(): bool
-    {
-        return in_array(
-            strtolower($this->email),
-            array_map('strtolower', config('defaults.administrators'))
-        );
-    }
-
-    /**
-     * Determine if the user is an administrator.
-     *
-     * @return bool
-     */
-    public function getIsAdminAttribute()
-    {
-        return $this->isAdmin();
-    }
-
-    /**
-     * Record that the user has read the given thread.
-     *
-     * @param \App\Models\Thread $thread
-     *
-     * @return void
-     */
-    public function read(Thread $thread): void
-    {
-        cache()->forever(
-            $this->visitedThreadCacheKey($thread),
-            Carbon::now()
-        );
-    }
-
-    /**
-     * Get the cache key for when a user reads a thread.
-     *
-     * @param \App\Models\Thread $thread
-     *
-     * @return string
-     */
-    public function visitedThreadCacheKey(Thread $thread): string
-    {
-        return sprintf('users.%s.visits.%s', $this->id, $thread->id);
+        return $this->hasMany(Reply::class);
     }
 }

@@ -2,14 +2,15 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Channel;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\Traits\AuthorizesRequest;
-use App\Http\Requests\Traits\HasValidationRules;
+use Cratespace\Citadel\Http\Requests\Concerns\AuthorizesRequests;
+use Cratespace\Citadel\Http\Requests\Traits\InputValidationRules;
 
 class ThreadRequest extends FormRequest
 {
-    use HasValidationRules;
-    use AuthorizesRequest;
+    use AuthorizesRequests;
+    use InputValidationRules;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -18,11 +19,11 @@ class ThreadRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->thread) {
-            return $this->resourceBelongsToUser($this->thread);
+        if ($thread = $this->route('thread')) {
+            return $this->isAllowed('manage', $thread);
         }
 
-        return $this->authenticated();
+        return $this->isAuthenticated();
     }
 
     /**
@@ -32,6 +33,26 @@ class ThreadRequest extends FormRequest
      */
     public function rules()
     {
-        return $this->getRulesFor('thread');
+        if ($this->method() === 'DELETE') {
+            return [];
+        }
+
+        return $this->getRulesFor('threads');
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation(): void
+    {
+        $channel = $this->route('channel');
+
+        if ($channel && is_null($this->channel_id) && $this->method() !== 'DELETE') {
+            $this->merge([
+                'channel_id' => Channel::whereSlug($channel)->first()->id,
+            ]);
+        }
     }
 }

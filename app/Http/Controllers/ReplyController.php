@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reply;
+use App\Models\Thread;
 use App\Http\Requests\ReplyRequest;
+use App\Http\Responses\ReplyResponse;
+use Illuminate\Contracts\Support\Responsable;
 
 class ReplyController extends Controller
 {
@@ -11,54 +14,47 @@ class ReplyController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \App\Http\Requests\ReplyRequest $request
+     * @param \App\Models\Thread              $thread
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function store(ReplyRequest $request, Thread $thread)
+    public function store(ReplyRequest $request, Thread $thread): Responsable
     {
         $reply = $thread->addReply($request->validated());
 
-        if ($request->wantsJson()) {
-            return response($reply, 200);
-        }
-
-        return redirect()->to($thread->path());
+        return $this->app(ReplyResponse::class, compact('reply'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \App\Http\Requests\ReplyRequest $request
-     * @param \App\Models\Reply               $reply
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Thread       $thread
+     * @param \App\Models\Reply        $reply
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function update(ReplyRequest $request, Reply $reply)
+    public function update(ReplyRequest $request, Thread $thread, Reply $reply): Responsable
     {
         $reply->update($request->validated());
 
-        if ($request->wantsJson()) {
-            return response($reply->refresh(), 200);
-        }
+        // $thread->user->notify();
 
-        return redirect()->to($reply->thread->path());
+        return $this->app(ReplyResponse::class, compact('reply'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Reply $reply
+     * @param \App\Models\Thread $thread
+     * @param \App\Models\Reply  $reply
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function destroy(Reply $reply)
+    public function destroy(Thread $thread, Reply $reply): Responsable
     {
         $reply->delete();
 
-        if (request()->wantsJson()) {
-            return response([], 204);
-        }
-
-        return redirect()->back();
+        return $this->app(ReplyResponse::class, compact('thread'));
     }
 }
