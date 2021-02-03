@@ -79,7 +79,7 @@ jobs:
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
           DB_USERNAME: root
-        run: ./composer test
+        run: composer test
 
       - name: ⚗️ Run JavaScript tests
         run: |

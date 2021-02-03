@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Thread;
 use App\Models\Channel;
 use App\Http\Requests\ThreadRequest;
 use App\Http\Responses\ThreadResponse;
+use Inertia\Response as InertiaResponse;
 use App\Contracts\Actions\DeletesThreads;
 use App\Contracts\Actions\CreatesNewThreads;
 use Illuminate\Contracts\Support\Responsable;
@@ -15,10 +17,15 @@ class ThreadController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Channel $channel
+     *
+     * @return \Inertia\Response
      */
-    public function index()
+    public function index(Channel $channel): InertiaResponse
     {
+        return Inertia::render('Threads/Index', [
+            'threads' => $channel->viewableThreads(),
+        ]);
     }
 
     /**
