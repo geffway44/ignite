@@ -83,7 +83,7 @@ class CreateNewThreadTest extends TestCase implements Postable
         $this->assertCount(0, Thread::all());
     }
 
-    public function testThreadRequiresValidChannelId()
+    public function testRequestCanAutoSetChannelId()
     {
         $channel = create(Channel::class);
 
@@ -92,25 +92,12 @@ class CreateNewThreadTest extends TestCase implements Postable
             [
                 'title' => $this->faker->unique()->sentence(),
                 'body' => $this->faker->paragraph,
-                'channel' => '',
+                'channel_id' => '',
             ]
         );
 
-        $response->assertStatus(302);
-        $response->assertSessionHasErrors(['channel_id']);
-        $this->assertCount(0, Thread::all());
-
-        $response = $this->signIn(create(User::class))->postJson(
-            route('threads.index', $channel),
-            [
-                'title' => $this->faker->unique()->sentence(),
-                'body' => $this->faker->paragraph,
-                'channel' => '',
-            ]
-        );
-
-        $response->assertStatus(422);
-        $this->assertCount(0, Thread::all());
+        $response->assertStatus(303);
+        $this->assertCount(1, Thread::all());
     }
 
     /**

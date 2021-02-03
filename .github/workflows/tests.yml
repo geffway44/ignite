@@ -79,7 +79,7 @@ jobs:
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
           DB_USERNAME: root
-        run: ./vendor/bin/phpunit --verbose
+        run: ./composer test
 
       - name: ⚗️ Run JavaScript tests
         run: |
@@ -147,7 +147,7 @@ jobs:
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: ':memory:'
-        run: vendor/bin/phpunit --verbose
+        run: composer test
 
       - name: ⚗️ Run JavaScript tests
         run: |

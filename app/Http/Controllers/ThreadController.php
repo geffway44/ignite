@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Thread;
+use App\Models\Channel;
 use App\Http\Requests\ThreadRequest;
 use App\Http\Responses\ThreadResponse;
+use App\Contracts\Actions\DeletesThreads;
 use App\Contracts\Actions\CreatesNewThreads;
 use Illuminate\Contracts\Support\Responsable;
 
@@ -57,11 +59,12 @@ class ThreadController extends Controller
      * Update the specified resource in storage.
      *
      * @param \App\Http\Requests\ThreadRequest $request
+     * @param \App\Models\Channel              $channel
      * @param \App\Models\Thread               $thread
      *
      * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function update(ThreadRequest $request, Thread $thread): Responsable
+    public function update(ThreadRequest $request, Channel $channel, Thread $thread): Responsable
     {
         $thread->update($request->validated());
 
@@ -71,16 +74,23 @@ class ThreadController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Thread $thread
+     * @param \App\Http\Requests\ThreadRequest    $request
+     * @param \App\Actions\Threads\DeletesThreads $deleter
+     * @param \App\Models\Channel                 $chennel
+     * @param \App\Models\Thread                  $thread
      *
      * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function destroy(Thread $thread): Responsable
-    {
-        $this->authorize('manage', $thread);
+    public function destroy(
+        ThreadRequest $request,
+        DeletesThreads $deleter,
+        Channel $channel,
+        Thread $thread
+    ): Responsable {
+        $deleter->delete($thread);
 
-        $thread->delete();
+        // $request->user()->notify();
 
-        return $this->app(ThreadResponse::class);
+        return $this->app(ThreadResponse::class, compact('channel'));
     }
 }
