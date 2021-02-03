@@ -1,5 +1,5 @@
 {
-    "include": ["./resources/js/**/*"],
+    "include": ["./resources/js/**/*", "./resources/js/*"],
     "compilerOptions": {
         "checkJs": false,
         "target": "es6",
