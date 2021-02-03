@@ -31,10 +31,13 @@ class ThreadController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Channel $channel
+     *
+     * @return \Inertia\Response
      */
-    public function create()
+    public function create(Channel $channel): InertiaResponse
     {
+        return Inertia::render('Threads/Create', compact('channel'));
     }
 
     /**
@@ -54,12 +57,14 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Thread $thread
+     * @param \App\Models\Channel $channel
+     * @param \App\Models\Thread  $thread
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
-    public function show(Thread $thread)
+    public function show(Channel $channel, Thread $thread): InertiaResponse
     {
+        return Inertia::render('Threads/Show', compact('thread'));
     }
 
     /**
