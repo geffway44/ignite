@@ -59,8 +59,8 @@ return [
     ],
 
     'threads' => [
-        'title' => ['requried', 'string'],
-        'body' => ['requried', 'string'],
-        'channel_id' => ['requried', 'integer'],
+        'title' => ['required', 'string'],
+        'body' => ['required', 'string'],
+        'channel_id' => ['required', 'integer', 'exists:App\Models\Channel,id'],
     ],
 ];

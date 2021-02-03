@@ -79,7 +79,7 @@ class User extends Authenticatable
      */
     public function threads(): HasMany
     {
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Thread::class);
     }
 
     /**

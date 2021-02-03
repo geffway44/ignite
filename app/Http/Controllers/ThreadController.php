@@ -52,7 +52,7 @@ class ThreadController extends Controller
     public function show(Thread $thread)
     {
     }
-    
+
     /**
      * Update the specified resource in storage.
      *

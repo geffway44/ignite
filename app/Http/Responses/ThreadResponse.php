@@ -47,11 +47,11 @@ class ThreadResponse extends Response implements Responsable
         if (is_null($this->thread)) {
             return $request->expectsJson()
                 ? $this->json('', 204)
-                : $this->redirectToRoute('threads.index');
+                : $this->redirectToRoute('threads.index', [], 303);
         }
 
         return $request->expectsJson()
-            ? $this->json($this->thread)
-            : $this->redirectTo($this->thread->path);
+            ? $this->json($this->thread, 201)
+            : $this->redirectTo($this->thread->path, 303);
     }
 }
