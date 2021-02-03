@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\Channel;
 use Illuminate\Support\Str;
@@ -94,5 +95,18 @@ class ThreadsTest extends TestCase
         $thread->save();
 
         $this->assertTrue($thread->pinned);
+    }
+
+    public function testThreadCanAddReply()
+    {
+        $thread = create(Thread::class);
+        $this->signIn($thread->user);
+        $reply = $thread->addReply([
+            'body' => $this->faker->paragraph(),
+        ]);
+
+        $this->assertInstanceOf(Reply::class, $reply);
+        $this->assertCount(1, Reply::all());
+        $this->assertEquals(1, $thread->refresh()->replies_count);
     }
 }

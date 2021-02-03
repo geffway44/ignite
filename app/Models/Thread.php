@@ -86,6 +86,24 @@ class Thread extends Model
     }
 
     /**
+     * Create new reply for this thread.
+     *
+     * @param array $data
+     *
+     * @return \App\Models\Reply
+     */
+    public function addReply(array $data): Reply
+    {
+        $reply = $this->replies()->create(array_merge($data, [
+            'user_id' => $data['user_id'] ?? auth()->id(),
+        ]));
+
+        $this->increment('replies_count');
+
+        return $reply;
+    }
+
+    /**
      * Get full URL to thread.
      *
      * @return string
@@ -95,6 +113,6 @@ class Thread extends Model
         return route('threads.show', [
             'channel' => $this->channel->slug,
             'thread' => $this->slug,
-        ]);
+        ], true);
     }
 }

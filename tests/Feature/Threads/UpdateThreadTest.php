@@ -73,13 +73,19 @@ class UpdateThreadTest extends TestCase implements Postable
 
         if ($json) {
             return $this->putJson(
-                route('threads.update', ['channel' => $thread->channel, 'thread' => $thread]),
+                route('threads.update', [
+                    'channel' => $thread->channel,
+                    'thread' => $thread
+                ]),
                 $this->validParameters($overrides)
             );
         }
 
         return $this->put(
-            route('threads.update', ['channel' => $thread->channel, 'thread' => $thread]),
+            route('threads.update', [
+                'channel' => $thread->channel,
+                'thread' => $thread
+            ]),
             $this->validParameters($overrides)
         );
     }

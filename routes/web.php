@@ -2,6 +2,7 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ThreadController;
 
 Route::get('/', fn () => Inertia::render('Marketing/Welcome'))->name('welcome');
@@ -23,4 +24,11 @@ Route::group([
     Route::get('/{channel}/threads/{thread}', [ThreadController::class, 'show'])->name('threads.show');
     Route::put('/{channel}/threads/{thread}', [ThreadController::class, 'update'])->name('threads.update');
     Route::delete('/{channel}/threads/{thread}', [ThreadController::class, 'destroy'])->name('threads.destroy');
+
+    /*
+     * Replies Routes...
+     */
+    Route::post('/{thread}/replies', [ReplyController::class, 'store'])->name('replies.store');
+    Route::put('/{thread}/replies/{reply}', [ReplyController::class, 'update'])->name('replies.update');
+    Route::delete('/{thread}/replies/{reply}', [ReplyController::class, 'destroy'])->name('replies.destroy');
 });

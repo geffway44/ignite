@@ -3,83 +3,58 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reply;
-use Illuminate\Http\Request;
+use App\Models\Thread;
+use App\Http\Requests\ReplyRequest;
+use App\Http\Responses\ReplyResponse;
+use Illuminate\Contracts\Support\Responsable;
 
 class ReplyController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
+     * @param \App\Http\Requests\ReplyRequest $request
+     * @param \App\Models\Thread              $thread
      *
-     * @param  \App\Models\Reply  $reply
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function show(Reply $reply)
+    public function store(ReplyRequest $request, Thread $thread): Responsable
     {
-        //
-    }
+        $reply = $thread->addReply($request->validated());
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Reply  $reply
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reply $reply)
-    {
-        //
+        return $this->app(ReplyResponse::class, compact('reply'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Reply  $reply
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Thread       $thread
+     * @param \App\Models\Reply        $reply
+     *
+     * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function update(Request $request, Reply $reply)
+    public function update(ReplyRequest $request, Thread $thread, Reply $reply): Responsable
     {
-        //
+        $reply->update($request->validated());
+
+        // $thread->user->notify();
+
+        return $this->app(ReplyResponse::class, compact('reply'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Reply  $reply
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Thread $thread
+     * @param \App\Models\Reply  $reply
+     *
+     * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function destroy(Reply $reply)
+    public function destroy(Thread $thread, Reply $reply): Responsable
     {
-        //
+        $reply->delete();
+
+        return $this->app(ReplyResponse::class, compact('thread'));
     }
 }

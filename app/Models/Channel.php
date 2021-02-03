@@ -45,6 +45,6 @@ class Channel extends Model
      */
     public function viewableThreads(): Collection
     {
-        return $this->threads()->where('locked', false)->get();
+        return $this->threads()->where('locked', false)->with('replies')->get();
     }
 }

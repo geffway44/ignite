@@ -58,9 +58,19 @@ return [
         ],
     ],
 
+    /*
+     * Create/Update Threads Validation Rules.
+     */
     'threads' => [
         'title' => ['required', 'string'],
         'body' => ['required', 'string'],
         'channel_id' => ['required', 'integer', 'exists:App\Models\Channel,id'],
+    ],
+
+    /*
+     * Create/Update Replies Validation Rules.
+     */
+    'replies' => [
+        'body' => ['required', 'string'],
     ],
 ];
