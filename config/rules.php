@@ -1,8 +1,8 @@
 <?php
 
-use Cratespace\Citadel\Rules\PasswordRule;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\User;
+use Cratespace\Citadel\Rules\PasswordRule;
 
 return [
     /*
@@ -45,7 +45,7 @@ return [
     ],
 
     /*
-     * Use Account Password Update Validation Rules.
+     * User Account Password Update Validation Rules.
      */
     'update_password' => [
         'current_password' => ['required', 'string'],
@@ -56,5 +56,11 @@ return [
             'confirmed',
             'different:current_password',
         ],
+    ],
+
+    'threads' => [
+        'title' => ['requried', 'string'],
+        'body' => ['requried', 'string'],
+        'channel_id' => ['requried', 'integer'],
     ],
 ];

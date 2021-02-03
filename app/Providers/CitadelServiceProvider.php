@@ -6,6 +6,7 @@ use App\Actions\Citadel\DeleteUser;
 use App\Actions\Citadel\CreateNewUser;
 use Illuminate\Support\ServiceProvider;
 use App\Actions\Citadel\AuthenticateUser;
+use App\Providers\Traits\RegisterActions;
 use App\Actions\Citadel\ResetUserPassword;
 use App\Actions\Citadel\UpdateUserProfile;
 use App\Actions\Citadel\UpdateUserPassword;
@@ -18,12 +19,14 @@ use Cratespace\Citadel\Contracts\Actions\UpdatesUserPasswords;
 
 class CitadelServiceProvider extends ServiceProvider
 {
+    use RegisterActions;
+
     /**
      * The citadel action classes.
      *
      * @var array
      */
-    protected static $actions = [
+    protected $actions = [
         AuthenticatesUsers::class => AuthenticateUser::class,
         CreatesNewUsers::class => CreateNewUser::class,
         ResetsUserPasswords::class => ResetUserPassword::class,
@@ -49,17 +52,5 @@ class CitadelServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-    }
-
-    /**
-     * Register all citadel action classes to the service container.
-     *
-     * @return void
-     */
-    protected function registerActions(): void
-    {
-        collect(static::$actions)->each(
-            fn ($concrete, $abstract) => $this->app->singleton($abstract, $concrete)
-        );
     }
 }
