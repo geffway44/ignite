@@ -19,6 +19,15 @@ class Channel extends Model
     protected $guarded = [];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'threads_count',
+    ];
+
+    /**
      * Get the route key for the model.
      *
      * @return string
@@ -55,6 +64,6 @@ class Channel extends Model
      */
     public function getThreadsCountAttribute(): int
     {
-        return $this->thread->count;
+        return $this->threads()->count();
     }
 }

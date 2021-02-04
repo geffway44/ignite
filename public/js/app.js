@@ -2820,8 +2820,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['channels'],
   components: {
     AppLayout: _Views_Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__.default
   }
@@ -34528,10 +34545,66 @@ var render = function() {
         fn: function() {
           return [
             _c("div", [
-              _c("p", [
-                _c("span", { staticClass: "font-semibold" }, [_vm._v("You")]),
-                _vm._v(" are now logged in.\n            ")
-              ])
+              _c(
+                "div",
+                { staticClass: "md:grid md:grid-cols-12 md:gap-6" },
+                _vm._l(_vm.channels, function(channel) {
+                  return _c(
+                    "div",
+                    {
+                      key: channel.id,
+                      staticClass:
+                        "md:col-span-3 rounded-lg overflow-hidden shadow flex flex-col"
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "px-4 py-5 sm:px-6 flex flex-col flex-1 justify-between bg-white"
+                        },
+                        [
+                          _c("div", [
+                            _c("div", [
+                              _c(
+                                "h6",
+                                { staticClass: "font-semibold text-gray-800" },
+                                [_vm._v(_vm._s(channel.name))]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "mt-3" }, [
+                              _c("p", { staticClass: "text-sm truncate" }, [
+                                _vm._v(_vm._s(channel.description))
+                              ])
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "mt-3 flex items-center justify-end"
+                            },
+                            [
+                              _c(
+                                "span",
+                                { staticClass: "text-xs text-gray-500" },
+                                [
+                                  _vm._v(
+                                    _vm._s(channel.threads_count) +
+                                      " discussions"
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
             ])
           ]
         },
