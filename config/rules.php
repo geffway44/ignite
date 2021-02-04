@@ -73,4 +73,12 @@ return [
     'replies' => [
         'body' => ['required', 'string'],
     ],
+
+    /*
+     * Create/Update Channels Validation Rules...
+     */
+    'channels' => [
+        'name' => ['required', 'string', 'unique:App\Models\Channel,name'],
+        'description' => ['nullable', 'string'],
+    ],
 ];

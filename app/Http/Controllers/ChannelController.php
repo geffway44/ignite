@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Channel;
-use Illuminate\Http\Request;
+use App\Http\Requests\ChannelRequest;
+use App\Http\Responses\ChannelResponse;
 use Inertia\Response as InertiaResponse;
+use Illuminate\Contracts\Support\Responsable;
 
 class ChannelController extends Controller
 {
@@ -22,57 +24,32 @@ class ChannelController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param \App\Http\Requests\ChannelRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function store(Request $request)
+    public function store(ChannelRequest $request): Responsable
     {
-    }
+        $channel = Channel::create($request->validated());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param \App\Models\Channel $channel
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Channel $channel)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Channel $channel
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Channel $channel)
-    {
+        return $this->app(ChannelResponse::class, compact('channel'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Channel      $channel
+     * @param \App\Http\Requests\ChannelRequest $request
+     * @param \App\Models\Channel               $channel
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function update(Request $request, Channel $channel)
+    public function update(ChannelRequest $request, Channel $channel): Responsable
     {
+        $channel->update($request->validated());
+
+        return $this->app(ChannelResponse::class, compact('channel'));
     }
 
     /**
@@ -84,5 +61,6 @@ class ChannelController extends Controller
      */
     public function destroy(Channel $channel)
     {
+        $channel->delete();
     }
 }
