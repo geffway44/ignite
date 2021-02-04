@@ -3,6 +3,7 @@
 namespace App\Http\Responses;
 
 use App\Models\Reply;
+use App\Models\Thread;
 use Illuminate\Routing\Redirector;
 use Illuminate\View\Factory as ViewFactory;
 use Illuminate\Contracts\Support\Responsable;
@@ -18,6 +19,13 @@ class ReplyResponse extends Response implements Responsable
     protected $reply;
 
     /**
+     * Instance of thread the deleted reply belonged to.
+     *
+     * @var \App\Models\Thread|null
+     */
+    protected $thread;
+
+    /**
      * Create a new response factory instance.
      *
      * @param \Illuminate\Contracts\View\Factory $view
@@ -26,13 +34,19 @@ class ReplyResponse extends Response implements Responsable
      *
      * @return void
      */
-    public function __construct(ViewFactory $view, Redirector $redirector, ?Reply $reply = null)
-    {
+    public function __construct(
+        ViewFactory $view,
+        Redirector $redirector,
+        ?Reply $reply = null,
+        ?Thread $thread
+    ) {
         parent::__construct($view, $redirector);
 
         if (! is_null($reply)) {
             $this->reply = $reply->fresh();
         }
+
+        $this->thread = $thread;
     }
 
     /**
@@ -47,7 +61,7 @@ class ReplyResponse extends Response implements Responsable
         if (is_null($this->reply)) {
             return $request->expectsJson()
                 ? $this->json('', 204)
-                : $this->redirectTo($this->thread->path);
+                : $this->redirectTo($this->thread->path, 303);
         }
 
         return $request->expectsJson()
