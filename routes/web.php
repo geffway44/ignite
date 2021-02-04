@@ -8,7 +8,7 @@ use App\Http\Controllers\ThreadController;
 Route::get('/', fn () => Inertia::render('Marketing/Welcome'))->name('welcome');
 
 Route::middleware(['auth:sanctum', 'verified'])->get(
-    '/home',
+    '/feed',
     fn () => Inertia::render('Business/Home')
 )->name('home');
 

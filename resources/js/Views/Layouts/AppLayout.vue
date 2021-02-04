@@ -2,14 +2,22 @@
     <div class="min-h-screen min-w-full overflow-x-hidden">
         <!-- Main Header Area -->
         <header>
-            <navbar class="bg-blue-800">
+            <navbar class="bg-white">
                 <template #logo>
                     <logo classes="h-8 w-auto text-blue-500" :title="config('app.name')"></logo>
                 </template>
 
                 <template #linksleft>
-                    <navbar-link :href="route('home')" :active="route().current('home')" class="text-white bg-blue-900 hover:bg-blue-900 focus:bg-blue-900">
-                        Dashboard
+                    <navbar-link :href="route('home')" :active="route().current('home')" class="text-gray-700">
+                        Feed
+                    </navbar-link>
+
+                    <navbar-link class="text-gray-700">
+                        Discover
+                    </navbar-link>
+
+                    <navbar-link class="text-gray-700">
+                        Community
                     </navbar-link>
                 </template>
 

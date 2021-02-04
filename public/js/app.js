@@ -3878,6 +3878,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -35837,7 +35845,7 @@ var render = function() {
         "header",
         [
           _c("navbar", {
-            staticClass: "bg-blue-800",
+            staticClass: "bg-white",
             scopedSlots: _vm._u([
               {
                 key: "logo",
@@ -35860,19 +35868,24 @@ var render = function() {
                     _c(
                       "navbar-link",
                       {
-                        staticClass:
-                          "text-white bg-blue-900 hover:bg-blue-900 focus:bg-blue-900",
+                        staticClass: "text-gray-700",
                         attrs: {
                           href: _vm.route("home"),
                           active: _vm.route().current("home")
                         }
                       },
-                      [
-                        _vm._v(
-                          "\n                    Dashboard\n                "
-                        )
-                      ]
-                    )
+                      [_vm._v("\n                    Feed\n                ")]
+                    ),
+                    _vm._v(" "),
+                    _c("navbar-link", { staticClass: "text-gray-700" }, [
+                      _vm._v("\n                    Discover\n                ")
+                    ]),
+                    _vm._v(" "),
+                    _c("navbar-link", { staticClass: "text-gray-700" }, [
+                      _vm._v(
+                        "\n                    Community\n                "
+                      )
+                    ])
                   ]
                 },
                 proxy: true
