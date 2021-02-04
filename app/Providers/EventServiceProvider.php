@@ -39,6 +39,6 @@ class EventServiceProvider extends ServiceProvider
      */
     protected function bootObservers(): void
     {
-        Thread::observe(ThreadObserver::class);
+        // Thread::observe(ThreadObserver::class);
     }
 }
