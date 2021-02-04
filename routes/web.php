@@ -4,17 +4,23 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\ChannelController;
 
 Route::get('/', fn () => Inertia::render('Marketing/Welcome'))->name('welcome');
 
 Route::middleware(['auth:sanctum', 'verified'])->get(
     '/feed',
-    fn () => Inertia::render('Business/Home')
+    fn () => Inertia::render('Feed/Show')
 )->name('home');
 
 Route::group([
     'middleware' => ['auth'],
 ], function (): void {
+    /*
+     * Channels Routes....
+     */
+    Route::get('/channels', [ChannelController::class, 'index'])->name('channels.index');
+
     /*
      * Threads Routes....
      */

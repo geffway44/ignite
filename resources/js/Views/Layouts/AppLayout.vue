@@ -12,11 +12,11 @@
                         Feed
                     </navbar-link>
 
-                    <navbar-link class="text-gray-700">
+                    <navbar-link :href="route('channels.index')" :active="route().current('channels.index')" class="text-gray-700">
                         Discover
                     </navbar-link>
 
-                    <navbar-link class="text-gray-700">
+                    <navbar-link :href="route('channels.index')" :active="route().current('channels.index')" class="text-gray-700">
                         Community
                     </navbar-link>
                 </template>

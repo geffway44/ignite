@@ -47,4 +47,14 @@ class Channel extends Model
     {
         return $this->threads()->where('locked', false)->with('replies')->get();
     }
+
+    /**
+     * Get number of threads the channel has.
+     *
+     * @return int
+     */
+    public function getThreadsCountAttribute(): int
+    {
+        return $this->thread->count;
+    }
 }
