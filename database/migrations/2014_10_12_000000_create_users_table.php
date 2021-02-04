@@ -18,14 +18,20 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->text('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('phone', 50)->nullable();
+            $table->text('profile_photo_path')->nullable();
+            $table->text('two_factor_secret')->nullable();
+            $table->text('two_factor_recovery_codes')->nullable();
             $table->json('settings')->nullable();
-            $table->unsignedBigInteger('reputation')->default(0);
+            $table->boolean('locked')->default(false);
             $table->rememberToken();
             $table->timestamps();
+
+            if (app()->isProduction()) {
+                $table->string('password')->unique();
+            } else {
+                $table->string('password');
+            }
         });
     }
 

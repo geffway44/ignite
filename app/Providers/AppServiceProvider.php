@@ -2,24 +2,25 @@
 
 namespace App\Providers;
 
-use App\Models\Reply;
-use App\Models\Thread;
-use App\Observers\ReplyObserver;
-use App\Observers\ThreadObserver;
-use Illuminate\Pagination\Paginator;
+use App\Actions\Threads\DeleteThread;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Validator;
+use App\Actions\Threads\CreateNewThread;
+use App\Contracts\Actions\DeletesThreads;
+use App\Providers\Traits\RegisterActions;
+use App\Contracts\Actions\CreatesNewThreads;
 
 class AppServiceProvider extends ServiceProvider
 {
+    use RegisterActions;
+
     /**
-     * All observers to be booted on application boot.
+     * All action classes.
      *
      * @var array
      */
-    protected static $observers = [
-        Thread::class => ThreadObserver::class,
-        Reply::class => ReplyObserver::class,
+    protected $actions = [
+        CreatesNewThreads::class => CreateNewThread::class,
+        DeletesThreads::class => DeleteThread::class,
     ];
 
     /**
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerActions();
     }
 
     /**
@@ -38,20 +40,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Paginator::useTailwind();
-
-        Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
-    }
-
-    /**
-     * Boot all registered observers.
-     *
-     * @return void
-     */
-    protected function bootObservers(): void
-    {
-        foreach (static::$observers as $model => $observer) {
-            $model::observe($observer);
-        }
     }
 }

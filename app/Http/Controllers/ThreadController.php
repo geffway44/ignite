@@ -2,40 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Thread;
 use App\Models\Channel;
 use App\Http\Requests\ThreadRequest;
+use App\Http\Responses\ThreadResponse;
+use Inertia\Response as InertiaResponse;
+use App\Contracts\Actions\DeletesThreads;
+use App\Contracts\Actions\CreatesNewThreads;
+use Illuminate\Contracts\Support\Responsable;
 
 class ThreadController extends Controller
 {
-    use Concerns\GetsThreads;
-
-    /**
-     * Create new instance of thread controller.
-     */
-    public function __construct()
-    {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
-    }
-
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Channel $channel
+     *
+     * @return \Inertia\Response
      */
-    public function index()
+    public function index(Channel $channel): InertiaResponse
     {
-        return view('threads.index', ['threads' => $this->getThreads()]);
+        return Inertia::render('Threads/Index', [
+            'threads' => $channel->viewableThreads(),
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param \App\Models\Channel $channel
+     *
+     * @return \Inertia\Response
      */
-    public function create()
+    public function create(Channel $channel): InertiaResponse
     {
-        return view('threads.create');
+        return Inertia::render('Threads/Create', compact('channel'));
     }
 
     /**
@@ -43,65 +45,64 @@ class ThreadController extends Controller
      *
      * @param \App\Http\Requests\ThreadRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function store(ThreadRequest $request)
+    public function store(ThreadRequest $request, CreatesNewThreads $creator): Responsable
     {
-        user()->threads()->create($request->validated());
+        $thread = $creator->create($request->user(), $request->validated());
 
-        return redirect($thread->path());
+        return $this->app(ThreadResponse::class, compact('thread'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Thread $thread
+     * @param \App\Models\Channel $channel
+     * @param \App\Models\Thread  $thread
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
-    public function show(Channel $channel, Thread $thread)
+    public function show(Channel $channel, Thread $thread): InertiaResponse
     {
-        return view('threads.show', compact('thread'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Thread $thread
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Thread $thread)
-    {
-        return view('threads.edit', compact('thread'));
+        return Inertia::render('Threads/Show', compact('thread'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \App\Http\Requests\ThreadRequest $request
+     * @param \App\Models\Channel              $channel
      * @param \App\Models\Thread               $thread
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function update(ThreadRequest $request, Thread $thread)
+    public function update(ThreadRequest $request, Channel $channel, Thread $thread): Responsable
     {
         $thread->update($request->validated());
 
-        return redirect()->to($thread->refresh()->path());
+        return $this->app(ThreadResponse::class, compact('thread'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Thread $thread
+     * @param \App\Http\Requests\ThreadRequest    $request
+     * @param \App\Actions\Threads\DeletesThreads $deleter
+     * @param \App\Models\Channel                 $chennel
+     * @param \App\Models\Thread                  $thread
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function destroy(Thread $thread)
-    {
-        $thread->delete();
+    public function destroy(
+        ThreadRequest $request,
+        DeletesThreads $deleter,
+        Channel $channel,
+        Thread $thread
+    ): Responsable {
+        $deleter->delete($thread);
 
-        return redirect()->to('/threads');
+        // $request->user()->notify();
+
+        return $this->app(ThreadResponse::class, compact('channel'));
     }
 }

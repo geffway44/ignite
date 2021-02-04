@@ -3,13 +3,13 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\Traits\AuthorizesRequest;
-use App\Http\Requests\Traits\HasValidationRules;
+use Cratespace\Citadel\Http\Requests\Concerns\AuthorizesRequests;
+use Cratespace\Citadel\Http\Requests\Traits\InputValidationRules;
 
 class ReplyRequest extends FormRequest
 {
-    use HasValidationRules;
-    use AuthorizesRequest;
+    use AuthorizesRequests;
+    use InputValidationRules;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -18,11 +18,11 @@ class ReplyRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->reply) {
-            return $this->resourceBelongsToUser($this->reply);
+        if ($reply = $this->route('reply')) {
+            return $this->isAllowed('manage', $reply);
         }
 
-        return $this->authenticated();
+        return $this->isAuthenticated();
     }
 
     /**
@@ -32,6 +32,10 @@ class ReplyRequest extends FormRequest
      */
     public function rules()
     {
-        return $this->getRulesFor('reply');
+        if ($this->method() === 'DELETE') {
+            return [];
+        }
+
+        return $this->getRulesFor('replies');
     }
 }

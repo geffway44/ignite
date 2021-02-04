@@ -1,32 +1,25 @@
-window._ = require('lodash');
+import '@/Plugins';
 
-try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
-
-    require('bootstrap');
-} catch (e) {}
-
-
-window.axios = require('axios');
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-window.Vue = require('vue');
-
-window.flash = function(message, level = 'success') {
-    window.events.$emit('flash', { message, level });
-};
+import Vue from 'vue';
+import { App } from '@inertiajs/inertia-vue';
+import config from '@/Config';
 
 Vue.config.productionTip = false;
 
-Vue.component("image-upload-form", require("./components/ImageUploadForm.vue").default);
-Vue.component("flash", require("./components/Flash.vue").default);
+Vue.mixin({ methods: { route, config } });
 
-const app = new Vue({
-    el: '#app',
-});
+const app = document.getElementById('app');
 
-// window.addEventListener('contextmenu', function(e) {
-//     e.preventDefault();
-// }, false);
+new Vue({
+    metaInfo: {
+        titleTemplate: (title) => (title ? `${title} - Ignite` : 'Ignite'),
+    },
+
+    render: (h) =>
+        h(App, {
+            props: {
+                initialPage: JSON.parse(app.dataset.page),
+                resolveComponent: (name) => require(`./Views/${name}`).default,
+            },
+        }),
+}).$mount(app);

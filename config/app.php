@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -13,8 +14,6 @@ return [
     */
 
     'name' => env('APP_NAME', 'Ignite'),
-
-    'title' => 'Ignite | Discussion & Support Forum',
 
     /*
     |--------------------------------------------------------------------------
@@ -53,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'ignite.test'),
+    'url' => env('APP_URL', 'http://localhost'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -82,10 +81,6 @@ return [
     */
 
     'locale' => 'en',
-
-    'currency' => env('APP_CURRENCY', 'usd'),
-
-    'currency_locale' => env('APP_CURRENCY_LOCALE', 'en'),
 
     /*
     |--------------------------------------------------------------------------
@@ -140,8 +135,9 @@ return [
     */
 
     'providers' => [
+
         /*
-         * Laravel Framework Service Providers...
+         * Ignite Framework Service Providers...
          */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -178,6 +174,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\CitadelServiceProvider::class,
+        App\Providers\PreflightServiceProvider::class,
+
     ],
 
     /*
@@ -192,6 +191,7 @@ return [
     */
 
     'aliases' => [
+
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -217,7 +217,7 @@ return [
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
         'Redirect' => Illuminate\Support\Facades\Redirect::class,
-        'Redis' => Illuminate\Support\Facades\Redis::class,
+        // 'Redis' => Illuminate\Support\Facades\Redis::class,
         'Request' => Illuminate\Support\Facades\Request::class,
         'Response' => Illuminate\Support\Facades\Response::class,
         'Route' => Illuminate\Support\Facades\Route::class,
@@ -228,5 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
     ],
+
 ];

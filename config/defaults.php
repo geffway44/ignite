@@ -1,37 +1,36 @@
 <?php
 
+use Illuminate\Support\Str;
+
 return [
     /*
-     * Default/Admin User Details
+     * Default User Related Settings and Details...
      */
-    'user' => [
-        'username' => 'Thavarshan',
-        'name' => 'Thavarshan Thayananthajothy',
-        'email' => 'tjthavarshan@gmail.com',
-        'phone' => '775018795',
-        'email_verified_at' => now(),
-        'password' => '$2y$10$8jakkFVc8175VAOGK5Jt/uDT4R9KEwJPdG5jEEceaxCHwyfhkLs2S', // alphaxion77
-        'remember_token' => 'Wdd5eAC4tFBrM0c4qT1b1yGrePdlBzONsndKxjEx',
-        'settings' => [
-            'notifications_mobile' => 'everything',
-            'notifications_email' => [
-                'new-order', 'cancel-order', 'newsletter',
-            ],
+    'users' => [
+        'credentials' => [
+            'name' => 'Thavarshan Thayananthajothy',
+            'username' => 'Thavarshan',
+            'email' => 'tjthavarshan@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'settings' => [],
+            'locked' => false,
+            'profile_photo_path' => null,
+            'two_factor_secret' => null,
+            'two_factor_recovery_codes' => null,
         ],
     ],
 
-    'administrators' => [
-        // Add the email addresses of users who should be administrators here.
-    ],
-
-    'reputation' => [
-        'thread_published' => 10,
-        'reply_posted' => 2,
-        'best_reply_awarded' => 50,
-        'reply_favorited' => 5,
-    ],
-
-    'pagination' => [
-        'perPage' => 25,
+    /*
+     * Default API Related Details...
+     */
+    'api' => [
+        'permissions' => [
+            'create',
+            'read',
+            'update',
+            'delete',
+        ],
     ],
 ];

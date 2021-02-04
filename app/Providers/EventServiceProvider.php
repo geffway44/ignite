@@ -2,12 +2,10 @@
 
 namespace App\Providers;
 
-use App\Events\ThreadWasPublished;
-use App\Listeners\NotifySubscribers;
+use App\Models\Thread;
+use App\Observers\ThreadObserver;
 use Illuminate\Support\Facades\Event;
-use App\Events\ThreadReceivedNewReply;
 use Illuminate\Auth\Events\Registered;
-use App\Listeners\NotifyMentionedUsers;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -22,15 +20,6 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-
-        ThreadReceivedNewReply::class => [
-            NotifyMentionedUsers::class,
-            NotifySubscribers::class,
-        ],
-
-        ThreadWasPublished::class => [
-            NotifyMentionedUsers::class,
-        ],
     ];
 
     /**
@@ -40,6 +29,16 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        parent::boot();
+        $this->bootObservers();
+    }
+
+    /**
+     * Boot all model observers.
+     *
+     * @return void
+     */
+    protected function bootObservers(): void
+    {
+        Thread::observe(ThreadObserver::class);
     }
 }

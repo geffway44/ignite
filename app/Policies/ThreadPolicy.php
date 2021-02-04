@@ -11,15 +11,15 @@ class ThreadPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can update the thread.
+     * Determine whether the user can update the model.
      *
      * @param \App\Models\User   $user
      * @param \App\Models\Thread $thread
      *
      * @return mixed
      */
-    public function update(User $user, Thread $thread)
+    public function manage(User $user, Thread $thread)
     {
-        return $thread->user_id == $user->id;
+        return $user->is($thread->user);
     }
 }
