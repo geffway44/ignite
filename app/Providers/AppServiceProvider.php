@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Actions\DeleteChannel;
 use App\Actions\Threads\DeleteThread;
 use Illuminate\Support\ServiceProvider;
 use App\Actions\Threads\CreateNewThread;
 use App\Contracts\Actions\DeletesThreads;
 use App\Providers\Traits\RegisterActions;
+use App\Contracts\Actions\DeletesChannels;
 use App\Contracts\Actions\CreatesNewThreads;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
     protected $actions = [
         CreatesNewThreads::class => CreateNewThread::class,
         DeletesThreads::class => DeleteThread::class,
+        DeletesChannels::class => DeleteChannel::class,
     ];
 
     /**

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\HasRole;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Concerns\InteractsWithResource;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Cratespace\Citadel\Models\Traits\HasProfilePhoto;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,13 +15,14 @@ use Cratespace\Citadel\Models\Traits\TwoFactorAuthenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens;
-    use HasFactory;
-    use HasProfilePhoto;
+    use HasRole;
     use Notifiable;
+    use HasFactory;
+    use HasApiTokens;
+    use HasProfilePhoto;
+    use InteractsWithResource;
     use InteractsWithSessions;
     use TwoFactorAuthenticatable;
-    use HasRole;
 
     /**
      * The attributes that are mass assignable.

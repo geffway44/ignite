@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Channel;
+use App\Jobs\DeleteChannelJob;
 use App\Http\Requests\ChannelRequest;
 use App\Http\Responses\ChannelResponse;
 use Inertia\Response as InertiaResponse;
@@ -55,13 +56,16 @@ class ChannelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Channel $channel
+     * @param \App\Http\Requests\ChannelRequest $request
+     * @param \App\Models\Channel               $channel
      *
      * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function destroy(Channel $channel): Responsable
+    public function destroy(ChannelRequest $request, Channel $channel): Responsable
     {
-        $channel->delete();
+        $request->user()->deleteResource(
+            fn ($request) => DeleteChannelJob::dispatch($channel)
+        );
 
         return $this->app(ChannelResponse::class);
     }

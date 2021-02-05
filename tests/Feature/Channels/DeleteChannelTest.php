@@ -13,6 +13,8 @@ class DeleteChannelTest extends TestCase
 
     public function testChannelCanBeDeleted()
     {
+        $this->withoutExceptionHandling();
+
         $this->signIn(create(User::class));
 
         $channel = create(Channel::class);
