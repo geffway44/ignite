@@ -18,8 +18,9 @@ class ChannelPolicy
      *
      * @return mixed
      */
-    public function view(User $user, Channel $channel)
+    public function manage(User $user, Channel $channel)
     {
-        return $user->hasPermissionTo('create', $channel);
+        // return $user->hasPermissionTo('create', $channel);
+        return true;
     }
 }

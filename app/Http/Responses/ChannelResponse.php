@@ -48,6 +48,10 @@ class ChannelResponse extends Response implements Responsable
      */
     public function toResponse($request)
     {
+        if (is_null($this->channel)) {
+            return $request->expectsJson() ? $this->json('', 204) : $this->back(303);
+        }
+
         return $request->expectsJson()
             ? $this->json($this->channel, $request->method() === 'PUT' ? 200 : 201)
             : $this->back(303);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Channel;
 use Illuminate\Foundation\Http\FormRequest;
 use Cratespace\Citadel\Http\Requests\Concerns\AuthorizesRequests;
 use Cratespace\Citadel\Http\Requests\Traits\InputValidationRules;
@@ -18,7 +19,7 @@ class ChannelRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->isAllowed('manage', $this->route('channel'));
+        return $this->isAllowed('manage', new Channel());
     }
 
     /**

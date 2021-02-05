@@ -20,6 +20,9 @@ Route::group([
      * Channels Routes....
      */
     Route::get('/channels', [ChannelController::class, 'index'])->name('channels.index');
+    Route::post('/channels', [ChannelController::class, 'store'])->name('channels.store');
+    Route::put('/channels/{channel}', [ChannelController::class, 'update'])->name('channels.update');
+    Route::delete('/channels/{channel}', [ChannelController::class, 'destroy'])->name('channels.destroy');
 
     /*
      * Threads Routes....

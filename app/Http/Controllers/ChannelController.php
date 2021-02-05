@@ -57,10 +57,12 @@ class ChannelController extends Controller
      *
      * @param \App\Models\Channel $channel
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Responsable
      */
-    public function destroy(Channel $channel)
+    public function destroy(Channel $channel): Responsable
     {
         $channel->delete();
+
+        return $this->app(ChannelResponse::class);
     }
 }
