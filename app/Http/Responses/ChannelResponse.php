@@ -2,24 +2,16 @@
 
 namespace App\Http\Responses;
 
-use App\Models\Thread;
 use App\Models\Channel;
 use Illuminate\Routing\Redirector;
 use Illuminate\View\Factory as ViewFactory;
 use Illuminate\Contracts\Support\Responsable;
 use Cratespace\Citadel\Http\Responses\Response;
 
-class ThreadResponse extends Response implements Responsable
+class ChannelResponse extends Response implements Responsable
 {
     /**
-     * Instance of the thread that was created or updated.
-     *
-     * @var \App\Models\Thread|null
-     */
-    protected $thread;
-
-    /**
-     * Instance of channel the current thread belongs to.
+     * Instance of channel.
      *
      * @var \App\Models\Channel
      */
@@ -38,16 +30,13 @@ class ThreadResponse extends Response implements Responsable
     public function __construct(
         ViewFactory $view,
         Redirector $redirector,
-        ?Thread $thread = null,
         ?Channel $channel = null
     ) {
         parent::__construct($view, $redirector);
 
-        if (! is_null($thread)) {
-            $this->thread = $thread->fresh();
+        if (! is_null($channel)) {
+            $this->channel = $channel->fresh();
         }
-
-        $this->channel = $channel;
     }
 
     /**
@@ -59,16 +48,12 @@ class ThreadResponse extends Response implements Responsable
      */
     public function toResponse($request)
     {
-        if (is_null($this->thread)) {
-            return $request->expectsJson()
-                ? $this->json('', 204)
-                : $this->redirectToRoute('threads.index', [
-                    'channel' => $this->channel,
-                ], 303);
+        if (is_null($this->channel)) {
+            return $request->expectsJson() ? $this->json('', 204) : $this->back(303);
         }
 
         return $request->expectsJson()
-            ? $this->json($this->thread, $request->method() === 'PUT' ? 200 : 201)
-            : $this->redirectTo($this->thread->path, 303);
+            ? $this->json($this->channel, $request->method() === 'PUT' ? 200 : 201)
+            : $this->back(303);
     }
 }

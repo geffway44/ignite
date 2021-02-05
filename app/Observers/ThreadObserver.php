@@ -3,7 +3,6 @@
 namespace App\Observers;
 
 use App\Models\Thread;
-use Illuminate\Support\Str;
 
 class ThreadObserver
 {
@@ -16,7 +15,6 @@ class ThreadObserver
      */
     public function creating(Thread $thread)
     {
-        $thread->slug = Str::slug($thread->title);
     }
 
     /**

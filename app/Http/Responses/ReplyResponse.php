@@ -38,7 +38,7 @@ class ReplyResponse extends Response implements Responsable
         ViewFactory $view,
         Redirector $redirector,
         ?Reply $reply = null,
-        ?Thread $thread
+        ?Thread $thread = null
     ) {
         parent::__construct($view, $redirector);
 

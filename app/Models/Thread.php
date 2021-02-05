@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Thread extends Model
 {
     use HasFactory;
+    use Sluggable;
 
     /**
      * The attributes that are mass assignable.
@@ -50,7 +52,7 @@ class Thread extends Model
      *
      * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }
@@ -62,7 +64,7 @@ class Thread extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
@@ -72,7 +74,7 @@ class Thread extends Model
      */
     public function channel(): BelongsTo
     {
-        return $this->belongsTo(Channel::class);
+        return $this->belongsTo(Channel::class, 'channel_id');
     }
 
     /**
@@ -82,7 +84,7 @@ class Thread extends Model
      */
     public function replies(): HasMany
     {
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class, 'thread_id');
     }
 
     /**
@@ -113,6 +115,6 @@ class Thread extends Model
         return route('threads.show', [
             'channel' => $this->channel->slug,
             'thread' => $this->slug,
-        ], true);
+        ]);
     }
 }

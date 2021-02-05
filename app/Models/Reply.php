@@ -28,7 +28,7 @@ class Reply extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
@@ -38,6 +38,6 @@ class Reply extends Model
      */
     public function thread(): BelongsTo
     {
-        return $this->belongsTo(Thread::class);
+        return $this->belongsTo(Thread::class, 'thread_id');
     }
 }
