@@ -7,7 +7,7 @@
         <template #content>
             <div>
                 <div class="md:grid md:grid-cols-12 md:gap-6">
-                    <div v-for="channel in channels" :key="channel.id" class="md:col-span-3 rounded-lg overflow-hidden shadow flex flex-col">
+                    <inertia-link :href="route('threads.index', { channel: channel.slug })" v-for="channel in channels" :key="channel.id" class="md:col-span-3 rounded-lg overflow-hidden shadow flex flex-col">
                         <div class="px-4 py-5 sm:px-6 flex flex-col flex-1 justify-between bg-white">
                             <div>
                                 <div>
@@ -15,7 +15,7 @@
                                 </div>
 
                                 <div class="mt-3">
-                                    <p class="text-sm truncate">{{ channel.description }}</p>
+                                    <p class="text-sm">{{ channel.description }}</p>
                                 </div>
                             </div>
 
@@ -23,7 +23,7 @@
                                 <span class="text-xs text-gray-500">{{ channel.threads_count }} discussions</span>
                             </div>
                         </div>
-                    </div>
+                    </inertia-link>
                 </div>
             </div>
         </template>

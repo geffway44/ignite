@@ -106,6 +106,16 @@ class Thread extends Model
     }
 
     /**
+     * Get number of replies belonging to this thread.
+     *
+     * @return int
+     */
+    public function getRepliesCountAttribute(): int
+    {
+        return $this->replies()->count();
+    }
+
+    /**
      * Get full URL to thread.
      *
      * @return string

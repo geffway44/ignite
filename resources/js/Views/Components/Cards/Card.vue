@@ -1,6 +1,6 @@
 <template>
-    <div class="shadow overflow-hidden rounded-xl">
-        <div class="px-4 py-5 bg-white sm:px-6">
+    <div class="shadow overflow-hidden rounded-xl flex flex-col justify-between">
+        <div class="px-4 py-5 bg-white sm:px-6 flex flex-col flex-1 justify-between">
             <slot name="content"></slot>
         </div>
 

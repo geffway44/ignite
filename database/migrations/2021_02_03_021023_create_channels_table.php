@@ -17,7 +17,7 @@ class CreateChannelsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('description')->nullable();
+            $table->mediumText('description')->nullable();
             $table->boolean('locked')->default(false);
             $table->timestamps();
         });
