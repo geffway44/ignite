@@ -54,6 +54,8 @@ class DeleteChannelTest extends TestCase
 
         $response = $this->delete(route('channels.update', $channel));
 
+        $response->assertStatus(303);
+
         Queue::assertPushed(function (DeleteChannelJob $job) use ($channel) {
             return $job->getChannel()->is($channel);
         });

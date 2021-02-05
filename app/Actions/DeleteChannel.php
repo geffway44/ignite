@@ -19,15 +19,27 @@ class DeleteChannel implements DeletesChannels
     public function delete(Channel $channel): void
     {
         DB::transaction(function () use ($channel) {
-            tap($channel, function (Channel $channel) {
-                $channel->threads->each(function (Thread $thread) {
-                    $thread->replies->each->delete();
-
-                    $thread->delete();
-                });
-            });
+            $this->deleteChannelDiscussions($channel);
 
             $channel->delete();
+        });
+    }
+
+    /**
+     * Delete all threads and replies.
+     *
+     * @param \App\Models\Channel $channel
+     *
+     * @return void
+     */
+    protected function deleteChannelDiscussions(Channel $channel): void
+    {
+        tap($channel, function (Channel $channel) {
+            $channel->threads->each(function (Thread $thread) {
+                $thread->replies->each->delete();
+
+                $thread->delete();
+            });
         });
     }
 }
