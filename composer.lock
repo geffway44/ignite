@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "780a4e75846e2db51d9839ecb59113f4",
+    "content-hash": "0e2f5faa7dd97dbe9b119efc43be0acc",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -176,12 +176,12 @@
             "version": "v1.3.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/cratespace/citadel.git",
+                "url": "https://github.com/cratespace/sentinel.git",
                 "reference": "e83bf840773240a3f4de9ef69e1feaaa62109910"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cratespace/citadel/zipball/e83bf840773240a3f4de9ef69e1feaaa62109910",
+                "url": "https://api.github.com/repos/cratespace/sentinel/zipball/e83bf840773240a3f4de9ef69e1feaaa62109910",
                 "reference": "e83bf840773240a3f4de9ef69e1feaaa62109910",
                 "shasum": ""
             },
@@ -236,23 +236,24 @@
                 "php"
             ],
             "support": {
-                "issues": "https://github.com/cratespace/citadel/issues",
-                "source": "https://github.com/cratespace/citadel/tree/v1.3.3"
+                "issues": "https://github.com/cratespace/sentinel/issues",
+                "source": "https://github.com/cratespace/sentinel/tree/v1.3.3"
             },
+            "abandoned": true,
             "time": "2021-02-03T21:19:11+00:00"
         },
         {
             "name": "cratespace/preflight",
-            "version": "v1.0.7",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cratespace/preflight.git",
-                "reference": "e7f686e1cec60b8c705146cb864f14a7bec73495"
+                "reference": "005aa69c3f281bc3477bda4f6a1f83169be1cb0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cratespace/preflight/zipball/e7f686e1cec60b8c705146cb864f14a7bec73495",
-                "reference": "e7f686e1cec60b8c705146cb864f14a7bec73495",
+                "url": "https://api.github.com/repos/cratespace/preflight/zipball/005aa69c3f281bc3477bda4f6a1f83169be1cb0c",
+                "reference": "005aa69c3f281bc3477bda4f6a1f83169be1cb0c",
                 "shasum": ""
             },
             "require": {
@@ -309,7 +310,77 @@
                 "issues": "https://github.com/cratespace/preflight/issues",
                 "source": "https://github.com/cratespace/preflight"
             },
-            "time": "2021-02-03T17:05:06+00:00"
+            "time": "2021-02-06T16:22:06+00:00"
+        },
+        {
+            "name": "cratespace/sentinel",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cratespace/sentinel.git",
+                "reference": "ff33e9e141b1ecb47983c7aa83de220e78758c90"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cratespace/sentinel/zipball/ff33e9e141b1ecb47983c7aa83de220e78758c90",
+                "reference": "ff33e9e141b1ecb47983c7aa83de220e78758c90",
+                "shasum": ""
+            },
+            "require": {
+                "bacon/bacon-qr-code": "^2.0",
+                "ext-json": "*",
+                "illuminate/support": "^8.0",
+                "jenssegers/agent": "^2.6",
+                "php": "^7.4|^8.0",
+                "pragmarx/google2fa": "^8.0"
+            },
+            "require-dev": {
+                "fakerphp/faker": "^1.9.1",
+                "laravel/sanctum": "^2.8",
+                "mockery/mockery": "^1.4.2",
+                "orchestra/testbench": "^6.7",
+                "phpunit/phpunit": "^9.5",
+                "symfony/var-dumper": "^5.2.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Cratespace\\Sentinel\\Providers\\SentinelServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cratespace\\Sentinel\\": "src/",
+                    "App\\": "stubs/app/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thavarshan Thayananthajothy",
+                    "email": "tjthavarshan@gmail.com"
+                }
+            ],
+            "description": "A frontend agnostic authentication backend for Laravel applications.",
+            "keywords": [
+                "Authentication",
+                "cratespace",
+                "php",
+                "sentinel"
+            ],
+            "support": {
+                "issues": "https://github.com/cratespace/sentinel/issues",
+                "source": "https://github.com/cratespace/sentinel/tree/v1.0.1"
+            },
+            "time": "2021-02-07T11:40:28+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -5283,16 +5354,16 @@
         },
         {
             "name": "tightenco/ziggy",
-            "version": "v1.0.4",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/ziggy.git",
-                "reference": "4777dafd683873978ccc529085187d03b750d39f"
+                "reference": "be2b257b7a1a4d712e370505324220127595c0ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/ziggy/zipball/4777dafd683873978ccc529085187d03b750d39f",
-                "reference": "4777dafd683873978ccc529085187d03b750d39f",
+                "url": "https://api.github.com/repos/tighten/ziggy/zipball/be2b257b7a1a4d712e370505324220127595c0ae",
+                "reference": "be2b257b7a1a4d712e370505324220127595c0ae",
                 "shasum": ""
             },
             "require": {
@@ -5343,9 +5414,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tighten/ziggy/issues",
-                "source": "https://github.com/tighten/ziggy/tree/v1.0.4"
+                "source": "https://github.com/tighten/ziggy/tree/v1.0.5"
             },
-            "time": "2020-12-06T22:07:45+00:00"
+            "time": "2021-02-05T15:30:28+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -5825,16 +5896,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "2.5.10",
+            "version": "2.5.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "98154e8b991fb616304c213cd405299ffedc26f5"
+                "reference": "e91d67353054bf827c64687fcac5ea44e4dcec54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/98154e8b991fb616304c213cd405299ffedc26f5",
-                "reference": "98154e8b991fb616304c213cd405299ffedc26f5",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/e91d67353054bf827c64687fcac5ea44e4dcec54",
+                "reference": "e91d67353054bf827c64687fcac5ea44e4dcec54",
                 "shasum": ""
             },
             "require": {
@@ -5898,7 +5969,7 @@
                 "issues": "https://github.com/facade/ignition/issues",
                 "source": "https://github.com/facade/ignition"
             },
-            "time": "2021-02-02T10:15:48+00:00"
+            "time": "2021-02-05T12:52:11+00:00"
         },
         {
             "name": "facade/ignition-contracts",
@@ -8182,7 +8253,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0"
+        "php": "^7.4|^8.0"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"

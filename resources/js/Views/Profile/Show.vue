@@ -1,10 +1,6 @@
 <template>
     <app-layout>
-        <template #title>
-            Profile
-        </template>
-
-        <template #content>
+        <template>
             <div>
                 <update-profile-information-form :user.sync="$page.props.user"></update-profile-information-form>
 

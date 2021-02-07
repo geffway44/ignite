@@ -2,7 +2,7 @@
     <div class="min-h-screen min-w-full overflow-x-hidden">
         <!-- Main Header Area -->
         <header>
-            <navbar class="bg-white">
+            <navbar class="bg-white border-b border-gray-100">
                 <template #logo>
                     <logo classes="h-8 w-auto text-blue-500" :title="config('app.name')"></logo>
                 </template>
@@ -42,14 +42,8 @@
         <!-- Main Content Area -->
         <main class="py-8" role="main">
             <div class="container mx-auto px-4 sm:px-6">
-                <h4 class="font-semibold text-xl text-gray-800">
-                    <slot name="title"></slot>
-                </h4>
-
-                <section-border></section-border>
-
                 <section>
-                    <slot name="content"></slot>
+                    <slot></slot>
                 </section>
             </div>
         </main>

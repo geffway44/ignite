@@ -25,6 +25,7 @@ class ThreadController extends Controller
     {
         return Inertia::render('Threads/Index', [
             'threads' => $channel->viewableThreads(),
+            'channel' => $channel,
         ]);
     }
 

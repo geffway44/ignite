@@ -15,6 +15,8 @@ class CreateNewThreadTest extends TestCase implements Postable
 
     public function testNewThreadCanBeCreated()
     {
+        $this->withoutExceptionHandling();
+
         $channel = create(Channel::class);
 
         $response = $this->signIn(create(User::class))->post(

@@ -1,33 +1,68 @@
 <template>
     <app-layout>
-        <template #title>
-            Discussions
-        </template>
-
-        <template #content>
+        <template>
             <div class="md:grid md:grid-cols-12 md:gap-6">
                 <div class="md:col-span-8">
-                    <inertia-link :href="thread.path" v-for="thread in threads" :key="thread.id">
-                        <card class="mb-6">
-                            <template #content>
-                                <div class="flex items-start">
-                                    <img class="w-12 h-12 rounded-full" :src="thread.user.profile_photo_url" alt="thread.user.name">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-gray-800 font-semibold text-xl">
+                                Discussions
+                            </h3>
 
-                                    <div class="ml-10">
-                                        <h5 class="font-semibold text-gray-800 text">
-                                            {{ thread.title }}
-                                        </h5>
+                            <h6 class="text-gray-500">
+                                View all {{ threads.length }} discussions
+                            </h6>
+                        </div>
 
-                                        <div class="mt-2 flex items-center">
-                                            <span class="text-sm text-gray-500">{{ thread.user.name }}</span>
-                                            <span class="ml-3 text-sm text-gray-500">{{ diffForHumans(thread.updated_at) }}</span>
-                                            <span class="ml-3 text-sm text-gray-500">{{ thread.replies_count }} replies</span>
-                                        </div>
+                        <app-button :link="true" mode="primary" :href="route('threads.create', { channel })" :active="route().current('channels.index')">
+                            New thread
+                        </app-button>
+                    </div>
+
+                    <div class="mt-10">
+                        <inertia-link :href="thread.path" v-for="thread in threads" :key="thread.id">
+                            <div class="mb-10 flex items-start">
+                                <img class="w-12 h-12 rounded-full" :src="thread.user.profile_photo_url" alt="thread.user.name">
+
+                                <div class="ml-10">
+                                    <h5 class="font-semibold text-gray-800 text-lg">
+                                        {{ thread.title }}
+                                    </h5>
+
+                                    <div class="mt-2 flex items-center">
+                                        <span class="text-sm text-blue-500">{{ thread.user.name }}</span>
+                                        <span class="ml-4 text-sm text-gray-500">{{ diffForHumans(thread.updated_at) }}</span>
+                                        <span class="ml-4 text-sm text-gray-500">{{ thread.replies_count }} replies</span>
                                     </div>
                                 </div>
-                            </template>
-                        </card>
-                    </inertia-link>
+                            </div>
+                        </inertia-link>
+                    </div>
+                </div>
+
+                <div class="xl:col-end-13 lg:col-span-4 xl:col-span-3">
+                    <div>
+                        <h3 class="text-gray-800 font-semibold text-xl">
+                            Trending
+                        </h3>
+
+                        <h6 class="text-gray-500">
+                            See whats hot in the community
+                        </h6>
+                    </div>
+
+                    <div class="mt-6">
+                        <div class="mb-4">
+                            <h6 class="font-semibold text-gray-800">
+                                Grid Column Start / End
+                            </h6>
+
+                            <div class="flex items-center">
+                                <span class="text-sm text-gray-500">12 replies</span>
+                                <span class="ml-4 text-sm text-gray-500">8 Likes</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </template>
@@ -36,14 +71,16 @@
 
 <script>
 import AppLayout from '@/Views/Layouts/AppLayout';
-import Card from '@/Views/Components/Cards/Card';
+import AppLink from '@/Views/Components/Base/Link';
+import AppButton from '@/Views/Components/Buttons/Button';
 
 export default {
-    props: ['threads'],
+    props: ['threads', 'channel'],
 
     components: {
         AppLayout,
-        Card
+        AppLink,
+        AppButton
     },
 };
 </script>
