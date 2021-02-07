@@ -13,9 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([
-            DefaultUserSeeder::class,
-            DummyDataSeeder::class,
-        ]);
+        // \App\Models\User::factory(10)->create();
     }
 }

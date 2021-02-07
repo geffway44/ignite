@@ -1,19 +1,18 @@
 <?php
 
-namespace Tests\Feature\Channels;
+namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class LockChannelTest extends TestCase
+class ExampleTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * A basic test example.
      *
      * @return void
      */
-    public function test_example()
+    public function testBasicTest()
     {
         $response = $this->get('/');
 
