@@ -2,7 +2,7 @@
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\User;
-use Cratespace\Citadel\Rules\PasswordRule;
+use Cratespace\Sentinel\Rules\PasswordRule;
 
 return [
     /*

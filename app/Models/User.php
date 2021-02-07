@@ -7,11 +7,11 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Concerns\InteractsWithResource;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Cratespace\Citadel\Models\Traits\HasProfilePhoto;
+use Cratespace\Sentinel\Models\Traits\HasProfilePhoto;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Cratespace\Citadel\Models\Concerns\InteractsWithSessions;
-use Cratespace\Citadel\Models\Traits\TwoFactorAuthenticatable;
+use Cratespace\Sentinel\Models\Concerns\InteractsWithSessions;
+use Cratespace\Sentinel\Models\Traits\TwoFactorAuthenticatable;
 
 class User extends Authenticatable
 {

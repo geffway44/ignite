@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e2f5faa7dd97dbe9b119efc43be0acc",
+    "content-hash": "82b7aa86ac8e2643087e51b795ea9021",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -172,92 +172,21 @@
             "time": "2021-01-20T22:51:39+00:00"
         },
         {
-            "name": "cratespace/citadel",
-            "version": "v1.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/cratespace/sentinel.git",
-                "reference": "e83bf840773240a3f4de9ef69e1feaaa62109910"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/cratespace/sentinel/zipball/e83bf840773240a3f4de9ef69e1feaaa62109910",
-                "reference": "e83bf840773240a3f4de9ef69e1feaaa62109910",
-                "shasum": ""
-            },
-            "require": {
-                "bacon/bacon-qr-code": "^2.0",
-                "ext-json": "*",
-                "illuminate/support": "^8.0",
-                "jenssegers/agent": "^2.6",
-                "php": "^7.4|^8.0",
-                "pragmarx/google2fa": "^8.0"
-            },
-            "require-dev": {
-                "fakerphp/faker": "^1.9.1",
-                "laravel/sanctum": "^2.8",
-                "mockery/mockery": "^1.4.2",
-                "orchestra/testbench": "^6.7",
-                "phpunit/phpunit": "^9.5",
-                "symfony/var-dumper": "^5.2.1"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-main": "1.x-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Cratespace\\Citadel\\Providers\\CitadelServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Cratespace\\Citadel\\": "src/",
-                    "App\\": "stubs/app/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Thavarshan Thayananthajothy",
-                    "email": "tjthavarshan@gmail.com"
-                }
-            ],
-            "description": "A frontend agnostic authentication backend for Laravel applications.",
-            "keywords": [
-                "Authentication",
-                "citadel",
-                "cratespace",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/cratespace/sentinel/issues",
-                "source": "https://github.com/cratespace/sentinel/tree/v1.3.3"
-            },
-            "abandoned": true,
-            "time": "2021-02-03T21:19:11+00:00"
-        },
-        {
             "name": "cratespace/preflight",
-            "version": "v1.0.9",
+            "version": "v1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cratespace/preflight.git",
-                "reference": "005aa69c3f281bc3477bda4f6a1f83169be1cb0c"
+                "reference": "cbddfdc5a7088f4c9a9a8521f3b268a98d7aea51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cratespace/preflight/zipball/005aa69c3f281bc3477bda4f6a1f83169be1cb0c",
-                "reference": "005aa69c3f281bc3477bda4f6a1f83169be1cb0c",
+                "url": "https://api.github.com/repos/cratespace/preflight/zipball/cbddfdc5a7088f4c9a9a8521f3b268a98d7aea51",
+                "reference": "cbddfdc5a7088f4c9a9a8521f3b268a98d7aea51",
                 "shasum": ""
             },
             "require": {
-                "cratespace/citadel": "^1.3.2",
+                "cratespace/sentinel": "^1.0.1",
                 "ext-json": "*",
                 "illuminate/support": "^8.0",
                 "league/commonmark": "^1.3",
@@ -310,7 +239,7 @@
                 "issues": "https://github.com/cratespace/preflight/issues",
                 "source": "https://github.com/cratespace/preflight"
             },
-            "time": "2021-02-06T16:22:06+00:00"
+            "time": "2021-02-07T12:52:20+00:00"
         },
         {
             "name": "cratespace/sentinel",

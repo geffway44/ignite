@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Unit\Actions;
 
 use Tests\TestCase;
 use App\Models\Thread;

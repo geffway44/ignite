@@ -5,10 +5,10 @@ use App\Providers\RouteServiceProvider;
 return [
     /*
     |--------------------------------------------------------------------------
-    | Fortify Guard
+    | Sentinel Guard
     |--------------------------------------------------------------------------
     |
-    | Here you may specify which authentication guard Fortify will use while
+    | Here you may specify which authentication guard Sentinel will use while
     | authenticating users. This value should correspond with one of your
     | guards that is already present in your "auth" configuration file.
     |
@@ -18,10 +18,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Fortify Password Broker
+    | Sentinel Password Broker
     |--------------------------------------------------------------------------
     |
-    | Here you may specify which password broker Fortify can use when a user
+    | Here you may specify which password broker Sentinel can use when a user
     | is resetting their password. This configured value should match one
     | of your password brokers setup in your "auth" configuration file.
     |
@@ -38,7 +38,7 @@ return [
     | application's "username" field. Typically, this might be the email
     | address of the users but you are free to change this value here.
     |
-    | Out of the box, Fortify expects forgot password and reset password
+    | Out of the box, Sentinel expects forgot password and reset password
     | requests to have a field named 'email'. If the application uses
     | another name for the field you may define it below as needed.
     |
@@ -63,12 +63,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Fortify Routes Prefix / Subdomain
+    | Sentinel Routes Prefix / Subdomain
     |--------------------------------------------------------------------------
     |
-    | Here you may specify which prefix Fortify will assign to all the routes
+    | Here you may specify which prefix Sentinel will assign to all the routes
     | that it registers with the application. If necessary, you may change
-    | subdomain under which all of the Fortify routes will be available.
+    | subdomain under which all of the Sentinel routes will be available.
     |
     */
 
@@ -78,10 +78,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Fortify Routes Middleware
+    | Sentinel Routes Middleware
     |--------------------------------------------------------------------------
     |
-    | Here you may specify which middleware Fortify will assign to the routes
+    | Here you may specify which middleware Sentinel will assign to the routes
     | that it registers with the application. If necessary, you may change
     | these middleware but typically this provided default is preferred.
     |
@@ -94,7 +94,7 @@ return [
     | Rate Limiting
     |--------------------------------------------------------------------------
     |
-    | By default, Fortify will throttle logins to five requests per minute for
+    | By default, Sentinel will throttle logins to five requests per minute for
     | every email and IP address combination. However, if you would like to
     | specify a custom rate limiter to call then you may specify it here.
     |
@@ -123,7 +123,7 @@ return [
     | Features
     |--------------------------------------------------------------------------
     |
-    | Some of the Fortify features are optional. You may disable the features
+    | Some of the Sentinel features are optional. You may disable the features
     | by removing them from this array. You're free to only remove some of
     | these features or you can even remove all of these if you need to.
     |

@@ -4,8 +4,8 @@ namespace App\Http\Requests;
 
 use App\Models\Channel;
 use Illuminate\Foundation\Http\FormRequest;
-use Cratespace\Citadel\Http\Requests\Concerns\AuthorizesRequests;
-use Cratespace\Citadel\Http\Requests\Traits\InputValidationRules;
+use Cratespace\Sentinel\Http\Requests\Concerns\AuthorizesRequests;
+use Cratespace\Sentinel\Http\Requests\Traits\InputValidationRules;
 
 class ChannelRequest extends FormRequest
 {
