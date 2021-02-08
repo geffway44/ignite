@@ -8,7 +8,7 @@ use App\Jobs\DeleteChannelJob;
 use App\Http\Requests\ChannelRequest;
 use App\Http\Responses\ChannelResponse;
 use Inertia\Response as InertiaResponse;
-use Illuminate\Contracts\Support\Responsable;
+use Symfony\Component\HttpFoundation\Response;
 
 class ChannelController extends Controller
 {
@@ -29,13 +29,13 @@ class ChannelController extends Controller
      *
      * @param \App\Http\Requests\ChannelRequest $request
      *
-     * @return \Illuminate\Contracts\Support\Responsable
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function store(ChannelRequest $request): Responsable
+    public function store(ChannelRequest $request): Response
     {
         $channel = Channel::create($request->validated());
 
-        return $this->app(ChannelResponse::class, compact('channel'));
+        return ChannelResponse::dispatch($channel);
     }
 
     /**
@@ -44,13 +44,13 @@ class ChannelController extends Controller
      * @param \App\Http\Requests\ChannelRequest $request
      * @param \App\Models\Channel               $channel
      *
-     * @return \Illuminate\Contracts\Support\Responsable
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function update(ChannelRequest $request, Channel $channel): Responsable
+    public function update(ChannelRequest $request, Channel $channel): Response
     {
         $channel->update($request->validated());
 
-        return $this->app(ChannelResponse::class, compact('channel'));
+        return ChannelResponse::dispatch($channel);
     }
 
     /**
@@ -59,14 +59,14 @@ class ChannelController extends Controller
      * @param \App\Http\Requests\ChannelRequest $request
      * @param \App\Models\Channel               $channel
      *
-     * @return \Illuminate\Contracts\Support\Responsable
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function destroy(ChannelRequest $request, Channel $channel): Responsable
+    public function destroy(ChannelRequest $request, Channel $channel): Response
     {
         $request->user()->deleteResource(
             fn ($request) => DeleteChannelJob::dispatch($channel)
         );
 
-        return $this->app(ChannelResponse::class);
+        return ChannelResponse::dispatch();
     }
 }

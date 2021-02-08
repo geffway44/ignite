@@ -6,7 +6,7 @@ use App\Models\Reply;
 use App\Models\Thread;
 use App\Http\Requests\ReplyRequest;
 use App\Http\Responses\ReplyResponse;
-use Illuminate\Contracts\Support\Responsable;
+use Symfony\Component\HttpFoundation\Response;
 
 class ReplyController extends Controller
 {
@@ -16,13 +16,13 @@ class ReplyController extends Controller
      * @param \App\Http\Requests\ReplyRequest $request
      * @param \App\Models\Thread              $thread
      *
-     * @return \Illuminate\Contracts\Support\Responsable
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function store(ReplyRequest $request, Thread $thread): Responsable
+    public function store(ReplyRequest $request, Thread $thread): Response
     {
         $reply = $thread->addReply($request->validated());
 
-        return $this->app(ReplyResponse::class, compact('reply'));
+        return ReplyResponse::dispatch(compact('reply'));
     }
 
     /**
@@ -32,15 +32,15 @@ class ReplyController extends Controller
      * @param \App\Models\Thread       $thread
      * @param \App\Models\Reply        $reply
      *
-     * @return \Illuminate\Contracts\Support\Responsable
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function update(ReplyRequest $request, Thread $thread, Reply $reply): Responsable
+    public function update(ReplyRequest $request, Thread $thread, Reply $reply): Response
     {
         $reply->update($request->validated());
 
         // $thread->user->notify();
 
-        return $this->app(ReplyResponse::class, compact('reply'));
+        return ReplyResponse::dispatch(compact('reply'));
     }
 
     /**
@@ -49,12 +49,12 @@ class ReplyController extends Controller
      * @param \App\Models\Thread $thread
      * @param \App\Models\Reply  $reply
      *
-     * @return \Illuminate\Contracts\Support\Responsable
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function destroy(Thread $thread, Reply $reply): Responsable
+    public function destroy(Thread $thread, Reply $reply): Response
     {
         $reply->delete();
 
-        return $this->app(ReplyResponse::class, compact('thread'));
+        return ReplyResponse::dispatch(compact('thread'));
     }
 }

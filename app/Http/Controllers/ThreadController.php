@@ -10,7 +10,7 @@ use App\Http\Responses\ThreadResponse;
 use Inertia\Response as InertiaResponse;
 use App\Contracts\Actions\DeletesThreads;
 use App\Contracts\Actions\CreatesNewThreads;
-use Illuminate\Contracts\Support\Responsable;
+use Symfony\Component\HttpFoundation\Response;
 
 class ThreadController extends Controller
 {
@@ -46,13 +46,13 @@ class ThreadController extends Controller
      *
      * @param \App\Http\Requests\ThreadRequest $request
      *
-     * @return \Illuminate\Contracts\Support\Responsable
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function store(ThreadRequest $request, CreatesNewThreads $creator): Responsable
+    public function store(ThreadRequest $request, CreatesNewThreads $creator): Response
     {
         $thread = $creator->create($request->user(), $request->validated());
 
-        return $this->app(ThreadResponse::class, compact('thread'));
+        return ThreadResponse::dispatch(compact('thread'));
     }
 
     /**
@@ -75,13 +75,13 @@ class ThreadController extends Controller
      * @param \App\Models\Channel              $channel
      * @param \App\Models\Thread               $thread
      *
-     * @return \Illuminate\Contracts\Support\Responsable
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function update(ThreadRequest $request, Channel $channel, Thread $thread): Responsable
+    public function update(ThreadRequest $request, Channel $channel, Thread $thread): Response
     {
         $thread->update($request->validated());
 
-        return $this->app(ThreadResponse::class, compact('thread'));
+        return ThreadResponse::dispatch(compact('thread'));
     }
 
     /**
@@ -92,18 +92,18 @@ class ThreadController extends Controller
      * @param \App\Models\Channel                 $chennel
      * @param \App\Models\Thread                  $thread
      *
-     * @return \Illuminate\Contracts\Support\Responsable
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function destroy(
         ThreadRequest $request,
         DeletesThreads $deleter,
         Channel $channel,
         Thread $thread
-    ): Responsable {
+    ): Response {
         $deleter->delete($thread);
 
         // $request->user()->notify();
 
-        return $this->app(ThreadResponse::class, compact('channel'));
+        return ThreadResponse::dispatch(compact('channel'));
     }
 }

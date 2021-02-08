@@ -13,6 +13,8 @@ class UpdateChannelTest extends TestCase
 
     public function testChannelInformatoinCanBeUpdated()
     {
+        $this->withoutExceptionHandling();
+
         $this->signIn(create(User::class));
 
         $channel = create(Channel::class);
