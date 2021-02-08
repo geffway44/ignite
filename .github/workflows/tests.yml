@@ -88,7 +88,7 @@ jobs:
 
       - name: 🦺 Run security checks
         run: |
-          test -d security-checker || git clone https://github.com/sensiolabs/security-checker.git
+          test -d security-checker || git clone https://github.com/fabpot/local-php-security-checker.git security-checker
           cd security-checker
           composer install && composer update
           php security-checker security:check ../composer.lock
@@ -163,7 +163,7 @@ jobs:
 
       - name: 🦺 Run security checks
         run: |
-          test -d security-checker || git clone https://github.com/sensiolabs/security-checker.git
+          test -d security-checker || git clone https://github.com/fabpot/local-php-security-checker.git security-checker
           cd security-checker
           composer install && composer update
           php security-checker security:check ../composer.lock
