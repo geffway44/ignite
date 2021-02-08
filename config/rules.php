@@ -1,8 +1,8 @@
 <?php
 
-use Cratespace\Sentinel\Rules\PasswordRule;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\User;
+use Cratespace\Sentinel\Rules\PasswordRule;
 
 return [
     /*
@@ -56,5 +56,29 @@ return [
             'confirmed',
             'different:current_password',
         ],
+    ],
+
+    /*
+     * Create/Update Threads Validation Rules.
+     */
+    'threads' => [
+        'title' => ['required', 'string'],
+        'body' => ['required', 'string'],
+        'channel_id' => ['required', 'integer', 'exists:App\Models\Channel,id'],
+    ],
+
+    /*
+     * Create/Update Replies Validation Rules.
+     */
+    'replies' => [
+        'body' => ['required', 'string'],
+    ],
+
+    /*
+     * Create/Update Channels Validation Rules...
+     */
+    'channels' => [
+        'name' => ['required', 'string', 'unique:App\Models\Channel,name'],
+        'description' => ['nullable', 'string'],
     ],
 ];
