@@ -7,8 +7,15 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/cratespace/preflight"
+        }
+    ],
     "require": {
         "php": "^7.4|^8.0",
+        "cratespace/preflight": "dev-development",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
