@@ -86,13 +86,6 @@ jobs:
           npm install
           npm run test
 
-      - name: 📚 Upload artifacts
-        uses: actions/upload-artifact@master
-        if: failure()
-        with:
-          name: Logs
-          path: ./storage/logs
-
   windows_tests:
     name: PHP ${{ matrix.php }} - ${{ matrix.stability }} - Windows
     runs-on: windows-latest
@@ -153,10 +146,3 @@ jobs:
         run: |
           npm install
           npm run test
-
-      - name: 📚 Upload artifacts
-        uses: actions/upload-artifact@master
-        if: failure()
-        with:
-          name: Logs
-          path: ./storage/logs
