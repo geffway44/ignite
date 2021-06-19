@@ -71,4 +71,24 @@ return [
             'different:current_password',
         ],
     ],
+
+    /*
+     * Thread Validation Rules.
+     */
+    'thread' => [
+        'title' => ['required', 'string', 'max:255'],
+        'body' => ['required', 'string'],
+        'channel_id' => ['required', 'numeric', 'exists:channels,id'],
+        'user_id' => ['required', 'numeric', 'exists:users,id'],
+        'locked' => ['nullable'],
+    ],
+
+    /*
+     * Thread Validation Rules.
+     */
+    'reply' => [
+        'body' => ['required', 'string'],
+        'thread_id' => ['required', 'numeric', 'exists:threads,id'],
+        'user_id' => ['required', 'numeric', 'exists:users,id'],
+    ],
 ];

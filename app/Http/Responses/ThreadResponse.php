@@ -16,6 +16,8 @@ class ThreadResponse extends Response implements Responsable
      */
     public function toResponse($request)
     {
-        return $request->expectsJson() ? $this->json() : $this->redirectTo('/');
+        return $request->expectsJson()
+            ? $this->json($this->content)
+            : $this->redirectTo($this->content->path);
     }
 }

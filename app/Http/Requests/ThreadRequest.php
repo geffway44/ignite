@@ -2,18 +2,23 @@
 
 namespace App\Http\Requests;
 
+use Emberfuse\Scorch\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ThreadRequest extends FormRequest
+class ThreadRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
-        return false;
+        if ($thread = $this->route('thread')) {
+            return $this->isAllowed('manage', $thread, false);
+        }
+
+        return $this->isAuthenticated();
     }
 
     /**
@@ -21,10 +26,8 @@ class ThreadRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
-        return [
-            //
-        ];
+        return $this->getRulesFor('thread');
     }
 }
