@@ -4,7 +4,7 @@ namespace App\Actions\Auth;
 
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Cratespace\Sentinel\Contracts\Actions\UpdatesUserProfiles;
+use Emberfuse\Scorch\Contracts\Actions\UpdatesUserProfiles;
 
 class UpdateUserProfile implements UpdatesUserProfiles
 {
@@ -16,7 +16,7 @@ class UpdateUserProfile implements UpdatesUserProfiles
      *
      * @return void
      */
-    public function update(User $user, array $data): void
+    public function update(User $user, array $data, ?array $options = null): void
     {
         if (isset($data['photo'])) {
             $user->updateProfilePhoto($data['photo']);
