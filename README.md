@@ -1,4 +1,4 @@
-# Ignite Forum Builder
+# Ignite | Forum Builder
 
 ## Introduction
 
