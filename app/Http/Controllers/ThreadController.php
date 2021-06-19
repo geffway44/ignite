@@ -27,7 +27,7 @@ class ThreadController extends Controller
     public function index(Channel $channel, ThreadQuery $query, ThreadFilter $filters)
     {
         return Inertia::render('Threads/Index', [
-            'thread' => $query->forUser($channel, $filters)->paginate(),
+            'thread' => $query->make($channel, $filters)->paginate(),
         ]);
     }
 
@@ -76,7 +76,7 @@ class ThreadController extends Controller
     {
         return Inertia::render('Threads/Show', [
             'thread' => $thread->load('replies'),
-            'related' => $channel->relatedThreads(),
+            'related' => $channel->threads(),
         ]);
     }
 

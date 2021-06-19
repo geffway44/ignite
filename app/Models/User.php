@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Emberfuse\Scorch\Models\Traits\HasApiTokens;
 use Emberfuse\Scorch\Models\Traits\HasProfilePhoto;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Emberfuse\Scorch\Models\Concerns\InteractsWithSessions;
@@ -72,4 +73,24 @@ class User extends Authenticatable
         'sessions',
         'two_factor_enabled',
     ];
+
+    /**
+     * Get all threads that belong to this user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function threads(): HasMany
+    {
+        return $this->hasMany(Thread::class);
+    }
+
+    /**
+     * Get all replies that belong to this user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function replies(): HasMany
+    {
+        return $this->hasMany(Thread::class);
+    }
 }
