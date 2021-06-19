@@ -71,3 +71,16 @@ php artisan jwt:generate
 php artisan migrate
 php artisan serve
 ```
+
+
+## Contributing
+
+Thank you for considering contributing to Ignite! You can read the contribution guide [here](.github/CONTRIBUTING.md).
+
+## Security Vulnerabilities
+
+Please review [our security policy](https://github.com/Thavarshan/ignite/security/policy) on how to report security vulnerabilities.
+
+## License
+
+Ignite is open-sourced software licensed under the [MIT license](LICENSE).
