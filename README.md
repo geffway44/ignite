@@ -1,3 +1,5 @@
+[![Ignite](https://raw.githubusercontent.com/Thavarshan/ignite/main/.github/banner.svg)](https://github.com/Thavarshan/ignite)
+
 # Ignite | Forum Builder
 
 ## Introduction
