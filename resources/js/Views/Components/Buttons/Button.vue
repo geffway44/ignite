@@ -44,9 +44,9 @@ export default {
     computed: {
         colors() {
             if (this.mode === 'primary') {
-                return 'text-white hover:text-white focus:text-white active:text-white bg-gray-800 hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900';
+                return 'text-white hover:text-white focus:text-white active:text-white bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 active:bg-blue-700';
             } else if (this.mode === 'danger') {
-                return 'text-white hover:text-white focus:text-white active:text-white bg-red-600 hover:bg-red-700 focus:bg-red-700 active:bg-red-800';
+                return 'text-white hover:text-white focus:text-white active:text-white bg-red-600 hover:bg-red-700 focus:bg-red-700 active:bg-red-500';
             } else {
                 return 'text-gray-600 hover:text-gray-600 focus:text-gray-600 active:text-gray-600 bg-white hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-200 border border-gray-100';
             }
