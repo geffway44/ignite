@@ -10,8 +10,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Emberfuse\Scorch\Models\Concerns\InteractsWithSessions;
 use Emberfuse\Scorch\Models\Traits\TwoFactorAuthenticatable;
+use Emberfuse\Scorch\Contracts\Auth\HasApiTokens as ApiTokenContract;
 
-class User extends Authenticatable
+class User extends Authenticatable implements ApiTokenContract
 {
     use HasFactory;
     use Notifiable;
@@ -59,8 +60,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'two_factor_enabled' => 'boolean',
-        'settings' => 'array',
-        'address' => 'array',
+        'settings' => 'object',
+        'address' => 'object',
     ];
 
     /**

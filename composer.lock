@@ -524,20 +524,20 @@
         },
         {
             "name": "emberfuse/blaze",
-            "version": "v1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/emberfuse/blaze.git",
-                "reference": "8d7c8ec77cf0f36c7f7f5a0ee4eb761a1f0fb233"
+                "reference": "4b74e3e03ce90eec63433a2e49932e3edd7777d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/emberfuse/blaze/zipball/8d7c8ec77cf0f36c7f7f5a0ee4eb761a1f0fb233",
-                "reference": "8d7c8ec77cf0f36c7f7f5a0ee4eb761a1f0fb233",
+                "url": "https://api.github.com/repos/emberfuse/blaze/zipball/4b74e3e03ce90eec63433a2e49932e3edd7777d0",
+                "reference": "4b74e3e03ce90eec63433a2e49932e3edd7777d0",
                 "shasum": ""
             },
             "require": {
-                "emberfuse/scorch": "^1.0",
+                "emberfuse/scorch": "^1.1",
                 "ext-bcmath": "*",
                 "ext-gmp": "*",
                 "ext-json": "*",
@@ -591,20 +591,20 @@
                 "issues": "https://github.com/emberfuse/blaze/issues",
                 "source": "https://github.com/emberfuse/blaze"
             },
-            "time": "2021-06-01T18:56:03+00:00"
+            "time": "2021-06-19T21:09:17+00:00"
         },
         {
             "name": "emberfuse/scorch",
-            "version": "v1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/emberfuse/scorch.git",
-                "reference": "d303284afe29cb14f824ac1b84cdf66d53f2ad41"
+                "reference": "8fa0ff3dd39cd0d8937f97b03c989166ff9c8075"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/emberfuse/scorch/zipball/d303284afe29cb14f824ac1b84cdf66d53f2ad41",
-                "reference": "d303284afe29cb14f824ac1b84cdf66d53f2ad41",
+                "url": "https://api.github.com/repos/emberfuse/scorch/zipball/8fa0ff3dd39cd0d8937f97b03c989166ff9c8075",
+                "reference": "8fa0ff3dd39cd0d8937f97b03c989166ff9c8075",
                 "shasum": ""
             },
             "require": {
@@ -662,7 +662,7 @@
                 "issues": "https://github.com/emberfuse/scorch/issues",
                 "source": "https://github.com/emberfuse/scorch"
             },
-            "time": "2021-06-01T16:14:59+00:00"
+            "time": "2021-06-19T21:05:21+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -1609,16 +1609,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "1.6.2",
+            "version": "1.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "7d70d2f19c84bcc16275ea47edabee24747352eb"
+                "reference": "c3c8b7217c52572fb42aaf84211abccf75a151b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/7d70d2f19c84bcc16275ea47edabee24747352eb",
-                "reference": "7d70d2f19c84bcc16275ea47edabee24747352eb",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/c3c8b7217c52572fb42aaf84211abccf75a151b2",
+                "reference": "c3c8b7217c52572fb42aaf84211abccf75a151b2",
                 "shasum": ""
             },
             "require": {
@@ -1636,7 +1636,7 @@
                 "github/gfm": "0.29.0",
                 "michelf/php-markdown": "~1.4",
                 "mikehaertl/php-shellcommand": "^1.4",
-                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan": "^0.12.90",
                 "phpunit/phpunit": "^7.5 || ^8.5 || ^9.2",
                 "scrutinizer/ocular": "^1.5",
                 "symfony/finder": "^4.2"
@@ -1706,7 +1706,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-12T11:39:41+00:00"
+            "time": "2021-06-19T20:08:14+00:00"
         },
         {
             "name": "league/flysystem",
@@ -5262,16 +5262,16 @@
         },
         {
             "name": "tightenco/ziggy",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/ziggy.git",
-                "reference": "10d28d654e054f609ba1b78b1a0ba62358088977"
+                "reference": "5bf99821cf37ec32072caa48da0b09b8ab5b4341"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/ziggy/zipball/10d28d654e054f609ba1b78b1a0ba62358088977",
-                "reference": "10d28d654e054f609ba1b78b1a0ba62358088977",
+                "url": "https://api.github.com/repos/tighten/ziggy/zipball/5bf99821cf37ec32072caa48da0b09b8ab5b4341",
+                "reference": "5bf99821cf37ec32072caa48da0b09b8ab5b4341",
                 "shasum": ""
             },
             "require": {
@@ -5322,9 +5322,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tighten/ziggy/issues",
-                "source": "https://github.com/tighten/ziggy/tree/v1.3.0"
+                "source": "https://github.com/tighten/ziggy/tree/v1.3.1"
             },
-            "time": "2021-06-18T00:57:47+00:00"
+            "time": "2021-06-19T00:42:05+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
