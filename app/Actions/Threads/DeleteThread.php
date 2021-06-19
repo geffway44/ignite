@@ -2,17 +2,18 @@
 
 namespace App\Actions\Threads;
 
+use App\Models\Thread;
+
 class DeleteThread
 {
     /**
-     * Preform certain action using the given data.
+     * Delete given thread.
      *
      * @param array[] $data
      *
      * @return void
      */
-    public function performAction(array $data = []): void
+    public function delete(Thread $thread): void
     {
-        return $data;
     }
 }

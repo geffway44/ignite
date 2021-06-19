@@ -2,17 +2,20 @@
 
 namespace App\Actions\Threads;
 
+use App\Models\Thread;
+
 class UpdateThread
 {
     /**
-     * Preform certain action using the given data.
+     * Validate and update the given threads's details.
      *
-     * @param array[] $data
+     * @param \App\Models\Thread $thread
+     * @param array              $data
+     * @param array|null         $options
      *
      * @return void
      */
-    public function performAction(array $data = []): void
+    public function update(Thread $user, array $data, ?array $options = null): void
     {
-        return $data;
     }
 }

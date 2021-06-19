@@ -2,17 +2,19 @@
 
 namespace App\Actions\Threads;
 
-class CreateNewThread
+use Emberfuse\Scorch\Contracts\Actions\CreatesNewResources;
+
+class CreateNewThread implements CreatesNewResources
 {
     /**
-     * Preform certain action using the given data.
+     * Create a new resource type.
      *
-     * @param array[] $data
+     * @param array      $data
+     * @param array|null $options
      *
-     * @return void
+     * @return mixed
      */
-    public function performAction(array $data = []): void
+    public function create(array $data, ?array $options = null)
     {
-        return $data;
     }
 }
