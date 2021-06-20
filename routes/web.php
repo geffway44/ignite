@@ -10,6 +10,5 @@ Route::group([
     'middleware' => ['auth:scorch'],
 ], function (): void {
     Route::get('/home', fn () => Inertia::render('Dashboard/Home'))->name('home');
-
     Route::resource('/channels/{channel}/threads', ThreadController::class);
 });

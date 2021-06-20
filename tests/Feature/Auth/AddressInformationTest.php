@@ -4,8 +4,8 @@ namespace Tests\Feature\Auth;
 
 use Tests\TestCase;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Emberfuse\Blaze\Testing\Contracts\Postable;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AddressInformationTest extends TestCase implements Postable
 {
@@ -21,8 +21,8 @@ class AddressInformationTest extends TestCase implements Postable
         );
 
         $response->assertStatus(302);
-        $this->assertEquals('Indiana', $user->fresh()->address['state']);
-        $this->assertEquals('United States', $user->fresh()->address['country']);
+        $this->assertEquals('Indiana', $user->fresh()->address->state);
+        $this->assertEquals('United States', $user->fresh()->address->country);
     }
 
     public function testAddressInformationCanBeUpdatedThroughJsonRequest()
@@ -35,8 +35,8 @@ class AddressInformationTest extends TestCase implements Postable
         );
 
         $response->assertStatus(204);
-        $this->assertEquals('Indiana', $user->fresh()->address['state']);
-        $this->assertEquals('United States', $user->fresh()->address['country']);
+        $this->assertEquals('Indiana', $user->fresh()->address->state);
+        $this->assertEquals('United States', $user->fresh()->address->country);
     }
 
     public function validStreetNameIsRequired()
