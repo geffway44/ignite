@@ -2,9 +2,9 @@
 
 namespace App\Actions\API;
 
-use InvalidArgumentException;
 use Emberfuse\Blaze\API\Permission;
 use Emberfuse\Blaze\Contracts\Actions\CreatesNewApiTokens;
+use InvalidArgumentException;
 
 class CreateNewApiToken implements CreatesNewApiTokens
 {
@@ -18,7 +18,8 @@ class CreateNewApiToken implements CreatesNewApiTokens
     public function create(array $data, ?array $options = null)
     {
         $token = optional($options['user'])->createToken(
-            $data['name'], Permission::validPermissions($data['permissions'] ?? [])
+            $data['name'],
+            Permission::validPermissions($data['permissions'] ?? [])
         );
 
         if (! is_null($token)) {
