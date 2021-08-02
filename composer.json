@@ -1,11 +1,11 @@
 {
-    "name": "laravel/laravel",
+    "name": "thavarshan/ignite",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "A powerfully simple discussion forum.",
+    "keywords": ["forum", "ignite"],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0",
         "emberfuse/blaze": "^1.0",
         "emberfuse/scorch": "^1.1",
         "fideloper/proxy": "^4.4",
