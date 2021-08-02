@@ -2,13 +2,27 @@
 
 namespace App\Providers;
 
+use App\Actions\API\UpdateApiToken;
+use App\Actions\API\CreateNewApiToken;
 use Illuminate\Support\ServiceProvider;
-use Cratespace\Preflight\API\Permission;
-use Cratespace\Sentinel\Providers\Traits\HasActions;
+use Emberfuse\Blaze\API\Permission;
+use Emberfuse\Scorch\Providers\Traits\HasActions;
+use Emberfuse\Blaze\Contracts\Actions\UpdatesApiTokens;
+use Emberfuse\Blaze\Contracts\Actions\CreatesNewApiTokens;
 
-class PreflightServiceProvider extends ServiceProvider
+class BlazeServiceProvider extends ServiceProvider
 {
     use HasActions;
+
+    /**
+     * The scorch action classes.
+     *
+     * @var array
+     */
+    protected $actions = [
+        CreatesNewApiTokens::class => CreateNewApiToken::class,
+        UpdatesApiTokens::class => UpdateApiToken::class,
+    ];
 
     /**
      * Bootstrap any application services.

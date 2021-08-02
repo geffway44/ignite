@@ -7,7 +7,7 @@ use Illuminate\Auth\Events\PasswordReset;
 use App\Actions\Auth\Traits\PasswordUpdater;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Contracts\Auth\PasswordBroker;
-use Cratespace\Sentinel\Contracts\Actions\ResetsUserPasswords;
+use Emberfuse\Scorch\Contracts\Actions\ResetsUserPasswords;
 
 class ResetUserPassword implements ResetsUserPasswords
 {
@@ -51,8 +51,7 @@ class ResetUserPassword implements ResetsUserPasswords
     public function reset(array $data)
     {
         return $this->broker->reset(
-            $data,
-            $this->resetPasswordCallback($data['password']),
+            $data, $this->resetPasswordCallback($data['password'])
         );
     }
 
@@ -69,8 +68,6 @@ class ResetUserPassword implements ResetsUserPasswords
             $this->updatePassword($user, $password);
 
             event(new PasswordReset($user));
-
-            // $this->guard->login($user);
         };
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Actions\Auth;
 
 use App\Models\User;
-use Cratespace\Sentinel\Contracts\Actions\UpdateUserInformation;
+use Emberfuse\Scorch\Contracts\Actions\UpdateUserInformation;
 
 class UpdateUserAddress implements UpdateUserInformation
 {
@@ -12,10 +12,11 @@ class UpdateUserAddress implements UpdateUserInformation
      *
      * @param \App\Models\User $user
      * @param array            $data
+     * @param array|null       $options
      *
      * @return void
      */
-    public function update(User $user, array $data): void
+    public function update(User $user, array $data, ?array $options = null): void
     {
         $user->forceFill([
             'address' => [

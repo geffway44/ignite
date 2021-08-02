@@ -2,7 +2,7 @@
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Auth\User;
-use Cratespace\Sentinel\Rules\PasswordRule;
+use Emberfuse\Scorch\Rules\PasswordRule;
 
 return [
     /*
@@ -14,13 +14,13 @@ return [
      * User Login Validation Rules.
      */
     'login' => [
-        'email' => ['sometimes', 'string', 'email'],
+        'email' => ['required', 'string', 'email'],
         'password' => ['required', 'string'],
-        'remember' => ['sometimes'],
+        'remember' => ['nullable'],
     ],
 
     /*
-     * Use Registration Validation Rules.
+     * User Registration Validation Rules.
      */
     'register' => [
         'name' => ['required', 'string', 'max:255'],
@@ -31,18 +31,18 @@ return [
             'max:255',
             Rule::unique(User::class),
         ],
-        'phone' => ['sometimes', 'string', 'regex:/(07)[0-9]{8}/'],
+        'phone' => ['sometimes', 'string'],
         'password' => ['required', 'string', new PasswordRule(), 'confirmed'],
     ],
 
     /*
-     * Use Profile Information Validation Rules.
+     * User Profile Information Validation Rules.
      */
     'update_profile' => [
         'name' => ['required', 'string', 'max:255'],
         'username' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email'],
-        'phone' => ['sometimes', 'string', 'regex:/(07)[0-9]{8}/'],
+        'phone' => ['sometimes', 'string'],
         'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:1024'],
     ],
 
@@ -51,6 +51,7 @@ return [
      */
     'address' => [
         'line1' => ['required', 'string', 'max:255'],
+        'line2' => ['sometimes', 'string', 'max:255'],
         'city' => ['required', 'string', 'max:255'],
         'state' => ['required', 'string', 'max:255'],
         'country' => ['required', 'string', 'max:255'],
@@ -58,7 +59,7 @@ return [
     ],
 
     /*
-     * Use Account Password Update Validation Rules.
+     * User Account Password Update Validation Rules.
      */
     'update_password' => [
         'current_password' => ['required', 'string'],

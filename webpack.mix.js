@@ -8,7 +8,8 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss'),
         require('autoprefixer'),
     ])
-    .alias({ '@': path.join(__dirname, 'resources/js') });
+    .alias({ '@': path.join(__dirname, 'resources/js') })
+    .browserSync('ignite.test');
 
 if (mix.inProduction()) {
     mix.version();

@@ -3,26 +3,28 @@
 namespace App\Providers;
 
 use App\Actions\Auth\DeleteUser;
+use App\Actions\Auth\LogoutUser;
 use App\Actions\Auth\CreateNewUser;
 use App\Actions\Auth\AuthenticateUser;
 use App\Actions\Auth\ResetUserPassword;
 use App\Actions\Auth\UpdateUserProfile;
 use Illuminate\Support\ServiceProvider;
 use App\Actions\Auth\UpdateUserPassword;
-use Cratespace\Sentinel\Providers\Traits\HasActions;
-use Cratespace\Sentinel\Contracts\Actions\DeletesUsers;
-use Cratespace\Sentinel\Contracts\Actions\CreatesNewUsers;
-use Cratespace\Sentinel\Contracts\Actions\AuthenticatesUsers;
-use Cratespace\Sentinel\Contracts\Actions\ResetsUserPasswords;
-use Cratespace\Sentinel\Contracts\Actions\UpdatesUserProfiles;
-use Cratespace\Sentinel\Contracts\Actions\UpdatesUserPasswords;
+use Emberfuse\Scorch\Providers\Traits\HasActions;
+use Emberfuse\Scorch\Contracts\Actions\DeletesUsers;
+use Emberfuse\Scorch\Contracts\Actions\LogsoutUsers;
+use Emberfuse\Scorch\Contracts\Actions\CreatesNewUsers;
+use Emberfuse\Scorch\Contracts\Actions\AuthenticatesUsers;
+use Emberfuse\Scorch\Contracts\Actions\ResetsUserPasswords;
+use Emberfuse\Scorch\Contracts\Actions\UpdatesUserProfiles;
+use Emberfuse\Scorch\Contracts\Actions\UpdatesUserPasswords;
 
-class SentinelServiceProvider extends ServiceProvider
+class ScorchServiceProvider extends ServiceProvider
 {
     use HasActions;
 
     /**
-     * The sentinel action classes.
+     * The scorch action classes.
      *
      * @var array
      */
@@ -33,6 +35,7 @@ class SentinelServiceProvider extends ServiceProvider
         UpdatesUserPasswords::class => UpdateUserPassword::class,
         UpdatesUserProfiles::class => UpdateUserProfile::class,
         DeletesUsers::class => DeleteUser::class,
+        LogsoutUsers::class => LogoutUser::class,
     ];
 
     /**

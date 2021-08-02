@@ -1,8 +1,16 @@
-name: Tests CI
+name: Test
 
 on:
   push:
+    branches:
+      - main
+      - development
+      - feature/**
   pull_request:
+    branches:
+      - main
+      - development
+      - feature/**
 
 jobs:
   linux_tests:
