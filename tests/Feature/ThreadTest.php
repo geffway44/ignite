@@ -11,8 +11,7 @@ class ThreadTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /** @test */
-    public function browseAllThreads()
+    public function testBrowseAllThreads()
     {
         $threads = Thread::factory()->count(10)->create();
 
