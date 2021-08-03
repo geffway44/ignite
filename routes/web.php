@@ -14,3 +14,4 @@ Route::group([
 
 Route::get('threads', [ThreadController::class, 'index']);
 Route::post('threads/create', [ThreadController::class, 'store']);
+Route::put('threads/{thread}',[ThreadController::class, 'update']);

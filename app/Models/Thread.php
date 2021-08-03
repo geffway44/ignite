@@ -12,6 +12,17 @@ class Thread extends Model
     use HasFactory;
 
     /**
+    * Mass assignable attributes.
+    *
+    * @var array
+    */
+    protected $fillable = [
+        'title',
+        'body',
+        'user_id',
+        'channel_id',
+    ];
+    /**
      *Thread belongs to a user
      *
      *  @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -40,6 +51,4 @@ class Thread extends Model
     {
         return $this->hasMany(Reply::class);
     }
-
 }
-
