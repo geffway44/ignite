@@ -2,6 +2,7 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ThreadController;
 
 Route::get('/', fn () => Inertia::render('Welcome/Show'))->name('welcome');
 
@@ -10,3 +11,5 @@ Route::group([
 ], function (): void {
     Route::get('/home', fn () => Inertia::render('Dashboard/Home'))->name('home');
 });
+
+Route::get('threads', [ThreadController::class, 'index']);
