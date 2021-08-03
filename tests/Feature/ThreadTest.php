@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Thread;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -12,8 +13,10 @@ class ThreadTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function browse_a_thread()
+    public function browse_all_threads()
     {
+//        $thread = Thread::factory()->make();
+
         $response = $this->get('/threads');
 
         $response->assertStatus(200);
