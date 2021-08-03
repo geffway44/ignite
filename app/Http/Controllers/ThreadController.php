@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Channel;
 use App\Models\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ThreadController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth')->except(['index','show']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -35,6 +40,12 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
+        $createThread = new Thread();
+        $createThread->title = $request->get('title');
+        $createThread->body = $request->get('body');
+        $createThread->user_id = Auth::id();
+        $createThread->channel_id = $request->get('channel_id');
+        $createThread->save();
     }
 
     /**
