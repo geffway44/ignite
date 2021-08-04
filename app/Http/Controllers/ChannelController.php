@@ -36,7 +36,7 @@ class ChannelController extends Controller
      */
     public function store(ChannelRequest $request)
     {
-       Channel::create($request->validated());
+        Channel::create($request->validated());
     }
 
     /**
