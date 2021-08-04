@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ThreadRequest;
 use App\Models\Channel;
 use App\Models\Thread;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ThreadController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param \App\Models\Channel $channel
+     *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(?Channel $channel = null)
     {
-        return Thread::all();
+        return ! is_null($channel) ? $channel->threads->all() : Thread::all();
     }
 
     /**
@@ -45,11 +45,12 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Thread $thread
+     * @param \App\Models\Channel $channel
+     * @param \App\Models\Thread  $thread
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Thread $thread)
+    public function show(Channel $channel, Thread $thread)
     {
         return $thread;
     }

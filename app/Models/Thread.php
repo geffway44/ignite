@@ -26,15 +26,6 @@ class Thread extends Model
     ];
 
     /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'path',
-    ];
-
-    /**
      *Thread belongs to a user.
      *
      *  @return \Illuminate\Database\Eloquent\Relations\BelongsTo
