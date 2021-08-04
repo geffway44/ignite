@@ -13,48 +13,38 @@ class ThreadTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->thread = create(Thread::class);
+    }
+
     public function testThreadHasUser()
     {
-        $thread = create(Thread::class);
-
-        $this->assertInstanceOf(User::class, $thread->user);
+        $this->assertInstanceOf(User::class, $this->thread->user);
     }
 
     public function testThreadHasChannel()
     {
-        $thread = create(Thread::class);
-
-        $this->assertInstanceOf(Channel::class, $thread->channel);
+        $this->assertInstanceOf(Channel::class, $this->thread->channel);
     }
 
     public function testThreadHaveReply()
     {
-        $thread = create(Thread::class);
-        $reply = Reply::factory()->create(['thread_id' => $thread->id]);
+        $reply = Reply::factory()->create(['thread_id' => $this->thread->id]);
 
         //reply exists in a thread's reply collection
-        $this->assertTrue($thread->replies->contains($reply));
+        $this->assertTrue($this->thread->replies->contains($reply));
     }
 
-    public function testThreadRequiresTitle()
+    public function testThreadHasTitle()
     {
-        $this->signIn();
-
-        $thread = Thread::factory()->make(['title' => null]);
-
-        $this->post('threads', $thread->toArray())
-                ->assertSessionHasErrors('title');
+        $this->assertNotNull($this->thread->title);
     }
 
-    public function testThreadRequiresBody()
+    public function testThreadHasBody()
     {
-        $this->signIn();
-
-        $thread = Thread::factory()->make(['body' => null]);
-
-        $this->post('threads', $thread->toArray())
-                ->assertSessionHasErrors('body');
+        $this->assertNotNull($this->thread->body);
     }
-
-
 }

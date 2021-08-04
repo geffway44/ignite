@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReplyController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThreadController;
@@ -18,4 +19,6 @@ Route::group([
     Route::get('threads/edit', [ThreadController::class, 'edit'])->name('threads.edit');
     Route::put('threads/{thread}', [ThreadController::class, 'update'])->name('threads.update');
     Route::delete('threads/{thread}', [ThreadController::class, 'destroy'])->name('threads.delete');
+
+    Route::post('threads/replies', [ReplyController::class, 'store'])->name('threads.replies.store');
 });
