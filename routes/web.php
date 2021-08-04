@@ -20,5 +20,5 @@ Route::group([
     Route::put('threads/{thread}', [ThreadController::class, 'update'])->name('threads.update');
     Route::delete('threads/{thread}', [ThreadController::class, 'destroy'])->name('threads.delete');
 
-    Route::post('replies', [ReplyController::class, 'store'])->name('replies.store');
+    Route::post('threads/replies', [ReplyController::class, 'store'])->name('threads.replies.store');
 });

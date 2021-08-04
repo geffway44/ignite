@@ -22,14 +22,14 @@ class CreateReplyTest extends TestCase
     {
         $this->signIn();
 
-        $this->post('/replies', $this->reply->toArray());
+        $this->post('/threads/replies', $this->reply->toArray());
 
         $this->assertDatabaseHas('replies', ['thread_id'=> $this->reply->thread_id]);
     }
 
     public function testUnauthenticatedUsersCannotReplyToThread()
     {
-        $this->post('/replies', $this->reply->toArray())
+        $this->post('/threads/replies', $this->reply->toArray())
             ->assertRedirect('/login');
     }
 }
