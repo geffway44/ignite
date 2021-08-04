@@ -39,7 +39,7 @@ class ThreadController extends Controller
      */
     public function store(ThreadRequest $request)
     {
-        Thread::create($request->all());
+        Thread::create($request->validated());
     }
 
     /**
@@ -77,7 +77,8 @@ class ThreadController extends Controller
     public function update(ThreadRequest $request, Thread $thread)
     {
         $this->authorize('update', $thread);
-        $thread->update($request->all());
+
+        $thread->update($request->validated());
     }
 
     /**

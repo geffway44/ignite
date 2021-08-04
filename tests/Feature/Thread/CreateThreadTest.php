@@ -3,20 +3,17 @@
 namespace Tests\Feature\Thread;
 
 use App\Models\Thread;
-use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class CreateThreadTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
-    
+
     public function testThreadCreateURL()
     {
-        $this->actingAs(User::factory()->create());
+        $this->signIn();
         $response = $this->get('threads/create');
         $response->assertStatus(200);
     }
@@ -24,7 +21,7 @@ class CreateThreadTest extends TestCase
     public function testAuthenticatedUsersCanCreateNewThread()
     {
         //creates an user and authenticate
-        $this->actingAs(User::factory()->create());
+        $this->signIn();
         //create thread object
         $thread= Thread::factory()->make();
         //submitting created object to thread creation endpoint

@@ -24,6 +24,7 @@ class ChannelFactory extends Factory
         return [
             'name' => $this->faker->sentence(),
             'description' => $this->faker->paragraph(),
+            'slug' => $this->faker->sentence(),
         ];
     }
 }

@@ -6,12 +6,12 @@ use App\Models\Channel;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ThreadTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testThreadHasUser()
     {
@@ -29,7 +29,7 @@ class ThreadTest extends TestCase
 
     public function testThreadHaveReply()
     {
-        $thread = Thread::factory()->create();
+        $thread = create(Thread::class);
         $reply = Reply::factory()->create(['thread_id' => $thread->id]);
 
         //reply exists in a thread's reply collection
@@ -38,7 +38,7 @@ class ThreadTest extends TestCase
 
     public function testThreadRequiresTitle()
     {
-        $this->actingAs(User::factory()->create());
+        $this->signIn();
 
         $thread = Thread::factory()->make(['title' => null]);
 
@@ -48,7 +48,7 @@ class ThreadTest extends TestCase
 
     public function testThreadRequiresBody()
     {
-        $this->actingAs(User::factory()->create());
+        $this->signIn();
 
         $thread = Thread::factory()->make(['body' => null]);
 

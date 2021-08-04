@@ -76,9 +76,9 @@ return [
      * User Threads Validation Rules.
      */
     'thread' => [
-        'title' => ['required'],
+        'title' => ['required', 'string', 'max:255'],
         'body' => ['required'],
-        'user_id' => ['required'],
-        'channel_id' => ['required'],
+        'user_id' => ['required', 'numeric', 'exists:users,id'],
+        'channel_id' => ['required', 'numeric', 'exists:channels,id'],
     ],
 ];
