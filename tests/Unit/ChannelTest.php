@@ -4,19 +4,26 @@ namespace Tests\Unit;
 
 use App\Models\Channel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class ChannelTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
-    /** @test */
-    public function checkChannelHasAName()
+    public function setUp(): void
     {
-        $channel = create(Channel::class);
+        parent::setUp();
 
-        $this->assertNotNull($channel->name);
+        $this->channel = create(Channel::class);
+    }
+
+    public function testChannelHasName()
+    {
+        $this->assertNotNull($this->channel->name);
+    }
+
+    public function testChannelHasSlug()
+    {
+        $this->assertNotNull($this->channel->slug);
     }
 }

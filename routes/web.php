@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ThreadController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,4 +20,8 @@ Route::group([
     Route::get('threads/edit', [ThreadController::class, 'edit'])->name('threads.edit');
     Route::put('threads/{thread}', [ThreadController::class, 'update'])->name('threads.update');
     Route::delete('threads/{thread}', [ThreadController::class, 'destroy'])->name('threads.delete');
+
+    Route::post('threads/replies', [ReplyController::class, 'store'])->name('threads.replies.store');
+
+    Route::post('threads/channels', [ChannelController::class, 'store'])->name('threads.channels.store');
 });
