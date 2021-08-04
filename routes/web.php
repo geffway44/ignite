@@ -11,6 +11,7 @@ Route::group([
 ], function (): void {
     Route::get('/home', fn () => Inertia::render('Dashboard/Home'))->name('home');
 
+    Route::get('/{channel}/threads', [ThreadController::class, 'index'])->name('channel.threads');
     Route::get('threads', [ThreadController::class, 'index'])->name('threads');
     Route::get('threads/{thread}', [ThreadController::class, 'show'])->name('threads.show');
     Route::get('threads/create', [ThreadController::class, 'create'])->name('threads.create');
