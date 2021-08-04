@@ -81,4 +81,13 @@ return [
         'user_id' => ['required', 'numeric', 'exists:users,id'],
         'channel_id' => ['required', 'numeric', 'exists:channels,id'],
     ],
+
+    /*
+   * Threads Replies Validation Rules.
+   */
+    'reply' => [
+        'body' => ['required'],
+        'user_id' => ['required', 'numeric', 'exists:users,id'],
+        'thread_id' => ['required', 'numeric', 'exists:threads,id'],
+    ],
 ];

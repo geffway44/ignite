@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model
 {
     use HasFactory;
+
+    /**
+     * Mass assignable attributes.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'body',
+        'user_id',
+        'thread_id',
+    ];
 }
