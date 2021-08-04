@@ -24,11 +24,7 @@ class CreateReplyTest extends TestCase
 
     public function testUnauthenticatedUsersCannotReplyToThread()
     {
-        $this->signIn();
-
         $reply = Reply::factory()->make();
-
-        Auth::logout();
 
         $this->post('/replies', $reply->toArray())
             ->assertRedirect('/login');
