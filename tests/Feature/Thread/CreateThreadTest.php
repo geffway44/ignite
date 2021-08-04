@@ -13,6 +13,14 @@ class CreateThreadTest extends TestCase
 {
     use DatabaseMigrations;
 
+    
+    public function testThreadCreateURL()
+    {
+        $this->actingAs(User::factory()->create());
+        $response = $this->get('threads/create');
+        $response->assertStatus(200);
+    }
+
     public function testAuthenticatedUsersCanCreateNewThread()
     {
         //creates an user and authenticate
@@ -20,15 +28,15 @@ class CreateThreadTest extends TestCase
         //create thread object
         $thread= Thread::factory()->make();
         //submitting created object to thread creation endpoint
-        $this->post('/threads/create',$thread->toArray());
+        $this->post('/threads', $thread->toArray());
         //check if it stored in db
-        $this->assertEquals(1,Thread::all()->count());
+        $this->assertEquals(1, Thread::all()->count());
     }
 
     public function testUnauthenticatedUsersCannotCreateThread()
     {
         $thread= Thread::factory()->make();
-        $this->post('/threads/create',$thread->toArray())
+        $this->post('/threads', $thread->toArray())
             ->assertRedirect('/login');
     }
 }

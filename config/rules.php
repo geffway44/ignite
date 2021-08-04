@@ -71,4 +71,14 @@ return [
             'different:current_password',
         ],
     ],
+
+     /*
+     * User Threads Validation Rules.
+     */
+    'thread' => [
+        'title' => ['required'],
+        'body' => ['required'],
+        'user_id' => ['required'],
+        'channel_id' => ['required'],
+    ],
 ];

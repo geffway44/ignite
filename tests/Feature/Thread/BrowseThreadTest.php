@@ -16,6 +16,7 @@ class BrowseThreadTest extends TestCase
 
     public function testBrowseAllThreads()
     {
+        $this->actingAs(User::factory()->create());
         $threads = Thread::factory()->count(10)->create();
 
         $response = $this->get('/threads');
@@ -27,5 +28,20 @@ class BrowseThreadTest extends TestCase
             // assert each thread is in the response content
             $this->assertStringContainsString($thread->title, $content);
         });
+    }
+
+    public function testBrowseAThread()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $thread = Thread::factory()->create();
+
+        $response = $this->get('/thread/'.$thread->id);
+
+        $response->assertStatus(200); // assert response is successful
+
+        $content = $response->getContent(); // get the response content
+
+        $this->assertStringContainsString($thread->title, $content);
     }
 }

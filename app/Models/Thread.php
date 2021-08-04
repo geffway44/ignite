@@ -51,4 +51,14 @@ class Thread extends Model
     {
         return $this->hasMany(Reply::class);
     }
+
+    /**
+     * Returning thread path.
+     *
+     * @return string
+     */
+    public function path(): string
+    {
+        return '/thread/' . $this->id;
+    }
 }

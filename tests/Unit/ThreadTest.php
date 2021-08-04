@@ -35,4 +35,26 @@ class ThreadTest extends TestCase
         //reply exists in a thread's reply collection
         $this->assertTrue($thread->replies->contains($reply));
     }
+
+    public function testThreadRequiresTitle()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $thread = Thread::factory()->make(['title' => null]);
+
+        $this->post('threads', $thread->toArray())
+                ->assertSessionHasErrors('title');
+    }
+
+    public function testThreadRequiresBody()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $thread = Thread::factory()->make(['body' => null]);
+
+        $this->post('threads', $thread->toArray())
+                ->assertSessionHasErrors('body');
+    }
+
+
 }

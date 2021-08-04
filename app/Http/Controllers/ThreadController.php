@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ThreadRequest;
 use App\Models\Channel;
 use App\Models\Thread;
 use Illuminate\Http\Request;
@@ -9,9 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ThreadController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth')->except(['index','show']);
-    }
     /**
      * Display a listing of the resource.
      *
@@ -29,6 +27,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
+        $this->response('Thread Creation');
     }
 
     /**
@@ -38,14 +37,9 @@ class ThreadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ThreadRequest $request)
     {
-        $createThread = new Thread();
-        $createThread->title = $request->get('title');
-        $createThread->body = $request->get('body');
-        $createThread->user_id = Auth::id();
-        $createThread->channel_id = $request->get('channel_id');
-        $createThread->save();
+        Thread::create( $request->all());
     }
 
     /**
@@ -57,6 +51,7 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
+        return $thread;
     }
 
     /**
@@ -68,6 +63,7 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread)
     {
+        $this->response('Thread Edit View');
     }
 
     /**
@@ -78,8 +74,9 @@ class ThreadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Thread $thread)
+    public function update(ThreadRequest $request, Thread $thread)
     {
+        $this->authorize('update', $thread);
         $thread->update($request->all());
     }
 
@@ -92,5 +89,8 @@ class ThreadController extends Controller
      */
     public function destroy(Thread $thread)
     {
+        $this->authorize('update', $thread);
+
+        $thread->delete();
     }
 }
