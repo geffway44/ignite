@@ -13,7 +13,7 @@ class Channel extends Model
     use HasFactory;
     use Sluggable;
     use Directable;
-  
+
     /**
      * Mass assignable attributes.
      *
