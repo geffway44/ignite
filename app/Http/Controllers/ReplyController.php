@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReplyRequest;
 use App\Models\Reply;
 use Illuminate\Http\Request;
 
@@ -33,9 +34,9 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReplyRequest $request)
     {
-        //
+        Reply::create($request->validated());
     }
 
     /**

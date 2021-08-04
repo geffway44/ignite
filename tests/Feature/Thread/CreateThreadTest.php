@@ -10,7 +10,6 @@ class CreateThreadTest extends TestCase
 {
     use RefreshDatabase;
 
-
     public function testThreadCreateURL()
     {
         $this->signIn();

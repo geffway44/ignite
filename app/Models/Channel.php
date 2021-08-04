@@ -13,6 +13,17 @@ class Channel extends Model
     use HasFactory;
     use Sluggable;
     use Directable;
+  
+    /**
+     * Mass assignable attributes.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+    ];
 
     /**
      * Get the route key for the model.
