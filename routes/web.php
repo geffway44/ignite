@@ -1,8 +1,8 @@
 <?php
 
-use Inertia\Inertia;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThreadController;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::get('/', fn () => Inertia::render('Welcome/Show'))->name('welcome');
 
@@ -12,7 +12,7 @@ Route::group([
     Route::get('/home', fn () => Inertia::render('Dashboard/Home'))->name('home');
 
     Route::get('threads', [ThreadController::class, 'index'])->name('threads');
-    Route::get('thread/{thread}', [ThreadController::class, 'show'])->name('threads.show');
+    Route::get('threads/{thread}', [ThreadController::class, 'show'])->name('threads.show');
     Route::get('threads/create', [ThreadController::class, 'create'])->name('threads.create');
     Route::post('threads', [ThreadController::class, 'store'])->name('threads.store');
     Route::get('threads/edit', [ThreadController::class, 'edit'])->name('threads.edit');

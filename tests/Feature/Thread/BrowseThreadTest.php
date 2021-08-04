@@ -37,7 +37,7 @@ class BrowseThreadTest extends TestCase
 
         $thread = Thread::factory()->create();
 
-        $response = $this->get('/thread/'.$thread->id);
+        $response = $this->get($thread->path);
 
         $response->assertStatus(200); // assert response is successful
 

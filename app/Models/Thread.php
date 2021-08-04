@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Emberfuse\Blaze\Models\Traits\Directable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,20 +11,31 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Thread extends Model
 {
     use HasFactory;
+    use Directable;
 
     /**
-    * Mass assignable attributes.
-    *
-    * @var array
-    */
+     * Mass assignable attributes.
+     *
+     * @var array
+     */
     protected $fillable = [
         'title',
         'body',
         'user_id',
         'channel_id',
     ];
+
     /**
-     *Thread belongs to a user
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'path',
+    ];
+
+    /**
+     *Thread belongs to a user.
      *
      *  @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -33,7 +45,7 @@ class Thread extends Model
     }
 
     /**
-     *Thread belongs to a channel
+     *Thread belongs to a channel.
      *
      *  @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -50,15 +62,5 @@ class Thread extends Model
     public function replies(): HasMany
     {
         return $this->hasMany(Reply::class);
-    }
-
-    /**
-     * Returning thread path.
-     *
-     * @return string
-     */
-    public function path(): string
-    {
-        return '/thread/' . $this->id;
     }
 }
