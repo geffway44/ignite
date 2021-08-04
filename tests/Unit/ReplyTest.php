@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Models\Reply;
 use App\Models\Thread;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -12,33 +13,20 @@ class ReplyTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testReplyRequiresBody()
+    public function setUp(): void
     {
-        $this->signIn();
+        parent::setUp();
 
-        $reply = Reply::factory()->make(['body' => null]);
-
-        $this->post('replies', $reply->toArray())
-            ->assertSessionHasErrors('body');
+        $this->reply = create(Reply::class);
     }
 
-    public function testReplyRequiresUser()
+    public function testReplyHasBody()
     {
-        $this->signIn();
-
-        $reply = Reply::factory()->make(['user_id' => null]);
-
-        $this->post('replies', $reply->toArray())
-            ->assertSessionHasErrors('user_id');
+        $this->assertNotNull($this->reply->body);
     }
 
-    public function testReplyRequiresThread()
+    public function testReplyHasUser()
     {
-        $this->signIn();
-
-        $reply = Reply::factory()->make(['thread_id' => null]);
-
-        $this->post('replies', $reply->toArray())
-            ->assertSessionHasErrors('thread_id');
+        $this->assertInstanceOf(User::class, $this->reply->user);
     }
 }

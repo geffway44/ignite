@@ -11,22 +11,25 @@ class CreateReplyTest extends TestCase
 {
     use RefreshDatabase;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $this->reply = make(Reply::class);
+    }
+
     public function testAuthenticatedUsersCanReplyToThread()
     {
         $this->signIn();
 
-        $reply = Reply::factory()->make();
+        $this->post('/replies', $this->reply->toArray());
 
-        $this->post('/replies', $reply->toArray());
-
-        $this->assertDatabaseHas('replies', ['thread_id'=> $reply->thread_id]);
+        $this->assertDatabaseHas('replies', ['thread_id'=> $this->reply->thread_id]);
     }
 
     public function testUnauthenticatedUsersCannotReplyToThread()
     {
-        $reply = Reply::factory()->make();
-
-        $this->post('/replies', $reply->toArray())
+        $this->post('/replies', $this->reply->toArray())
             ->assertRedirect('/login');
     }
 }
