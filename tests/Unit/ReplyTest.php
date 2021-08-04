@@ -16,23 +16,29 @@ class ReplyTest extends TestCase
     {
         $this->signIn();
 
-        $thread = Thread::factory()->create();
-
-        $reply = Reply::factory()->make(['body' => null, 'thread_id' => $thread->id, 'user_id' => Auth::id()]);
+        $reply = Reply::factory()->make(['body' => null]);
 
         $this->post('replies', $reply->toArray())
             ->assertSessionHasErrors('body');
     }
 
-    public function testThreadRequiresUser()
+    public function testReplyRequiresUser()
     {
         $this->signIn();
 
-        $thread = Thread::factory()->create();
-
-        $reply = Reply::factory()->make(['thread_id' => $thread->id, 'user_id' => null]);
+        $reply = Reply::factory()->make(['user_id' => null]);
 
         $this->post('replies', $reply->toArray())
             ->assertSessionHasErrors('user_id');
+    }
+
+    public function testReplyRequiresThread()
+    {
+        $this->signIn();
+
+        $reply = Reply::factory()->make(['thread_id' => null]);
+
+        $this->post('replies', $reply->toArray())
+            ->assertSessionHasErrors('thread_id');
     }
 }

@@ -3,7 +3,6 @@
 namespace Tests\Feature\Reply;
 
 use App\Models\Reply;
-use App\Models\Thread;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -16,22 +15,18 @@ class CreateReplyTest extends TestCase
     {
         $this->signIn();
 
-        $thread = Thread::factory()->create();
-
-        $reply = Reply::factory()->make(['thread_id' => $thread->id, 'user_id' => Auth::id()]);
+        $reply = Reply::factory()->make();
 
         $this->post('/replies', $reply->toArray());
 
-        $this->assertDatabaseHas('replies', ['thread_id'=> $thread->id]);
+        $this->assertDatabaseHas('replies', ['thread_id'=> $reply->thread_id]);
     }
 
     public function testUnauthenticatedUsersCannotReplyToThread()
     {
         $this->signIn();
 
-        $thread = Thread::factory()->create();
-
-        $reply = Reply::factory()->make(['thread_id' => $thread->id, 'user_id' => Auth::id()]);
+        $reply = Reply::factory()->make();
 
         Auth::logout();
 
