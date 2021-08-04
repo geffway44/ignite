@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Emberfuse\Blaze\Models\Traits\Directable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +10,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Thread extends Model
 {
     use HasFactory;
-    use Directable;
 
     /**
      * Mass assignable attributes.
@@ -23,15 +21,6 @@ class Thread extends Model
         'body',
         'user_id',
         'channel_id',
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'path',
     ];
 
     /**

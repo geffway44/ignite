@@ -32,13 +32,13 @@ class BrowseThreadTest extends TestCase
         });
     }
 
-    public function testBrowseAThread()
+    public function testUserCanViewASingleThread()
     {
         $this->signIn();
 
         $thread = Thread::factory()->create();
 
-        $response = $this->get($thread->path);
+        $response = $this->get("/threads/{$thread->channel->slug}/{$thread->id}");
 
         $response->assertStatus(200); // assert response is successful
 
@@ -57,7 +57,7 @@ class BrowseThreadTest extends TestCase
         $channelThreads = create(Thread::class, ['channel_id' => $channel->id], null, 10);
         $nonChannelThreads = create(Thread::class, [], null, 10);
 
-        $response = $this->get($channel->slug . '/threads');
+        $response = $this->get('/threads/' . $channel->slug);
 
         $response->assertStatus(200);
 

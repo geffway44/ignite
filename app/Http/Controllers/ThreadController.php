@@ -45,11 +45,12 @@ class ThreadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Models\Thread $thread
+     * @param \App\Models\Channel $channel
+     * @param \App\Models\Thread  $thread
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Thread $thread)
+    public function show(Channel $channel, Thread $thread)
     {
         return $thread;
     }
