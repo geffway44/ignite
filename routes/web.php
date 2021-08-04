@@ -12,7 +12,6 @@ Route::group([
     'middleware' => ['auth:scorch', 'verified'],
 ], function (): void {
     Route::get('/home', fn () => Inertia::render('Dashboard/Home'))->name('home');
-
     Route::get('/threads', [ThreadController::class, 'index'])->name('threads');
     Route::get('/threads/{channel}/{thread}', [ThreadController::class, 'show'])->name('threads.show');
     Route::get('/threads/create', [ThreadController::class, 'create'])->name('threads.create');
