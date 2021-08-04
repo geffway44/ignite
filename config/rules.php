@@ -90,4 +90,12 @@ return [
         'user_id' => ['required', 'numeric', 'exists:users,id'],
         'thread_id' => ['required', 'numeric', 'exists:threads,id'],
     ],
+
+    /*
+  * Threads Channels Validation Rules.
+  */
+    'channel' => [
+        'name' => ['required', 'string', 'max:255'],
+        'slug' => ['required', 'string', 'max:255'],
+    ],
 ];
