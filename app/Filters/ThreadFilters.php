@@ -31,7 +31,6 @@ class ThreadFilters
         $this->request = $request;
     }
 
-
     /**
      * @param $builder
      *
