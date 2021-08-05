@@ -82,7 +82,7 @@ class BrowseThreadTest extends TestCase
         $threadbyUserOne = create(Thread::class, ['user_id' => Auth::user()->id]);
 
         $threadNotbyUserOne = create(Thread::class);
-//dd('/threads?by='.Auth::user()->username);
+
         $response = $this->get('/threads?by='.Auth::user()->username);
 
         $response->assertStatus(200);
@@ -91,6 +91,6 @@ class BrowseThreadTest extends TestCase
 
         $this->assertStringContainsString($threadbyUserOne->title, $content);
 
-//        $this->assertStringNotContainsString($threadNotbyUserOne->title, $content);
+        $this->assertStringNotContainsString($threadNotbyUserOne->title, $content);
     }
 }

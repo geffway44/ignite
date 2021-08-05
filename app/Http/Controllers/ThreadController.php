@@ -2,23 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\ThreadFilters;
 use App\Http\Requests\ThreadRequest;
 use App\Models\Channel;
 use App\Models\Thread;
 
 class ThreadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param \App\Models\Channel $channel
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(?Channel $channel = null)
-    {
-        $threads = ! is_null($channel) ? $channel->threads->all() : Thread::all();
 
+    /**
+     * @param Channel|null $channel
+     * @param ThreadFilters $filters
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function index(?Channel $channel = null, ThreadFilters $filters)
+    {
+        if (! is_null($channel)) {
+            $threads = $channel->threads->all();
+        } else {
+            $threads = Thread::filter($filters)->get();
+        }
         return response()->json($threads);
     }
 
