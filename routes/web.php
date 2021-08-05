@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ThreadController;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,8 @@ Route::group([
     Route::post('/threads/channels', [ChannelController::class, 'store'])->name('threads.channels.store');
 
     Route::get('/threads/{channel}', [ThreadController::class, 'index'])->name('channel.threads');
+
+    Route::get('/thread/{thread}/likes', [LikeController::class, 'likeThread'])->name('threads.like');
+
+    Route::get('/replies/{reply}/likes', [LikeController::class, 'likeReply'])->name('replies.like');
 });
