@@ -17,7 +17,9 @@ class ThreadController extends Controller
      */
     public function index(?Channel $channel = null)
     {
-        return ! is_null($channel) ? $channel->threads->all() : Thread::all();
+        $threads = ! is_null($channel) ? $channel->threads->all() : Thread::all();
+
+        return response()->json($threads);
     }
 
     /**
@@ -39,7 +41,9 @@ class ThreadController extends Controller
      */
     public function store(ThreadRequest $request)
     {
-        Thread::create($request->validated());
+        $thread = Thread::create($request->validated());
+
+        return response()->json($thread, 201);
     }
 
     /**
@@ -52,7 +56,7 @@ class ThreadController extends Controller
      */
     public function show(Channel $channel, Thread $thread)
     {
-        return $thread;
+        return response()->json($thread);
     }
 
     /**
@@ -80,6 +84,8 @@ class ThreadController extends Controller
         $this->authorize('update', $thread);
 
         $thread->update($request->validated());
+
+        return response()->json($thread);
     }
 
     /**
@@ -94,5 +100,7 @@ class ThreadController extends Controller
         $this->authorize('update', $thread);
 
         $thread->delete();
+
+        return response()->json();
     }
 }
