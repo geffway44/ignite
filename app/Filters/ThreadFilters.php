@@ -14,12 +14,23 @@ class ThreadFilters
     protected $request;
 
     /**
+     * @var
+     */
+    protected $builder;
+
+    /**
+     * @var string[]
+     */
+    protected $filters = ['by'];
+
+    /**
      * ThreadFilters constructor.
      */
     public function __construct(Request $request)
     {
         $this->request = $request;
     }
+
 
     /**
      * @param $builder
@@ -28,12 +39,35 @@ class ThreadFilters
      */
     public function apply($builder)
     {
-        if (! $username = $this->request->by) {
-            return $builder;
+        $this->builder = $builder;
+        foreach ($this->filters as $filter) {
+            if ($this->hasFilter($filter)) {
+                $this->$filter($this->request->$filter);
+            }
         }
 
+        return $this->builder;
+    }
+
+    /**
+     * @param $username
+     *
+     * @return mixed
+     */
+    protected function by($username)
+    {
         $user = User::where('username', $username)->firstOrFail();
 
-        return $builder->where('user_id', $user->id);
+        return $this->builder->where('user_id', $user->id);
+    }
+
+    /**
+     * @param string $filter
+     *
+     * @return bool
+     */
+    protected function hasFilter(string $filter): bool
+    {
+        return method_exists($this, $filter) && $this->request->has($filter);
     }
 }
